@@ -13,7 +13,7 @@
 #include "../../includes/cub3D.h"
 
 /*Gerer s'il manque valeur de couleur*/
-static void	get_floor_color(char *line, t_map_info *map_info)
+static void	get_floor_color(char *line, t_data *map_info)
 {
 	char	**split;
 	char	**split2;
@@ -38,7 +38,7 @@ static void	get_floor_color(char *line, t_map_info *map_info)
 	free_char_array(split);
 }
 
-static void	get_ceiling_color(char *line, t_map_info *map_info)
+static void	get_ceiling_color(char *line, t_data *map_info)
 {
 	char	**split;
 	char	**split2;
@@ -63,7 +63,7 @@ static void	get_ceiling_color(char *line, t_map_info *map_info)
 	free_char_array(split);
 }
 
-int	get_color(char *line, t_map_info *map_info)
+int	get_color(char *line, t_data *map_info)
 {
 	if (ft_strcompare("F ", line, 2))
 	{

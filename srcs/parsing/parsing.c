@@ -37,7 +37,7 @@ static int	check_line(char *line)
 	return (0);
 }
 
-static int	parse_line(char *line, t_map_info *map_info)
+static int	parse_line(char *line, s_data *map_info)
 {
 	if (check_line(line) == 0)
 		return (0);
@@ -60,7 +60,7 @@ static int	open_map(char *map_path, int flags)
 	return (fd);
 }
 
-void	parse_map(char *map_path, t_map_info *map_info)
+void	parse_map(char *map_path, s_data *map_info)
 {
 	int		count;
 	int		fd;
@@ -70,8 +70,8 @@ void	parse_map(char *map_path, t_map_info *map_info)
 	line = get_next_line(fd);
 	if (!line)
 		print_error(1);
-	map_info->map = malloc(sizeof(t_map *));
-	if (!map_info->map)
+	map_info->map_data = malloc(sizeof(t_map_info *));
+	if (!map_info->map_data)
 		print_error(2);
 	count = 0;
 	while (line != NULL)
@@ -79,12 +79,11 @@ void	parse_map(char *map_path, t_map_info *map_info)
 		if (count == 7)
 			get_map(line, map_info);
 		else
-		{
 			if (parse_line(line, map_info))
 				count++;
-		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
+	setup_map(map_info);
 }

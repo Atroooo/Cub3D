@@ -12,10 +12,56 @@
 
 #include "../../includes/cub3D.h"
 
-int	get_map(char *line, t_map_info *map_info)
+int	get_map(char *line, t_data *data)
 {
-	(void) line;
-	(void) map_info;
-	// printf("ici\n");
+	char	*tmp_map;
+
+	if (data->map_data->base_map != NULL)
+		tmp_map = ft_strdup(data->map_data->base_map);
+	else
+		tmp_map = ft_strdup("");
+	if (data->map_data->base_map != NULL)
+		free(data->map_data->base_map);
+	data->map_data->base_map = ft_strjoin(tmp_map, line);
+	free(tmp_map);
 	return (1);
+}
+
+static void	get_player_position(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map_data->map[i])
+	{
+		j = 0;
+		while (data->map_data->map[i][j])
+		{
+			if (data->map_data->map[i][j] == 'N' || \
+				data->map_data->map[i][j] == 'S' || \
+				data->map_data->map[i][j] == 'E' || \
+				data->map_data->map[i][j] == 'W')
+			{
+				data->PposX = j;
+				data->PposY = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+	printf("Error\nNo player position.\n");
+	exit(0);
+}
+
+void	setup_map(t_data *data)
+{
+	data->map_data->map = ft_split(data->map_data->base_map, '\n');
+	if (data->map_data->map == NULL)
+	{
+		printf("Error malloc.\n");
+		exit(0);
+	}
+	get_player_position(data);
 }

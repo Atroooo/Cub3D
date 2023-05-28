@@ -12,17 +12,26 @@
 
 #include "../includes/cub3D.h"
 
-void	print_param(t_map_info *map_info)
+void	print_param(t_data *data)
 {
-	printf("R : %d %d\n", map_info->res_X, map_info->res_Y);
-	printf("NO : %s\n", map_info->NO_texture);
-	printf("SO : %s\n", map_info->SO_texture);
-	printf("WE : %s\n", map_info->WE_texture);
-	printf("EA : %s\n", map_info->EA_texture);
-	printf("Color floor : %d %d %d\n", map_info->floor_color[0], \
-		map_info->floor_color[1], map_info->floor_color[2]);
-	printf("Color ceiling : %d %d %d\n", map_info->ceiling_color[0], \
-		map_info->ceiling_color[1], map_info->ceiling_color[2]);
-	// printf("player pos : %d %d\n", map_info->player_pos_X, 
-	// 	map_info->player_pos_Y);
+	int i;
+
+	printf("R : %d %d\n", data->resX, data->resY);
+	printf("NO : %s\n", data->NO);
+	printf("SO : %s\n", data->SO);
+	printf("WE : %s\n", data->WE);
+	printf("EA : %s\n", data->EA);
+	printf("Color floor : %d %d %d\n", data->floor_color[0], \
+		data->floor_color[1], data->floor_color[2]);
+	printf("Color ceiling : %d %d %d\n", data->ceiling_color[0], \
+		data->ceiling_color[1], data->ceiling_color[2]);
+	printf("player pos : %d %d\n", data->PposX, 
+		data->PposY);
+	// printf("base map : %s\n", data->map_data->base_map);
+	i = 0;
+	while (data->map_data->map[i])
+	{
+		printf("map line %d : %s\n", i, data->map_data->map[i]);
+		i++;
+	}
 }

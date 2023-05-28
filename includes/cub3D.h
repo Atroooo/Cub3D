@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"
@@ -22,7 +22,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-void    free_char_array(char **array);
-void    print_param(t_map_info *map_info);
+void	free_char_array(char **array);
+void	print_param(t_data *map_info);
 
 #endif
