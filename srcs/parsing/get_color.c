@@ -10,69 +10,101 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "cub3D.h"
 
-/*Gerer s'il manque valeur de couleur*/
-static void	get_floor_color(char *line, t_data *map_info)
+static void	check_color_value(t_data *data, char c, char *line)
+{
+	if (c == 'C')
+		if ((data->ceiling_color[0] > 0 && data->ceiling_color[0] < 255) && \
+		(data->ceiling_color[1] > 0 && data->ceiling_color[1] < 255) && \
+		(data->ceiling_color[2] > 0 && data->ceiling_color[2] < 255))
+			return ;
+	if (c == 'F')
+		if ((data->floor_color[0] > 0 && data->floor_color[0] < 255) && \
+		(data->floor_color[1] > 0 && data->floor_color[1] < 255) && \
+		(data->floor_color[2] > 0 && data->floor_color[2] < 255))
+			return ;
+	if (line)
+		free(line);
+	free_parsing(data);
+}
+
+static int	check_line_correct(char *str)
+{
+	int	i;
+
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static void	get_floor_color(char *line, t_data *data)
 {
 	char	**split;
 	char	**split2;
 
 	split = ft_split(line, ',');
-	map_info->floor_color = malloc(sizeof(int) * 3);
-	if (!split || !map_info->floor_color)
-	{
-		printf("Error malloc.\n");
-		exit(0);
-	}
+	if (!split)
+		print_error_message_exit(data, 0, line);
 	split2 = ft_split(split[0], ' ');
-	if (!split2[1])
+	if (!split2 || !split2[1] || !check_line_correct(split[1]) || \
+	!check_line_correct(split[2]) || !check_line_correct(split2[1]))
 	{
-		printf("Error malloc.\n");
-		exit(0);
+		free_split(split, split2);
+		print_error_message_exit(data, 1, line);
 	}
-	map_info->floor_color[0] = ft_atoi(split2[1]);
-	map_info->floor_color[1] = ft_atoi(split[1]);
-	map_info->floor_color[2] = ft_atoi(split[2]);
-	free_char_array(split2);
-	free_char_array(split);
+	data->floor_color = malloc(sizeof(int) * 3);
+	if (data->floor_color == NULL)
+		print_error_message_exit(data, 0, line);
+	data->floor_color[0] = ft_atoi(split2[1]);
+	data->floor_color[1] = ft_atoi(split[1]);
+	data->floor_color[2] = ft_atoi(split[2]);
+	free_split(split, split2);
+	check_color_value(data, 'F', line);
 }
 
-static void	get_ceiling_color(char *line, t_data *map_info)
+static void	get_ceiling_color(char *line, t_data *data)
 {
 	char	**split;
 	char	**split2;
 
 	split = ft_split(line, ',');
-	map_info->ceiling_color = malloc(sizeof(int) * 3);
-	if (!map_info->ceiling_color || !split)
-	{
-		printf("Error malloc.\n");
-		exit(0);
-	}
+	if (!split)
+		print_error_message_exit(data, 0, line);
 	split2 = ft_split(split[0], ' ');
-	if (!split2[1])
+	if (!split2 || !split2[1] || !check_line_correct(split[1]) || \
+	!check_line_correct(split[2]) || !check_line_correct(split2[1]))
 	{
-		printf("Error malloc. 2\n");
-		exit(0);
+		free_split(split, split2);
+		print_error_message_exit(data, 1, line);
 	}
-	map_info->ceiling_color[0] = ft_atoi(split2[1]);
-	map_info->ceiling_color[1] = ft_atoi(split[1]);
-	map_info->ceiling_color[2] = ft_atoi(split[2]);
-	free_char_array(split2);
-	free_char_array(split);
+	data->ceiling_color = malloc(sizeof(int) * 3);
+	if (!data->ceiling_color)
+		print_error_message_exit(data, 0, line);
+	data->ceiling_color[0] = ft_atoi(split2[1]);
+	data->ceiling_color[1] = ft_atoi(split[1]);
+	data->ceiling_color[2] = ft_atoi(split[2]);
+	free_split(split, split2);
+	check_color_value(data, 'C', line);
 }
 
-int	get_color(char *line, t_data *map_info)
+int	get_color(char *line, t_data *data)
 {
 	if (ft_strcompare("F ", line, 2))
 	{
-		get_floor_color(line, map_info);
+		get_floor_color(line, data);
 		return (1);
 	}
 	else if (ft_strcompare("C ", line, 2))
 	{
-		get_ceiling_color(line, map_info);
+		get_ceiling_color(line, data);
 		return (1);
 	}
 	return (0);

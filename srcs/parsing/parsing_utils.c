@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "cub3D.h"
 
 int	ft_strcompare(char *str1, char *str2, int n)
 {

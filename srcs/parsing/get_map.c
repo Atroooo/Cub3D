@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "cub3D.h"
 
 int	get_map(char *line, t_data *data)
 {
@@ -52,16 +52,28 @@ static void	get_player_position(t_data *data)
 		i++;
 	}
 	printf("Error\nNo player position.\n");
-	exit(0);
+	free_parsing(data);
+}
+
+static void	check_map(t_data *data)
+{
+	(void) data;
+	printf("oui\n");
 }
 
 void	setup_map(t_data *data)
 {
+	if (data->map_data->base_map == NULL)
+	{
+		printf("Error\nNo map.\n");
+		free_parsing(data);
+	}
 	data->map_data->map = ft_split(data->map_data->base_map, '\n');
 	if (data->map_data->map == NULL)
 	{
 		printf("Error malloc.\n");
-		exit(0);
+		free_parsing(data);
 	}
 	get_player_position(data);
+	check_map(data);
 }

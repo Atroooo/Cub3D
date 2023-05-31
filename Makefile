@@ -16,6 +16,7 @@ SRC			 			= main.c \
 						  parsing/get_texture.c \
 						  parsing/get_color.c \
 						  parsing/get_map.c \
+						  parsing/error_message_parsing.c \
 						  init_mlx_create_win.c \
 						  delete.c \
 							
@@ -38,7 +39,7 @@ $(BUILD_DIR)%.o:		$(DIR)%.c $(HEADER_DIR) Makefile
 						@mkdir -p $(@D)
 						$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I$(LIB_DIR) -c $< -o $@
 					
-all: 					 mkbuild lib $(HEADER_DIR) $(NAME)
+all: 					 minilibx mkbuild lib $(HEADER_DIR) $(NAME)
 
 mkbuild:
 						@mkdir -p build
