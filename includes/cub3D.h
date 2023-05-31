@@ -15,8 +15,10 @@
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"
+# include "struct.h"
 # include "keys.h"
 # include "parsing.h"
+# include "windows.h"
 
 # include <stdio.h>
 # include <stdlib.h>

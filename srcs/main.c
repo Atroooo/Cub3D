@@ -28,7 +28,8 @@ void	check_params(char *map_path)
 
 int	main(int argc, char **argv)
 {
-	t_map_info	map_info;
+	t_data		map_info;
+	t_windows	win;
 
 	if (argc != 2)
 	{
@@ -38,5 +39,7 @@ int	main(int argc, char **argv)
 	check_params(argv[1]);
 	parse_map(argv[1], &map_info);
 	print_param(&map_info);
+	init_mlx_create_win(&win);
+	mlx_loop(win.mlx);
 	return (0);
 }

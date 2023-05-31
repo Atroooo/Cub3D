@@ -14,19 +14,19 @@
 
 void	print_param(t_data *data)
 {
-	int i;
+	int	i;
 
-	printf("R : %d %d\n", data->resX, data->resY);
-	printf("NO : %s\n", data->NO);
-	printf("SO : %s\n", data->SO);
-	printf("WE : %s\n", data->WE);
-	printf("EA : %s\n", data->EA);
+	printf("R : %d %d\n", data->res_x, data->res_y);
+	printf("NO : %s\n", data->no);
+	printf("SO : %s\n", data->so);
+	printf("WE : %s\n", data->we);
+	printf("EA : %s\n", data->ea);
 	printf("Color floor : %d %d %d\n", data->floor_color[0], \
 		data->floor_color[1], data->floor_color[2]);
 	printf("Color ceiling : %d %d %d\n", data->ceiling_color[0], \
 		data->ceiling_color[1], data->ceiling_color[2]);
-	printf("player pos : %d %d\n", data->PposX, 
-		data->PposY);
+	printf("player pos : %d %d\n", data->p_pos_x,
+		data->p_pos_y);
 	// printf("base map : %s\n", data->map_data->base_map);
 	i = 0;
 	while (data->map_data->map[i])

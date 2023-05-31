@@ -1,4 +1,4 @@
- .PHONY:     			all $(NAME) mkbuild lib clean fclean re 
+ .PHONY:     			all $(NAME) mkbuild lib clean fclean re minilibx sanitize
 
 NAME					= cub3D
 
@@ -16,6 +16,7 @@ SRC			 			= main.c \
 						  parsing/get_texture.c \
 						  parsing/get_color.c \
 						  parsing/get_map.c \
+						  init_mlx_create_win.c \
 						  delete.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
@@ -23,11 +24,15 @@ OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
 LIBFT					= libft.a
 LIB_DIR					= libft/
 
+MINILIB_DIR				= minilibx_linux/
+LINUX					= -Lminilibx_linux -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz
+
+MINILIB					= libmlx.a
+
 GCC						= gcc
 CFLAGS					= -Wall -Wextra -Werror -g3  
 
 RM 						= rm -rf
-
 
 $(BUILD_DIR)%.o:		$(DIR)%.c $(HEADER_DIR) Makefile 
 						@mkdir -p $(@D)
@@ -39,19 +44,27 @@ mkbuild:
 						@mkdir -p build
 					
 $(NAME): 				$(OBJECTS) $(LIB_DIR)$(LIBFT)
-						$(GCC) $(CFLAGS) -I{HEADER_DIR} $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT)
+						$(GCC) $(CFLAGS) -I{HEADER_DIR} $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) $(MINILIB_DIR)$(MINILIB) $(LINUX)
+
+sanit :					$(OBJECTS) $(LIB_DIR)$(LIBFT)
+						$(GCC) $(SANITIZE) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) $(MINILIB_DIR)$(MINILIB) $(LINUX)
 
 lib:
 						@make -C $(LIB_DIR)
+
+minilibx:
+						@make -C $(MINILIB_DIR)
 		
 clean:					
 						@${RM} $(OBJECTS)
 						@make clean -C $(LIB_DIR)
+						@make clean -C $(MINILIB_DIR)
 						@${RM} $(BUILD_DIR)
 
 fclean:					clean
 						@${RM} ${NAME}
 						@make fclean -C $(LIB_DIR)
+						@make clean -C $(MINILIB_DIR)
 
 re:						fclean all
 						$(MAKE) all

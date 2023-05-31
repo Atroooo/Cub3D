@@ -19,9 +19,9 @@ int	get_resolution(char *line, t_data *map_info)
 	if (ft_strncmp("R ", line, 2) != 0)
 		return (0);
 	split = ft_split(line, ' ');
-	map_info->resX = ft_atoi(split[1]);
-	map_info->resY = ft_atoi(split[2]);
-	if (map_info->resX < 0 || map_info->resY < 0)
+	map_info->res_x = ft_atoi(split[1]);
+	map_info->res_y = ft_atoi(split[2]);
+	if (map_info->res_x < 0 || map_info->res_y < 0)
 	{
 		printf("Error.\n");
 		exit(0);

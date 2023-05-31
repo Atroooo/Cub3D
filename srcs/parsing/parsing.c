@@ -37,7 +37,7 @@ static int	check_line(char *line)
 	return (0);
 }
 
-static int	parse_line(char *line, s_data *map_info)
+static int	parse_line(char *line, t_data *map_info)
 {
 	if (check_line(line) == 0)
 		return (0);
@@ -60,7 +60,7 @@ static int	open_map(char *map_path, int flags)
 	return (fd);
 }
 
-void	parse_map(char *map_path, s_data *map_info)
+void	parse_map(char *map_path, t_data *map_info)
 {
 	int		count;
 	int		fd;

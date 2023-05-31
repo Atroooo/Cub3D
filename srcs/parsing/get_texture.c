@@ -23,7 +23,7 @@ static void	get_north_texture(char *line, t_data *data)
 		printf("Error malloc. a\n");
 		exit(0);
 	}
-	data->NO = ft_strdup(split[1]);
+	data->no = ft_strdup(split[1]);
 }
 
 static void	get_south_texture(char *line, t_data *data)
@@ -36,7 +36,7 @@ static void	get_south_texture(char *line, t_data *data)
 		printf("Error malloc. b\n");
 		exit(0);
 	}
-	data->SO = ft_strdup(split[1]);
+	data->so = ft_strdup(split[1]);
 }
 
 static void	get_west_texture(char *line, t_data *data)
@@ -49,7 +49,7 @@ static void	get_west_texture(char *line, t_data *data)
 		printf("Error malloc. c\n");
 		exit(0);
 	}
-	data->WE = ft_strdup(split[1]);
+	data->we = ft_strdup(split[1]);
 }
 
 static void	get_east_texture(char *line, t_data *data)
@@ -62,7 +62,7 @@ static void	get_east_texture(char *line, t_data *data)
 		printf("Error malloc. d\n");
 		exit(0);
 	}
-	data->EA = ft_strdup(split[1]);
+	data->ea = ft_strdup(split[1]);
 }
 
 int	get_texture(char *line, t_data *data)

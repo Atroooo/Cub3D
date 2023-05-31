@@ -43,8 +43,8 @@ static void	get_player_position(t_data *data)
 				data->map_data->map[i][j] == 'E' || \
 				data->map_data->map[i][j] == 'W')
 			{
-				data->PposX = j;
-				data->PposY = i;
+				data->p_pos_x = j;
+				data->p_pos_y = i;
 				return ;
 			}
 			j++;
