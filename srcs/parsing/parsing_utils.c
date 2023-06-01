@@ -25,3 +25,13 @@ int	ft_strcompare(char *str1, char *str2, int n)
 	}
 	return (1);
 }
+
+char	*setup_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (&line[i]);
+}

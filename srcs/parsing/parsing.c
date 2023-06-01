@@ -39,13 +39,16 @@ static int	check_line(char *line)
 
 static int	parse_line(char *line, t_data *data)
 {
+	char	*tmp;
+
 	if (check_line(line) == 0)
 		return (0);
-	if (get_resolution(line, data))
+	tmp = setup_line(line);
+	if (!tmp)
+		return (0);
+	if (get_texture(tmp, data))
 		return (1);
-	else if (get_texture(line, data))
-		return (1);
-	else if (get_color(line, data))
+	if (get_color(tmp, data))
 		return (1);
 	return (0);
 }
@@ -77,7 +80,7 @@ void	parse_map(char *map_path, t_data *data)
 	count = 0;
 	while (line != NULL)
 	{
-		if (count == 7)
+		if (count == 6)
 			get_map(line, data);
 		else
 			if (parse_line(line, data))

@@ -12,10 +12,10 @@ SRC			 			= main.c \
 						  free_functions/free.c \
 						  parsing/parsing.c \
 						  parsing/parsing_utils.c \
-						  parsing/get_resol.c \
 						  parsing/get_texture.c \
 						  parsing/get_color.c \
 						  parsing/get_map.c \
+						  parsing/get_map_utils.c \
 						  parsing/error_message_parsing.c \
 						  init_mlx_create_win.c \
 						  delete.c \

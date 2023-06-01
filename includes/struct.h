@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/31 18:29:51 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/01 11:24:39 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct s_map_info
 typedef struct s_data
 {
 	int			fd;
-	int			res_x;
-	int			res_y;
 	char		*no;
 	char		*so;
 	char		*we;

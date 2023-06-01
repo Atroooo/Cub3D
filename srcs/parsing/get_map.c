@@ -55,10 +55,23 @@ static void	get_player_position(t_data *data)
 	free_parsing(data);
 }
 
-static void	check_map(t_data *data)
+void	get_size_map(t_data *data)
 {
-	(void) data;
-	printf("oui\n");
+	int	i;
+	int	j;
+
+	i = 0;
+	data->map_data->map_width = 0;
+	while (data->map_data->map[i])
+	{
+		j = 0;
+		while (data->map_data->map[i][j])
+			j++;
+		if (j > data->map_data->map_width)
+			data->map_data->map_width = j;
+		i++;
+	}
+	data->map_data->map_height = i;
 }
 
 void	setup_map(t_data *data)
@@ -74,6 +87,7 @@ void	setup_map(t_data *data)
 		printf("Error malloc.\n");
 		free_parsing(data);
 	}
-	get_player_position(data);
+	get_size_map(data);
 	check_map(data);
+	get_player_position(data);
 }

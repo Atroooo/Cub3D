@@ -29,8 +29,6 @@ static void	check_params(char *map_path)
 static void	init_value(t_data *data)
 {
 	data->fd = 0;
-	data->res_x = 0;
-	data->res_y = 0;
 	data->no = NULL;
 	data->so = NULL;
 	data->we = NULL;

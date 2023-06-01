@@ -16,7 +16,6 @@ void	print_param(t_data *data)
 {
 	int	i;
 
-	printf("R : %d %d\n", data->res_x, data->res_y);
 	printf("NO : %s\n", data->no);
 	printf("SO : %s\n", data->so);
 	printf("WE : %s\n", data->we);

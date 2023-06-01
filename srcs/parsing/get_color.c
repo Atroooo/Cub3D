@@ -26,22 +26,31 @@ static void	check_color_value(t_data *data, char c, char *line)
 			return ;
 	if (line)
 		free(line);
+	printf("Error\nWrong color value.\n");
 	free_parsing(data);
 }
 
 static int	check_line_correct(char *str)
 {
-	int	i;
+	char	*tmp;
+	int		i;
 
 	if (str == NULL)
 		return (0);
 	i = 0;
-	while (str[i])
+	tmp = ft_strtrim(str, " \n");
+	if (!tmp)
+		return (0);
+	while (tmp[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(tmp[i]))
+		{
+			free(tmp);
 			return (0);
+		}
 		i++;
 	}
+	free(tmp);
 	return (1);
 }
 
