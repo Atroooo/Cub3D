@@ -26,11 +26,11 @@ void	print_param(t_data *data)
 		data->ceiling_color[1], data->ceiling_color[2]);
 	printf("player pos : %d %d\n", data->p_pos_x,
 		data->p_pos_y);
-	// printf("base map : %s\n", data->map_data->base_map);
+	// printf("base map : %s\n", data->map_data.base_map);
 	i = 0;
-	while (data->map_data->map[i])
+	while (data->map_data.map[i])
 	{
-		printf("map line %d : %s\n", i, data->map_data->map[i]);
+		printf("map line %d : %s\n", i, data->map_data.map[i]);
 		i++;
 	}
 }

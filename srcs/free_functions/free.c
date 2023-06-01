@@ -41,12 +41,10 @@ void	free_parsing(t_data *data)
 		free(data->floor_color);
 	if (data->ceiling_color != NULL)
 		free(data->ceiling_color);
-	if (data->map_data->base_map != NULL)
-		free(data->map_data->base_map);
-	if (data->map_data->map != NULL)
-		free_char_array(data->map_data->map);
-	if (data->map_data != NULL)
-		free(data->map_data);
+	if (data->map_data.base_map != NULL)
+		free(data->map_data.base_map);
+	if (data->map_data.map != NULL)
+		free_char_array(data->map_data.map);
 	close(data->fd);
 	exit(0);
 }

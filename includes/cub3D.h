@@ -17,6 +17,7 @@
 # include "../libft/header/libft.h"
 # include "struct.h"
 # include "keys.h"
+# include "keyhook_functions.h"
 # include "parsing.h"
 # include "windows.h"
 
@@ -25,6 +26,7 @@
 # include <fcntl.h>
 
 void	free_char_array(char **array);
+void	free_windows_struct(t_env *env);
 void	print_param(t_data *map_info);
 
 #endif

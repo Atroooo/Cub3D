@@ -10,6 +10,7 @@ HEADER_DIR				= includes/
 DIR						= srcs/
 SRC			 			= main.c \
 						  free_functions/free.c \
+						  free_functions/free_mlx.c \
 						  parsing/parsing.c \
 						  parsing/parsing_utils.c \
 						  parsing/get_texture.c \
@@ -17,7 +18,8 @@ SRC			 			= main.c \
 						  parsing/get_map.c \
 						  parsing/get_map_utils.c \
 						  parsing/error_message_parsing.c \
-						  init_mlx_create_win.c \
+						  execution/init_mlx_create_win.c \
+						  execution/key_hook.c \
 						  delete.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)

@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/01 11:24:39 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:56:25 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_data
 	char		player_orientation;
 	int			*floor_color;
 	int			*ceiling_color;
-	t_map_info	*map_data;
+	t_map_info	map_data;
 }	t_data;
 
 /* MLX */
@@ -58,7 +58,6 @@ typedef struct s_windows
 
 typedef struct s_env
 {
-	t_map_info	map;
 	t_data		data;
 	t_img		img;
 	t_windows	windows;

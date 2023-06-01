@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/01 13:33:32 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:32:15 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_char(char c)
 	return (0);
 }
 
-static int	check_next_char(char **map, int i, int j, t_map_info *map_info)
+static int	check_next_char(char **map, int i, int j, t_map_info map_info)
 {
 	if (map[0][j] && map[0][j] == '0')
 		return (0);
@@ -33,8 +33,8 @@ static int	check_next_char(char **map, int i, int j, t_map_info *map_info)
 		return (0);
 	if (map[i][j] == '0' && map[i][j + 1] == '\0')
 		return (0);
-	if (map[map_info->map_height - 1][j] && \
-		map[map_info->map_height - 1][j] == '0')
+	if (map[map_info.map_height - 1][j] && \
+		map[map_info.map_height - 1][j] == '0')
 		return (0);
 	if ((map[i][j - 1] && map[i][j - 1] == ' ') || \
 		(map[i][j + 1] && map[i][j + 1] == ' ') || \
@@ -50,12 +50,12 @@ void	check_map(t_data *data)
 	int		i;
 	int		j;
 
-	map = data->map_data->map;
+	map = data->map_data.map;
 	i = -1;
-	while (data->map_data->map[++i])
+	while (data->map_data.map[++i])
 	{
 		j = -1;
-		while (data->map_data->map[i][++j])
+		while (data->map_data.map[i][++j])
 		{
 			if (!check_char(map[i][j]))
 				free_parsing(data);

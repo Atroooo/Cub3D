@@ -72,11 +72,8 @@ void	parse_map(char *map_path, t_data *data)
 	line = get_next_line(data->fd);
 	if (!line)
 		print_error(1);
-	data->map_data = malloc(sizeof(t_map_info));
-	if (!data->map_data)
-		print_error(2);
-	data->map_data->base_map = NULL;
-	data->map_data->map = NULL;
+	data->map_data.base_map = NULL;
+	data->map_data.map = NULL;
 	count = 0;
 	while (line != NULL)
 	{

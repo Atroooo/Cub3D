@@ -38,13 +38,12 @@ static void	init_value(t_data *data)
 	data->player_orientation = 0;
 	data->floor_color = NULL;
 	data->ceiling_color = NULL;
-	data->map_data = NULL;
 }
 
 int	main(int argc, char **argv)
 {
+	t_env		env;
 	t_data		map_info;
-	// t_windows	win;
 
 	if (argc != 2)
 	{
@@ -54,9 +53,9 @@ int	main(int argc, char **argv)
 	check_params(argv[1]);
 	init_value(&map_info);
 	parse_map(argv[1], &map_info);
+	env.data = map_info;
 	print_param(&map_info);
-	free_parsing(&map_info);
-	// init_mlx_create_win(&win);
-	// mlx_loop(win.mlx);
+	init_mlx_create_win(&env);
+	mlx_loop(env.windows.mlx);
 	return (0);
 }
