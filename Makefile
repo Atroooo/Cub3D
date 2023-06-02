@@ -25,6 +25,7 @@ SRC			 			= main.c \
 						  draw/my_mlx_pixel_put.c \
 						  move/player_move.c \
 						  delete.c \
+						  raycasting.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
 	
