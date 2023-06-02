@@ -20,6 +20,10 @@ SRC			 			= main.c \
 						  parsing/error_message_parsing.c \
 						  execution/init_mlx_create_win.c \
 						  execution/key_hook.c \
+						  execution/refresh_img.c \
+						  draw/mini_map.c \
+						  draw/my_mlx_pixel_put.c \
+						  move/player_move.c \
 						  delete.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
@@ -31,6 +35,8 @@ MINILIB_DIR				= minilibx_linux/
 LINUX					= -Lminilibx_linux -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz
 
 MINILIB					= libmlx.a
+
+SANITIZE				= -g -fsanitize=address
 
 GCC						= gcc
 CFLAGS					= -Wall -Wextra -Werror -g3  

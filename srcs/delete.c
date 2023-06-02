@@ -33,4 +33,5 @@ void	print_param(t_data *data)
 		printf("map line %d : %s\n", i, data->map_data.map[i]);
 		i++;
 	}
+	printf("map_width = %d\n map_height = %d\n", data->map_data.map_width, data->map_data.map_height);
 }

@@ -56,6 +56,7 @@ int	main(int argc, char **argv)
 	env.data = map_info;
 	print_param(&map_info);
 	init_mlx_create_win(&env);
+	printf("posX = %d, posY = %d\n", env.data.p_pos_x, env.data.p_pos_y);
 	mlx_loop(env.windows.mlx);
 	return (0);
 }
