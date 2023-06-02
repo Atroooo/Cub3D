@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "cub3D.h"
 
 static void	print_error(int s)
 {
@@ -37,15 +37,18 @@ static int	check_line(char *line)
 	return (0);
 }
 
-static int	parse_line(char *line, t_data *map_info)
+static int	parse_line(char *line, t_data *data)
 {
+	char	*tmp;
+
 	if (check_line(line) == 0)
 		return (0);
-	if (get_resolution(line, map_info))
+	tmp = setup_line(line);
+	if (!tmp)
+		return (0);
+	if (get_texture(tmp, data))
 		return (1);
-	else if (get_texture(line, map_info))
-		return (1);
-	else if (get_color(line, map_info))
+	if (get_color(tmp, data))
 		return (1);
 	return (0);
 }
@@ -60,30 +63,28 @@ static int	open_map(char *map_path, int flags)
 	return (fd);
 }
 
-void	parse_map(char *map_path, t_data *map_info)
+void	parse_map(char *map_path, t_data *data)
 {
 	int		count;
-	int		fd;
 	char	*line;
 
-	fd = open_map(map_path, O_RDONLY);
-	line = get_next_line(fd);
+	data->fd = open_map(map_path, O_RDONLY);
+	line = get_next_line(data->fd);
 	if (!line)
 		print_error(1);
-	map_info->map_data = malloc(sizeof(t_map_info *));
-	if (!map_info->map_data)
-		print_error(2);
+	data->map_data.base_map = NULL;
+	data->map_data.map = NULL;
 	count = 0;
 	while (line != NULL)
 	{
-		if (count == 7)
-			get_map(line, map_info);
+		if (count == 6)
+			get_map(line, data);
 		else
-			if (parse_line(line, map_info))
+			if (parse_line(line, data))
 				count++;
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 	}
-	close(fd);
-	setup_map(map_info);
+	close(data->fd);
+	setup_map(data);
 }

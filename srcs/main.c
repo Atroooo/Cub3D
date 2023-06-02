@@ -12,7 +12,7 @@
 
 #include "../includes/cub3D.h"
 
-void	check_params(char *map_path)
+static void	check_params(char *map_path)
 {
 	if (!map_path)
 	{
@@ -26,10 +26,24 @@ void	check_params(char *map_path)
 	}
 }
 
+static void	init_value(t_data *data)
+{
+	data->fd = 0;
+	data->no = NULL;
+	data->so = NULL;
+	data->we = NULL;
+	data->ea = NULL;
+	data->p_pos_x = 0;
+	data->p_pos_y = 0;
+	data->player_orientation = 0;
+	data->floor_color = NULL;
+	data->ceiling_color = NULL;
+}
+
 int	main(int argc, char **argv)
 {
+	t_env		env;
 	t_data		map_info;
-	t_windows	win;
 
 	if (argc != 2)
 	{
@@ -37,9 +51,12 @@ int	main(int argc, char **argv)
 		exit(0);
 	}
 	check_params(argv[1]);
+	init_value(&map_info);
 	parse_map(argv[1], &map_info);
+	env.data = map_info;
 	print_param(&map_info);
-	init_mlx_create_win(&win);
-	mlx_loop(win.mlx);
+	init_mlx_create_win(&env);
+	printf("posX = %d, posY = %d\n", env.data.p_pos_x, env.data.p_pos_y);
+	mlx_loop(env.windows.mlx);
 	return (0);
 }

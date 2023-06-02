@@ -10,13 +10,20 @@ HEADER_DIR				= includes/
 DIR						= srcs/
 SRC			 			= main.c \
 						  free_functions/free.c \
+						  free_functions/free_mlx.c \
 						  parsing/parsing.c \
 						  parsing/parsing_utils.c \
-						  parsing/get_resol.c \
 						  parsing/get_texture.c \
 						  parsing/get_color.c \
 						  parsing/get_map.c \
-						  init_mlx_create_win.c \
+						  parsing/get_map_utils.c \
+						  parsing/error_message_parsing.c \
+						  execution/init_mlx_create_win.c \
+						  execution/key_hook.c \
+						  execution/refresh_img.c \
+						  draw/mini_map.c \
+						  draw/my_mlx_pixel_put.c \
+						  move/player_move.c \
 						  delete.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
@@ -29,6 +36,8 @@ LINUX					= -Lminilibx_linux -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz
 
 MINILIB					= libmlx.a
 
+SANITIZE				= -g -fsanitize=address
+
 GCC						= gcc
 CFLAGS					= -Wall -Wextra -Werror -g3  
 
@@ -38,7 +47,7 @@ $(BUILD_DIR)%.o:		$(DIR)%.c $(HEADER_DIR) Makefile
 						@mkdir -p $(@D)
 						$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I$(LIB_DIR) -c $< -o $@
 					
-all: 					 mkbuild lib $(HEADER_DIR) $(NAME)
+all: 					 minilibx mkbuild lib $(HEADER_DIR) $(NAME)
 
 mkbuild:
 						@mkdir -p build

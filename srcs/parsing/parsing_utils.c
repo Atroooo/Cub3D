@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "cub3D.h"
 
 int	ft_strcompare(char *str1, char *str2, int n)
 {
@@ -24,4 +24,14 @@ int	ft_strcompare(char *str1, char *str2, int n)
 		i++;
 	}
 	return (1);
+}
+
+char	*setup_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (&line[i]);
 }

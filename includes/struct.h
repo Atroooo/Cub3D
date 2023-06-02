@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/31 10:47:30 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/02 10:48:42 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ typedef struct s_map_info
 
 typedef struct s_data
 {
-	int			res_x;
-	int			res_y;
+	int			fd;
 	char		*no;
 	char		*so;
 	char		*we;
@@ -37,7 +36,7 @@ typedef struct s_data
 	char		player_orientation;
 	int			*floor_color;
 	int			*ceiling_color;
-	t_map_info	*map_data;
+	t_map_info	map_data;
 }	t_data;
 
 /* MLX */
@@ -54,12 +53,11 @@ typedef struct s_windows
 {
 	void	*mlx;
 	void	*win;
-	t_img	img;
+	t_img	*img;
 }	t_windows;
 
 typedef struct s_env
 {
-	t_map_info	map;
 	t_data		data;
 	t_img		img;
 	t_windows	windows;

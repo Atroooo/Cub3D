@@ -1,13 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/05/31 10:28:27 by gclement         ###   ########.fr       */
+/*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
+/*   Updated: 2023/06/02 13:42:45 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int key_hook(int keycode, t_)
+#include "cub3D.h"
+
+void	move(t_env *env, int keycode)
+{
+	if (keycode == Key_W)
+		env->data.p_pos_y -= MOVE_SPEED;
+	if (keycode == Key_A)
+		env->data.p_pos_x -= MOVE_SPEED;	
+	if (keycode == Key_D)
+		env->data.p_pos_x += MOVE_SPEED;	
+	if (keycode == Key_S)
+		env->data.p_pos_y += MOVE_SPEED;
+	refresh_img(env);
+}
