@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/02 16:06:21 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/03 08:17:44 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ t_img	refresh_img(t_env *env)
 		env->img.img, 0, 0);
 	draw_map(env);
 	draw_player_pos(env->data.p_pos_y, env->data.p_pos_x, &env->img);
-	draw_line(env, 0);
+	raycasting(env);
 	return (env->img);
 }

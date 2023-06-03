@@ -41,7 +41,9 @@ void	print_param(t_data *map_info);
 void	draw_map(t_env *env);
 void	draw_tile(float y, int x, uint32_t color, t_img *img);
 void	draw_player_pos(float y, int x, t_img *img);
-void	draw_line(t_env *env, int angle);
+void	draw_line(t_env *env, float dy, float dx, uint32_t color);
+
+void	raycasting(t_env *env);
 
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color);
