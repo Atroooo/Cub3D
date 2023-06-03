@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/02 13:36:12 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:13:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ void	init_mlx_create_win(t_env *env)
 	t_img		img;
 
 	env->windows.mlx = mlx_init();
-	// if (!win->mlx) !!!!!!!!!! A actualise
-	// 	free_and_exit(win);
+	if (!env->windows.mlx)
+	{
+		printf("Error\nmlx_init failed\n");
+		exit(0);
+	}
+		// free_and_exit(win);
 	env->windows.win = mlx_new_window( \
 		env->windows.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	img.img = mlx_new_image(env->windows.mlx, WIN_WIDTH, WIN_HEIGHT);

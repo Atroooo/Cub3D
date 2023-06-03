@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void	print_error(int s)
+static void	print_error(t_data* data, int s)
 {
 	if (s == 0)
 		printf("Error opening file.\n");
@@ -20,6 +20,11 @@ static void	print_error(int s)
 		printf("Error reading file.\n");
 	if (s == 2)
 		printf("Malloc error\n");
+	if (s == 3)
+	{
+		printf("Error\nWrong arguments.\n");
+		free_parsing(data);
+	}
 	exit(0);
 }
 
@@ -48,18 +53,23 @@ static int	parse_line(char *line, t_data *data)
 		return (0);
 	if (get_texture(tmp, data))
 		return (1);
-	if (get_color(tmp, data))
+	else if (get_color(tmp, data))
 		return (1);
+	else
+	{
+		free(line);
+		print_error(data, 3);
+	}
 	return (0);
 }
 
-static int	open_map(char *map_path, int flags)
+static int	open_map(char *map_path, int flags, t_data *data)
 {
 	int	fd;
 
 	fd = open(map_path, flags);
 	if (fd == -1)
-		print_error(0);
+		print_error(data, 0);
 	return (fd);
 }
 
@@ -68,10 +78,10 @@ void	parse_map(char *map_path, t_data *data)
 	int		count;
 	char	*line;
 
-	data->fd = open_map(map_path, O_RDONLY);
+	data->fd = open_map(map_path, O_RDONLY, data);
 	line = get_next_line(data->fd);
 	if (!line)
-		print_error(1);
+		print_error(data, 1);
 	data->map_data.base_map = NULL;
 	data->map_data.map = NULL;
 	count = 0;
