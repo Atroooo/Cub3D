@@ -26,6 +26,7 @@ SRC			 			= main.c \
 						  move/player_move.c \
 						  delete.c \
 						  raycasting.c \
+						  collision.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
 	
