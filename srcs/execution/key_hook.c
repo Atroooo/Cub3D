@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/02 13:43:18 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/03 11:37:52 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ int	key_hook(int keycode, t_env *env)
 {
 	if (keycode == Key_Escape)
 		mlx_close(env);
-	if (keycode == Key_W || keycode == Key_A
-		|| keycode == Key_D || keycode == Key_S)
-		move(env, keycode);
+	if (keycode == Key_W || keycode == Key_S)
+		move(env, &env->data, keycode);
+	if (keycode == Key_A || keycode == Key_D)
+		rotate(env, &env->data, keycode);
 	return (0);
 }
