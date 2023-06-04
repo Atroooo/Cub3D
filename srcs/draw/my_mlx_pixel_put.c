@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:13:27 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/02 11:11:18 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/04 19:36:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color)
 {
 	char	*dst;
 
+	if (x > 1920 || x < 0 || y > 1080 || y < 0)
+		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(uint32_t *)dst = color;
 }
