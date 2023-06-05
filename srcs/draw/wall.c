@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 14:32:11 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:41:21 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void	draw_wall(float distance, t_img *img, float x, float y)
 {
-	float	i;
+	printf("draw_wall\n");
+	(void) distance;
+	(void) img;
+	(void) x;
+	(void) y;
+	// float	i;
 
-	i = 0;
-	while (i < distance)
-	{
-		my_mlx_pixel_put(img, x, y, 0x757575)
-		y += 0.1;
-	}
+	// i = 0;
+	// while (i < distance)
+	// {
+	// 	my_mlx_pixel_put(img, x, y, 0x757575)
+	// 	y += 0.1;
+	// }
 }
