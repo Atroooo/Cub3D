@@ -23,6 +23,7 @@ SRC			 			= main.c \
 						  execution/refresh_img.c \
 						  draw/mini_map.c \
 						  draw/my_mlx_pixel_put.c \
+						  draw/wall.c \
 						  move/player_move.c \
 						  delete.c \
 						  raycasting.c \
