@@ -42,8 +42,9 @@ void	print_param(t_data *map_info);
 void	draw_map(t_env *env);
 void	draw_tile(float y, int x, uint32_t color, t_img *img);
 void	draw_player_pos(float y, int x, t_img *img);
-void	draw_line(t_env *env, float dy, float dx, float *distance);
+float	calc_radius(t_env *env, float dy, float dx, float *cam_x);
 void	draw_wall(float distance, t_img *img, float *P_x, float y);
+void	draw_column(float distance, t_env *env, float *cam_x, float y);
 
 void	raycasting(t_env *env);
 
