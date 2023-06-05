@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision.c                                        :+:      :+:    :+:   */
+/*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/03 11:40:23 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 10:51:51 by gclement         ###   ########.fr       */
+/*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
+/*   Updated: 2023/06/05 14:32:11 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3D.h>
+#include "cub3D.h"
 
-int	collision(int pos_x, int pos_y, char **map)
+void	draw_wall(float distance, t_img *img, float x, float y)
 {
-	int	x;
-	int	y;
+	float	i;
 
-	x = (pos_x + 5) / TILE_SIZE;
-	y = (pos_y + 5) / TILE_SIZE;
-	if (map[y][x] == '1')
-		return (0);
-	return (1);
+	i = 0;
+	while (i < distance)
+	{
+		my_mlx_pixel_put(img, x, y, 0x757575)
+		y += 0.1;
+	}
 }

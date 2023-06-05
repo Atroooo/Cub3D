@@ -6,11 +6,36 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/03 11:34:41 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:17:06 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+//x + 1, y - 1
+static	int	check_wall_angle(int x, int y, t_data data, char **map)
+{
+	int	p_x;
+	int	p_y;
+
+	p_y = data.p_pos_y / TILE_SIZE;
+	p_x = data.p_pos_x / TILE_SIZE;
+	if (p_y > y || p_x < x)
+	{
+		if (!map[y + 1] || !map[y][x] || !map[y + 1][x] || !map[y][x - 1])
+			return (1);
+		if (p_y > y && p_x < x && map[y + 1][x] == '1' && map[y][x - 1] == '1')
+			return (0);
+	}
+	else
+	{
+		if (!map[y][x] || !map[y - 1] || !map[y - 1][x] || !map[y][x + 1])
+			return (1);
+		if (p_y < y && map[y - 1][x] == '1' && map[y][x + 1] == '1')
+			return (0);
+	}
+	return (1);
+}
 
 void	draw_line(t_env *env, float dy, float dx, float	*distance)
 {
@@ -33,6 +58,8 @@ void	draw_line(t_env *env, float dy, float dx, float	*distance)
 		pix_x += dx / 5;
 		y = pix_y / TILE_SIZE;
 		x = pix_x / TILE_SIZE;
+		if (!check_wall_angle(x, y, env->data, map))
+			break ;
 	}
 }
 
@@ -64,8 +91,3 @@ void	raycasting(t_env *env)
 		draw_line(env, dy, dx, &distance);
 	}
 }
-
-//  gauche = angle + M_PI / 6;
-//  droite = angle + 11 * M_PI / 6);
-// 0.623599; fov_max = 5.859587
-//fov_max = env->data.p_angle + 11 * M_PI / 6;

@@ -18,6 +18,7 @@
 # define TILE_SIZE	50
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
+# define WALL_H		150
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"
@@ -50,5 +51,6 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color);
 
 void	move(t_env *env, t_data *data, int keycode);
 void	rotate(t_env *env, t_data *data, int keycode);
+int		collision(int pos_x, int pos_y, char **map);
 
 #endif
