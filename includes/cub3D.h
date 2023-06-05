@@ -15,9 +15,10 @@
 
 # define WIN_HEIGHT	1080
 # define WIN_WIDTH	1920
-# define TILE_SIZE	50
+# define TILE_SIZE  20
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
+# define WALL_H		2000
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"
@@ -42,6 +43,7 @@ void	draw_map(t_env *env);
 void	draw_tile(float y, int x, uint32_t color, t_img *img);
 void	draw_player_pos(float y, int x, t_img *img);
 void	draw_line(t_env *env, float dy, float dx, float *distance);
+void	draw_wall(float distance, t_img *img, float *P_x, float y);
 
 void	raycasting(t_env *env);
 
@@ -50,5 +52,6 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color);
 
 void	move(t_env *env, t_data *data, int keycode);
 void	rotate(t_env *env, t_data *data, int keycode);
+int		collision(int pos_x, int pos_y, char **map);
 
 #endif

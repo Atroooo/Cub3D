@@ -6,7 +6,6 @@ BUILD_DIR				= build/
 	
 HEADER_DIR				= includes/
 
-
 DIR						= srcs/
 SRC			 			= main.c \
 						  free_functions/free.c \
@@ -23,6 +22,7 @@ SRC			 			= main.c \
 						  execution/refresh_img.c \
 						  draw/mini_map.c \
 						  draw/my_mlx_pixel_put.c \
+						  draw/wall.c \
 						  move/player_move.c \
 						  delete.c \
 						  raycasting.c \
@@ -45,7 +45,7 @@ CFLAGS					= -Wall -Wextra -Werror -g3
 
 RM 						= rm -rf
 
-$(BUILD_DIR)%.o:		$(DIR)%.c $(HEADER_DIR) Makefile 
+$(BUILD_DIR)%.o:		$(DIR)%.c $(HEADER_DIR)* Makefile 
 						@mkdir -p $(@D)
 						$(GCC) $(CFLAGS) -I$(HEADER_DIR) -I$(LIB_DIR) -c $< -o $@
 					
@@ -54,7 +54,7 @@ all: 					 minilibx mkbuild lib $(HEADER_DIR) $(NAME)
 mkbuild:
 						@mkdir -p build
 					
-$(NAME): 				$(OBJECTS) $(LIB_DIR)$(LIBFT)
+$(NAME): 				$(OBJECTS) $(LIB_DIR)$(LIBFT) $(HEADER_DIR)
 						$(GCC) $(CFLAGS) -I{HEADER_DIR} $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) $(MINILIB_DIR)$(MINILIB) $(LINUX)
 
 sanit :					$(OBJECTS) $(LIB_DIR)$(LIBFT)

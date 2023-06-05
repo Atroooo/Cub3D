@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/03 18:27:45 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/05 16:49:57 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,23 @@ void	init_mlx_create_win(t_env *env)
 
 	env->windows.mlx = mlx_init();
 	if (!env->windows.mlx)
-	{
-		printf("Error\nmlx_init failed\n");
-		exit(0);
-	}
+		free_parsing(&env->data);
 	env->windows.win = mlx_new_window( \
 		env->windows.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	img.img = mlx_new_image(env->windows.mlx, WIN_WIDTH, WIN_HEIGHT);
-	//if (!img.img)
-	//error
+	if (!img.img)
+	{
+		free(env->windows.mlx);
+		free_parsing(&env->data);
+	}
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	// if (!img.addr || !win->win) !!!!!!!!!! A actualise
-	// 	free_and_exit(win);
+	if (!img.addr)
+	{
+		free(env->windows.mlx);
+		free(img.img);
+		free_parsing(&env->data);
+	}
 	env->img = img;
 	draw_map(env);
 	env->data.p_pos_y = (env->data.p_pos_y * TILE_SIZE) + TILE_SIZE / 2;

@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static void	print_error(t_data* data, int s)
+static void	print_error(t_data *data, int s)
 {
 	if (s == 0)
 		printf("Error opening file.\n");
@@ -22,7 +22,7 @@ static void	print_error(t_data* data, int s)
 		printf("Malloc error\n");
 	if (s == 3)
 	{
-		printf("Error\nWrong arguments.\n");
+		printf("Error\nMissing arguments.\n");
 		free_parsing(data);
 	}
 	exit(0);

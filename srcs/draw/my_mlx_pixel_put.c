@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:13:27 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/04 19:36:24 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/05 19:41:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color)
 {
 	char	*dst;
 
-	if (x > 1920 || x < 0 || y > 1080 || y < 0)
-		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(uint32_t *)dst = color;
+	if (x > 0 && x < 1920 && y > 0 && y < 1080)
+	{
+		dst = data->addr + (y * data->line_length + x * \
+			(data->bits_per_pixel / 8));
+		*(uint32_t *)dst = color;
+	}
 }
 
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color)
