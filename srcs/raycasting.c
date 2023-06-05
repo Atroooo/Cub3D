@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 16:34:46 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:32:11 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ static	int	check_wall_angle(int x, int y, t_data data, char **map)
 	return (1);
 }
 
-void	draw_column(float distance, t_img *img, float *cam_x, float y)
+void	draw_column(float distance, t_img *img, float *cam_x)
 {
 	float	i;
 
 	i = 0;
 	while (i < 10)
 	{
-		i += 0.1;
-		*cam_x += 0.1;
-		draw_wall(distance, img, cam_x, y);
+		i += 1;
+		*cam_x += 1;
+		draw_wall(distance, img, cam_x);
 	}
 }
 void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
@@ -72,7 +72,7 @@ void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
-	draw_column(distance, &env->img, cam_x, y);
+	draw_column(distance, &env->img, cam_x);
 }
 
 void	raycasting(t_env *env)
