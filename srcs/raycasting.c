@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 16:34:46 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:07:29 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
 	float	pix_y;
 	float	distance;
 
+	(void) cam_x;
 	y = (env->data.p_pos_y) / TILE_SIZE;
 	x = (env->data.p_pos_x) / TILE_SIZE;
 	pix_x = env->data.p_pos_x + 5;
@@ -72,7 +73,7 @@ void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
-	draw_column(distance, &env->img, cam_x, y);
+	// draw_column(distance, &env->img, cam_x, y);
 }
 
 void	raycasting(t_env *env)
