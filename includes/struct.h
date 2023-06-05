@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/02 10:48:42 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/03 07:47:24 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct s_data
 	int			p_pos_x;
 	int			p_pos_y;
 	char		player_orientation;
+	float		p_angle;
+	float		p_delta_x;
+	float		p_delta_y;
 	int			*floor_color;
 	int			*ceiling_color;
 	t_map_info	map_data;
