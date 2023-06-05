@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/03 11:37:52 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:10:46 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,17 @@ int	mlx_close(t_env *env)
 		free_windows_struct(env);
 	}
 	exit(0);
-    return (0);
+	return (0);
 }
 
 int	key_hook(int keycode, t_env *env)
 {
 	if (keycode == Key_Escape)
 		mlx_close(env);
-	if (keycode == Key_W || keycode == Key_S)
+	if (keycode == Key_W || keycode == Key_S \
+	|| keycode == Key_A || keycode == Key_D)
 		move(env, &env->data, keycode);
-	if (keycode == Key_A || keycode == Key_D)
+	if (keycode == Key_Left || keycode == Key_Right)
 		rotate(env, &env->data, keycode);
 	return (0);
 }
