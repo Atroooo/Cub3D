@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 16:34:46 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:30:44 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	int	check_wall_angle(int x, int y, t_data data, char **map)
 	return (1);
 }
 
-float	calc_radius(t_env *env, float dy, float dx, float *cam_x)
+float	calc_radius(t_env *env, float dy, float dx)
 {
 	int		y;
 	int		x;
@@ -60,7 +60,6 @@ float	calc_radius(t_env *env, float dy, float dx, float *cam_x)
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
-	draw_column(distance, env, cam_x, y);
 	return (distance);
 }
 
@@ -74,7 +73,8 @@ void	raycasting(t_env *env)
 
 	cam_x = 0;
 	end_angle = env->data.p_angle + 2 * M_PI;
-	env->data.r_perpendicular = calc_radius(env, sin(env->data.p_angle) * 5, cos(env->data.p_angle) * 5, &cam_x);
+	env->data.r_perpendicular = calc_radius(\
+		env, sin(end_angle) * 5, cos(end_angle) * 5);
 	angle = env->data.p_angle + (11 * M_PI) / 6;
 	while (angle <= end_angle)
 	{
@@ -82,7 +82,7 @@ void	raycasting(t_env *env)
 		dx = cos(angle) * 5;
 		dy = sin(angle) * 5;
 		env->data.angle = angle;
-		calc_radius(env, dy, dx, &cam_x);
+		draw_column(calc_radius(env, dy, dx), env, &cam_x);
 	}
 	end_angle = env->data.p_angle + M_PI / 6;
 	angle = env->data.p_angle;
@@ -91,7 +91,7 @@ void	raycasting(t_env *env)
 		angle += 0.01;
 		dx = cos(angle) * 5;
 		dy = sin(angle) * 5;
-		calc_radius(env, dy, dx, &cam_x);
+		draw_column(calc_radius(env, dy, dx), env, &cam_x);
 	}
 }
 
