@@ -37,6 +37,8 @@ typedef struct s_data
 	float		p_angle;
 	float		p_delta_x;
 	float		p_delta_y;
+	float		r_perpendicular;
+	float		angle;
 	int			*floor_color;
 	int			*ceiling_color;
 	t_map_info	map_data;
