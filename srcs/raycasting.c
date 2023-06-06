@@ -37,19 +37,7 @@ static	int	check_wall_angle(int x, int y, t_data data, char **map)
 	return (1);
 }
 
-void	draw_column(float distance, t_img *img, float *cam_x, float y)
-{
-	float	i;
-
-	i = 0;
-	while (i < 10)
-	{
-		i += 0.1;
-		*cam_x += 0.1;
-		draw_wall(distance, img, cam_x, y);
-	}
-}
-void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
+float	calc_radius(t_env *env, float dy, float dx, float *cam_x)
 {
 	int		y;
 	int		x;
@@ -72,7 +60,8 @@ void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
-	draw_column(distance, &env->img, cam_x, y);
+	draw_column(distance, env, cam_x, y);
+	return (distance);
 }
 
 void	raycasting(t_env *env)
@@ -81,17 +70,19 @@ void	raycasting(t_env *env)
 	float	end_angle;
 	float	dy;
 	float	dx;
-	float	distance;
+	float	cam_x;
 
-	distance = 0;
+	cam_x = 0;
 	end_angle = env->data.p_angle + 2 * M_PI;
+	env->data.r_perpendicular = calc_radius(env, sin(env->data.p_angle) * 5, cos(env->data.p_angle) * 5, &cam_x);
 	angle = env->data.p_angle + (11 * M_PI) / 6;
 	while (angle <= end_angle)
 	{
 		angle += 0.01;
 		dx = cos(angle) * 5;
 		dy = sin(angle) * 5;
-		draw_line(env, dy, dx, &distance);
+		env->data.angle = angle;
+		calc_radius(env, dy, dx, &cam_x);
 	}
 	end_angle = env->data.p_angle + M_PI / 6;
 	angle = env->data.p_angle;
@@ -100,6 +91,9 @@ void	raycasting(t_env *env)
 		angle += 0.01;
 		dx = cos(angle) * 5;
 		dy = sin(angle) * 5;
-		draw_line(env, dy, dx, &distance);
+		calc_radius(env, dy, dx, &cam_x);
 	}
 }
+
+// fish_eye = distance = rayon devant le joueur * cos(env->data.p_angle);
+// recuperer angle pour calcul fisheye, reorganise raycasting, calc_radius
