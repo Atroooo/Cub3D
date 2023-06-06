@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/03 07:47:24 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:23:47 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_data
 	char		*so;
 	char		*we;
 	char		*ea;
-	int			p_pos_x;
-	int			p_pos_y;
+	float		p_pos_x;
+	float		p_pos_y;
 	char		player_orientation;
 	float		p_angle;
 	float		p_delta_x;

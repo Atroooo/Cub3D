@@ -37,13 +37,15 @@ static int	check_line_correct(char *str)
 
 	if (str == NULL)
 		return (0);
+	printf("str |%s|\n", str);
 	i = 0;
-	tmp = ft_strtrim(str, " \n");
+	tmp = ft_strtrim(str, " ");
 	if (!tmp)
 		return (0);
 	while (tmp[i])
 	{
-		if (!ft_isdigit(tmp[i]))
+		printf("char |%c|\n", tmp[i]);
+		if (tmp[i] != '\n' && !ft_isdigit(tmp[i]))
 		{
 			free(tmp);
 			return (0);
@@ -88,7 +90,7 @@ static void	get_ceiling_color(char *line, t_data *data)
 	if (!split)
 		print_error_message_exit(data, 0, line);
 	split2 = ft_split(split[0], ' ');
-	if (!split2 || !split2[1] || !check_line_correct(split[1]) || \
+	if (!split2 || !split2[1] || !check_line_correct(split[1]) || 
 	!check_line_correct(split[2]) || !check_line_correct(split2[1]))
 	{
 		free_split(split, split2);
