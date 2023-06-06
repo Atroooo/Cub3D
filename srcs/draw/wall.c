@@ -6,24 +6,11 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/06 13:30:22 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:31:00 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	draw_column(float distance, t_env *env, float *cam_x)
-{
-	float	i;
-
-	i = 0;
-	while (i < 10)
-	{
-		i += 1;
-		*cam_x += 1;
-		draw_wall(distance, env, cam_x);
-	}
-}
 
 static float	fix_fisheye(float distance, t_env *env)
 {
@@ -33,7 +20,7 @@ static float	fix_fisheye(float distance, t_env *env)
 	if (adjust_angle > 2 * M_PI)
 		adjust_angle -= 2 * M_PI;
 	if (adjust_angle < 0)
-		adjust_angle += 2 * M_PI;
+		adjust_angle = 0;
 	distance = distance * cos(adjust_angle);
 	return (distance);
 }
@@ -52,7 +39,7 @@ static void	draw_ceiling(float height, t_env *env, float x, float *y)
 	}
 }
 
-void	draw_wall(float distance, t_env *env, float *x)
+void	draw_wall(float distance, t_env *env, float x)
 {
 	float	height;
 	float	y;
@@ -62,15 +49,15 @@ void	draw_wall(float distance, t_env *env, float *x)
 		distance = 0.20;
 	distance = fix_fisheye(distance, env);
 	height = WALL_H / distance;
-	draw_ceiling(E_H - height / 2, env, *x, &y);
+	draw_ceiling(E_H - height / 2, env, x, &y);
 	while (y < E_H + height / 2)
 	{
-		my_mlx_pixel_put(&env->img, *x, y, 0x757575);
+		my_mlx_pixel_put(&env->img, x, y, 0x757575);
 		y++;
 	}
 	while (y < WIN_HEIGHT)
 	{
-		my_mlx_pixel_put(&env->img, *x, y, 0x572f02);
+		my_mlx_pixel_put(&env->img, x, y, 0x572f02);
 		y++;
 	}
 }
