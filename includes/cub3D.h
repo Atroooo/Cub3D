@@ -21,6 +21,7 @@
 # define WALL_H		2000
 # define D_E		50
 # define E_H		500
+# define RAD		0.0174533
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"

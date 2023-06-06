@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/06 13:30:22 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:48:43 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 void	draw_column(float distance, t_env *env, float *cam_x)
 {
-	float	i;
-
-	i = 0;
-	while (i < 10)
-	{
-		i += 1;
-		*cam_x += 1;
-		draw_wall(distance, env, cam_x);
-	}
+	draw_wall(distance, env, cam_x);
 }
 
 static float	fix_fisheye(float distance, t_env *env)
