@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 19:34:08 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/06 17:03:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	move(t_env *env, t_data *data, int keycode)
 	if (keycode == Key_A && check_collision(data, 2))
 	{
 		data->p_pos_x -= cos(data->p_angle + M_PI / 2);
-        data->p_pos_y -= sin(data->p_angle + M_PI / 2);
+		data->p_pos_y -= sin(data->p_angle + M_PI / 2);
 	}
 	if (keycode == Key_D && check_collision(data, 3))
 	{
 		data->p_pos_x += cos(data->p_angle + M_PI / 2);
-        data->p_pos_y += sin(data->p_angle + M_PI / 2);
+		data->p_pos_y += sin(data->p_angle + M_PI / 2);
 	}
 	refresh_img(env);
 }

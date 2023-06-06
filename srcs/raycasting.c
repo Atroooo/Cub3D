@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/06 12:30:44 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:53:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ float	calc_radius(t_env *env, float dy, float dx)
 	float	pix_y;
 	float	distance;
 
-	(void) cam_x;
 	y = (env->data.p_pos_y) / TILE_SIZE;
 	x = (env->data.p_pos_x) / TILE_SIZE;
 	pix_x = env->data.p_pos_x + 5;

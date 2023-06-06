@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/01 16:32:15 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:04:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	get_size_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	data->map_data.map_width = 0;
+	while (data->map_data.map[i])
+	{
+		j = 0;
+		while (data->map_data.map[i][j])
+			j++;
+		if (j > data->map_data.map_width)
+			data->map_data.map_width = j;
+		i++;
+	}
+	data->map_data.map_height = i;
+}
 
 static int	check_char(char c)
 {
