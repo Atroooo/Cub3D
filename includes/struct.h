@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/06 18:35:52 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 15:27:29 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-
 
 /* PARSING */
 

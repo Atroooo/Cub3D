@@ -30,7 +30,6 @@ void	check_color_value(t_data *data, char c, char *line)
 	free_parsing(data);
 }
 
-// A verif en créant une map depuis un PC linux de l'école, cat -v pour afficher caractère invi, ^M == \r
 int	check_line_correct(char *str)
 {
 	char	*tmp;
@@ -42,10 +41,8 @@ int	check_line_correct(char *str)
 	tmp = ft_strtrim(str, "\n ");
 	if (!tmp)
 		return (0);
-	printf("tmp = |%s|\n", tmp);
 	while (tmp[i])
 	{
-		printf("tmp[%d] = |%c|\n", i, tmp[i]);
 		if (!ft_isdigit(tmp[i]))
 		{
 			free(tmp);

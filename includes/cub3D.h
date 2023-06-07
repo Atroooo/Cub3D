@@ -56,6 +56,6 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color);
 
 void	move(t_env *env, t_data *data, int keycode);
 void	rotate(t_env *env, t_data *data, int keycode);
-int		collision(int pos_x, int pos_y, char **map);
+int		collision(int pos_x, int pos_y, t_data *data, char c);
 
 #endif
