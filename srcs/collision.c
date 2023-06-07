@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 11:40:23 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/07 17:37:37 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:46:59 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ static float	calc_seg_n(t_data *data, float x, float y)
 	dy = y / TILE_SIZE;
 	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
 	{
+		printf("dx = %d, dy = %d\n", dx, dy);
 		dx = (dx * TILE_SIZE + data->p_delta_x) / TILE_SIZE;
 		dy = (dy * TILE_SIZE + data->p_delta_y) / TILE_SIZE;
 	}
 	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
 	printf("N dist = %f\n", dist);
-	return (dist);
+	return (dist / TILE_SIZE);
 }
 
 static float	calc_seg_s(t_data *data, float x, float y)
@@ -41,12 +42,13 @@ static float	calc_seg_s(t_data *data, float x, float y)
 	dy = y / TILE_SIZE;
 	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
 	{
+		printf("dx = %d, dy = %d\n", dx, dy);
 		dx = (dx * TILE_SIZE - data->p_delta_x) / TILE_SIZE;
 		dy = (dy * TILE_SIZE - data->p_delta_y) / TILE_SIZE;
 	}
 	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
 	printf("S dist = %f\n", dist);
-	return (dist);
+	return (dist / TILE_SIZE);
 }
 
 static float	calc_seg_w(t_data *data, float x, float y)
@@ -59,12 +61,13 @@ static float	calc_seg_w(t_data *data, float x, float y)
 	dy = y / TILE_SIZE;
 	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
 	{
+		printf("dx = %d, dy = %d\n", dx, dy);
 		dx = (dx * TILE_SIZE - cos(data->p_angle + M_PI / 2)) / TILE_SIZE;
 		dy = (dy * TILE_SIZE - sin(data->p_angle + M_PI / 2)) / TILE_SIZE;
 	}
 	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
 	printf("W dist = %f\n", dist);
-	return (dist);
+	return (dist / TILE_SIZE);
 }
 
 static float	calc_seg_e(t_data *data, float x, float y)
@@ -77,12 +80,13 @@ static float	calc_seg_e(t_data *data, float x, float y)
 	dy = y / TILE_SIZE;
 	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
 	{
+		printf("dx = %d, dy = %d\n", dx, dy);
 		dx = (dx * TILE_SIZE + cos(data->p_angle + M_PI / 2)) / TILE_SIZE;
 		dy = (dy * TILE_SIZE + sin(data->p_angle + M_PI / 2)) / TILE_SIZE;
 	}
 	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
 	printf("E dist = %f\n", dist);
-	return (dist);
+	return (dist / TILE_SIZE);
 }
 
 int	collision(int pos_x, int pos_y, t_data *data, char c)
