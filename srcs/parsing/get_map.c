@@ -27,6 +27,25 @@ int	get_map(char *line, t_data *data)
 	return (1);
 }
 
+static float	get_angle(char c)
+{
+	if (c == 'E')
+		return (M_PI * 2);
+	else if (c == 'W')
+		return (M_PI);
+	else if (c == 'S')
+		return (M_PI / 2);
+	else if (c == 'N')
+		return (3 * M_PI / 2);
+	return (0.0);
+}
+
+static int	check_check_char(char c)
+{
+	return (c == 'N' || c == 'S' || \
+			c == 'E' || c == 'W');
+}
+
 static void	get_player_position(t_data *data)
 {
 	int	i;
@@ -38,43 +57,29 @@ static void	get_player_position(t_data *data)
 		j = 0;
 		while (data->map_data.map[i][j])
 		{
-			if (data->map_data.map[i][j] == 'N' || \
-				data->map_data.map[i][j] == 'S' || \
-				data->map_data.map[i][j] == 'E' || \
-				data->map_data.map[i][j] == 'W')
+			if ((data->p_pos_x != 0 || data->p_pos_y != 0) && \
+				check_check_char(data->map_data.map[i][j]))
+			{
+				printf("Error\nMultiple player position.\n");
+				free_parsing(data);
+			}
+			if (check_check_char(data->map_data.map[i][j]))
 			{
 				data->p_pos_x = j;
 				data->p_pos_y = i;
-				data->p_angle = 0;
+				data->p_angle = get_angle(data->map_data.map[i][j]);
 				data->p_delta_x = cos(data->p_angle) * 5;
 				data->p_delta_y = sin(data->p_angle) * 5;
-				return ;
 			}
 			j++;
 		}
 		i++;
 	}
-	printf("Error\nNo player position.\n");
-	free_parsing(data);
-}
-
-void	get_size_map(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	data->map_data.map_width = 0;
-	while (data->map_data.map[i])
+	if (data->p_pos_x == 0 && data->p_pos_y == 0)
 	{
-		j = 0;
-		while (data->map_data.map[i][j])
-			j++;
-		if (j > data->map_data.map_width)
-			data->map_data.map_width = j;
-		i++;
+		printf("Error\nNo player position.\n");
+		free_parsing(data);
 	}
-	data->map_data.map_height = i;
 }
 
 void	setup_map(t_data *data)

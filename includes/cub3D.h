@@ -19,6 +19,9 @@
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
 # define WALL_H		2000
+# define D_E		50
+# define E_H		500
+# define RAD		0.01745329
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"
@@ -42,8 +45,9 @@ void	print_param(t_data *map_info);
 void	draw_map(t_env *env);
 void	draw_tile(float y, int x, uint32_t color, t_img *img);
 void	draw_player_pos(float y, int x, t_img *img);
-void	draw_line(t_env *env, float dy, float dx, float *distance);
-void	draw_wall(float distance, t_img *img, float *P_x, float y);
+float	calc_radius(t_env *env, float dy, float dx);
+void	draw_wall(float distance, t_env *env, float x);
+void	draw_column(float distance, t_env *env, float *cam_x);
 
 void	raycasting(t_env *env);
 
@@ -52,6 +56,6 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color);
 
 void	move(t_env *env, t_data *data, int keycode);
 void	rotate(t_env *env, t_data *data, int keycode);
-int		collision(int pos_x, int pos_y, char **map);
+int		collision(int pos_x, int pos_y, t_data *data, char c);
 
 #endif

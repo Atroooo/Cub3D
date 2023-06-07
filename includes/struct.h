@@ -6,13 +6,12 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 17:23:47 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:27:29 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-
 
 /* PARSING */
 
@@ -37,8 +36,12 @@ typedef struct s_data
 	float		p_angle;
 	float		p_delta_x;
 	float		p_delta_y;
+	float		r_perpendicular;
+	float		angle;
 	int			*floor_color;
+	uint32_t	floor_hexa;
 	int			*ceiling_color;
+	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
 }	t_data;
 

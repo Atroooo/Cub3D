@@ -12,48 +12,18 @@
 
 #include "cub3D.h"
 
-static void	check_color_value(t_data *data, char c, char *line)
+static void	convert_to_hexa(t_data *data, char c)
 {
-	if (c == 'C')
-		if ((data->ceiling_color[0] > 0 && data->ceiling_color[0] < 255) && \
-		(data->ceiling_color[1] > 0 && data->ceiling_color[1] < 255) && \
-		(data->ceiling_color[2] > 0 && data->ceiling_color[2] < 255))
-			return ;
-	if (c == 'F')
-		if ((data->floor_color[0] > 0 && data->floor_color[0] < 255) && \
-		(data->floor_color[1] > 0 && data->floor_color[1] < 255) && \
-		(data->floor_color[2] > 0 && data->floor_color[2] < 255))
-			return ;
-	if (line)
-		free(line);
-	printf("Error\nWrong color value.\n");
-	free_parsing(data);
-}
-
-static int	check_line_correct(char *str)
-{
-	char	*tmp;
-	int		i;
-
-	if (str == NULL)
-		return (0);
-	printf("str |%s|\n", str);
-	i = 0;
-	tmp = ft_strtrim(str, " ");
-	if (!tmp)
-		return (0);
-	while (tmp[i])
-	{
-		printf("char |%c|\n", tmp[i]);
-		if (tmp[i] != '\n' && !ft_isdigit(tmp[i]))
-		{
-			free(tmp);
-			return (0);
-		}
-		i++;
+ 	if (c == 'F')
+ 	{
+		data->floor_hexa = (data->floor_color[0] << 16) + \
+		(data->floor_color[1] << 8) + data->floor_color[2];
 	}
-	free(tmp);
-	return (1);
+	if (c == 'C')
+	{
+		data->ceiling_hexa = (data->ceiling_color[0] << 16) + \
+		(data->ceiling_color[1] << 8) + data->ceiling_color[2];
+	}
 }
 
 static void	get_floor_color(char *line, t_data *data)
@@ -90,8 +60,8 @@ static void	get_ceiling_color(char *line, t_data *data)
 	if (!split)
 		print_error_message_exit(data, 0, line);
 	split2 = ft_split(split[0], ' ');
-	if (!split2 || !split2[1] || !check_line_correct(split[1]) || 
-	!check_line_correct(split[2]) || !check_line_correct(split2[1]))
+	if (!split2 || !split2[1] || !check_line_correct(split[1]) || \
+		!check_line_correct(split[2]) || !check_line_correct(split2[1]))
 	{
 		free_split(split, split2);
 		print_error_message_exit(data, 1, line);
@@ -111,11 +81,13 @@ int	get_color(char *line, t_data *data)
 	if (ft_strcompare("F ", line, 2))
 	{
 		get_floor_color(line, data);
+		convert_to_hexa(data, 'F');
 		return (1);
 	}
 	else if (ft_strcompare("C ", line, 2))
 	{
 		get_ceiling_color(line, data);
+		convert_to_hexa(data, 'C');
 		return (1);
 	}
 	return (0);

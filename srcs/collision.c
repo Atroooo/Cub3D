@@ -3,23 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 11:40:23 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 10:51:51 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:46:59 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3D.h>
+#define HITBOX 0.5
 
-int	collision(int pos_x, int pos_y, char **map)
+static float	calc_seg_n(t_data *data, float x, float y)
 {
-	int	x;
-	int	y;
+	float	dist;
+	int		dx;
+	int		dy;
 
-	x = (pos_x + 5) / TILE_SIZE;
-	y = (pos_y + 5) / TILE_SIZE;
-	if (map[y][x] == '1')
-		return (0);
+	dx = x / TILE_SIZE;
+	dy = y / TILE_SIZE;
+	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
+	{
+		printf("dx = %d, dy = %d\n", dx, dy);
+		dx = (dx * TILE_SIZE + data->p_delta_x) / TILE_SIZE;
+		dy = (dy * TILE_SIZE + data->p_delta_y) / TILE_SIZE;
+	}
+	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
+	printf("N dist = %f\n", dist);
+	return (dist / TILE_SIZE);
+}
+
+static float	calc_seg_s(t_data *data, float x, float y)
+{
+	float	dist;
+	int		dx;
+	int		dy;
+
+	dx = x / TILE_SIZE;
+	dy = y / TILE_SIZE;
+	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
+	{
+		printf("dx = %d, dy = %d\n", dx, dy);
+		dx = (dx * TILE_SIZE - data->p_delta_x) / TILE_SIZE;
+		dy = (dy * TILE_SIZE - data->p_delta_y) / TILE_SIZE;
+	}
+	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
+	printf("S dist = %f\n", dist);
+	return (dist / TILE_SIZE);
+}
+
+static float	calc_seg_w(t_data *data, float x, float y)
+{
+	float	dist;
+	int		dx;
+	int		dy;
+
+	dx = x / TILE_SIZE;
+	dy = y / TILE_SIZE;
+	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
+	{
+		printf("dx = %d, dy = %d\n", dx, dy);
+		dx = (dx * TILE_SIZE - cos(data->p_angle + M_PI / 2)) / TILE_SIZE;
+		dy = (dy * TILE_SIZE - sin(data->p_angle + M_PI / 2)) / TILE_SIZE;
+	}
+	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
+	printf("W dist = %f\n", dist);
+	return (dist / TILE_SIZE);
+}
+
+static float	calc_seg_e(t_data *data, float x, float y)
+{
+	float	dist;
+	int		dx;
+	int		dy;
+
+	dx = x / TILE_SIZE;
+	dy = y / TILE_SIZE;
+	while (data->map_data.map[dy][dx] && data->map_data.map[dy][dx] != '1')
+	{
+		printf("dx = %d, dy = %d\n", dx, dy);
+		dx = (dx * TILE_SIZE + cos(data->p_angle + M_PI / 2)) / TILE_SIZE;
+		dy = (dy * TILE_SIZE + sin(data->p_angle + M_PI / 2)) / TILE_SIZE;
+	}
+	dist = sqrt(pow((dx - x), 2) + pow((dy - y), 2));
+	printf("E dist = %f\n", dist);
+	return (dist / TILE_SIZE);
+}
+
+int	collision(int pos_x, int pos_y, t_data *data, char c)
+{
+	if (c == 'N')
+		if (calc_seg_n(data, pos_x, pos_y) < HITBOX)
+			return (0);
+	if (c == 'S')
+		if (calc_seg_s(data, pos_x, pos_y) < HITBOX)
+			return (0);
+	if (c == 'E')
+		if (calc_seg_e(data, pos_x, pos_y) < HITBOX)
+			return (0);
+	if (c == 'W')
+		if (calc_seg_w(data, pos_x, pos_y) < HITBOX)
+			return (0);
 	return (1);
 }

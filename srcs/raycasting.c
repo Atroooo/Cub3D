@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 17:07:29 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:09:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,7 @@ static	int	check_wall_angle(int x, int y, t_data data, char **map)
 	return (1);
 }
 
-void	draw_column(float distance, t_img *img, float *cam_x, float y)
-{
-	float	i;
-
-	i = 0;
-	while (i < 10)
-	{
-		i += 0.1;
-		*cam_x += 0.1;
-		draw_wall(distance, img, cam_x, y);
-	}
-}
-void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
+float	calc_radius(t_env *env, float dy, float dx)
 {
 	int		y;
 	int		x;
@@ -57,7 +45,6 @@ void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
 	float	pix_y;
 	float	distance;
 
-	(void) cam_x;
 	y = (env->data.p_pos_y) / TILE_SIZE;
 	x = (env->data.p_pos_x) / TILE_SIZE;
 	pix_x = env->data.p_pos_x + 5;
@@ -73,34 +60,28 @@ void	draw_line(t_env *env, float dy, float dx, float	*cam_x)
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
-	// draw_column(distance, &env->img, cam_x, y);
+	return (distance);
 }
 
 void	raycasting(t_env *env)
 {
 	float	angle;
-	float	end_angle;
 	float	dy;
 	float	dx;
-	float	distance;
+	float	x;
 
-	distance = 0;
-	end_angle = env->data.p_angle + 2 * M_PI;
-	angle = env->data.p_angle + (11 * M_PI) / 6;
-	while (angle <= end_angle)
+	x = 0;
+	angle = env->data.p_angle + (11 * M_PI / 6);
+	while (x < WIN_WIDTH)
 	{
-		angle += 0.01;
 		dx = cos(angle) * 5;
 		dy = sin(angle) * 5;
-		draw_line(env, dy, dx, &distance);
-	}
-	end_angle = env->data.p_angle + M_PI / 6;
-	angle = env->data.p_angle;
-	while (angle <= end_angle)
-	{
-		angle += 0.01;
-		dx = cos(angle) * 5;
-		dy = sin(angle) * 5;
-		draw_line(env, dy, dx, &distance);
+		env->data.angle = angle;
+		x++;
+		draw_wall(calc_radius(env, dy, dx), env, x);
+		angle += RAD / 40;
 	}
 }
+
+// fish_eye = distance = rayon devant le joueur * cos(env->data.p_angle);
+// recuperer angle pour calcul fisheye, reorganise raycasting, calc_radius
