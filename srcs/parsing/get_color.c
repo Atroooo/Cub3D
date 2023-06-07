@@ -14,8 +14,8 @@
 
 static void	convert_to_hexa(t_data *data, char c)
 {
- 	if (c == 'F')
- 	{
+	if (c == 'F')
+	{
 		data->floor_hexa = (data->floor_color[0] << 16) + \
 		(data->floor_color[1] << 8) + data->floor_color[2];
 	}

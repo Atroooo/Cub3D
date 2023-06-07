@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 16:49:57 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:59:35 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_mlx_create_win(t_env *env)
 	env->windows.mlx = mlx_init();
 	if (!env->windows.mlx)
 		free_parsing(&env->data);
-	env->windows.win = mlx_new_window( \
+	env->windows.win = mlx_new_window(\
 		env->windows.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	img.img = mlx_new_image(env->windows.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!img.img)
@@ -42,6 +42,10 @@ void	init_mlx_create_win(t_env *env)
 	draw_player_pos(env->data.p_pos_y, env->data.p_pos_x, &env->img);
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 		env->img.img, 0, 0);
+	env->data.textures_img = create_textures_img("./textures/east.xpm", &env->windows);
+	env->data.textures_img.addr = mlx_get_data_addr(\
+		env->data.textures_img.img, &env->data.textures_img.bits_per_pixel, \
+		&env->data.textures_img.line_length, &env->data.textures_img.endian);
 	mlx_hook(env->windows.win, 2, 1L << 0, key_hook, env);
 	mlx_hook(env->windows.win, 17, 1L << 8, mlx_close, env);
 }

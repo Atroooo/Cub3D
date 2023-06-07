@@ -21,13 +21,14 @@ SRC			 			= main.c \
 						  execution/init_mlx_create_win.c \
 						  execution/key_hook.c \
 						  execution/refresh_img.c \
+						  execution/create_textures_img.c \
 						  draw/mini_map.c \
 						  draw/my_mlx_pixel_put.c \
 						  draw/wall.c \
 						  move/player_move.c \
+						  move/collision.c \
 						  delete.c \
 						  raycasting.c \
-						  collision.c \
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
 	
@@ -35,7 +36,7 @@ LIBFT					= libft.a
 LIB_DIR					= libft/
 
 MINILIB_DIR				= minilibx_linux/
-LINUX					= -Lminilibx_linux -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz
+LINUX					= -Lminilibx_linux -L/usr/lib -Iminilibx_linux -lXext -lX11 -lm -lz -lmlx
 
 MINILIB					= libmlx.a
 

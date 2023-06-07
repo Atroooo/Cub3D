@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/06 19:09:48 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 17:15:25 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ float	calc_radius(t_env *env, float dy, float dx)
 	while (env->data.map_data.map[y][x] != '1')
 	{
 		my_mlx_pixel_put(&env->img, pix_x, pix_y, 0x41801f);
-		distance += 0.1;
 		pix_y += dy / 5;
 		pix_x += dx / 5;
 		y = pix_y / TILE_SIZE;
 		x = pix_x / TILE_SIZE;
+		distance += 0.1;
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
@@ -71,7 +71,7 @@ void	raycasting(t_env *env)
 	float	x;
 
 	x = 0;
-	angle = env->data.p_angle + (11 * M_PI / 6);
+	angle = env->data.p_angle - 20.0 * RAD;
 	while (x < WIN_WIDTH)
 	{
 		dx = cos(angle) * 5;
@@ -79,8 +79,11 @@ void	raycasting(t_env *env)
 		env->data.angle = angle;
 		x++;
 		draw_wall(calc_radius(env, dy, dx), env, x);
-		angle += RAD / 40;
+		//calc_radius(env, dy, dx);
+		angle += RAD * (40.0 / WIN_WIDTH);
 	}
+	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
+		env->img.img, 0, 0);
 }
 
 // fish_eye = distance = rayon devant le joueur * cos(env->data.p_angle);

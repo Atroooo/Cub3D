@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:13:27 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 16:44:31 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:56:20 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color)
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color)
 	{
 		dst = data->addr + (y * data->line_length + x * \
 			(data->bits_per_pixel / 8));
-		*(uint32_t *)dst = color;
+		*(unsigned int *)dst = color;
 	}
 }
 

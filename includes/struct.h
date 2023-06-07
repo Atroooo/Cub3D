@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/06 18:35:52 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:48:42 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ typedef struct s_map_info
 	int		map_height;
 	char	*base_map;
 }	t_map_info;
+
+typedef struct s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
+
+typedef struct s_windows
+{
+	void	*mlx;
+	void	*win;
+	t_img	*img;
+}	t_windows;
+
 
 typedef struct s_data
 {
@@ -44,24 +60,8 @@ typedef struct s_data
 	int			*ceiling_color;
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
+	t_img		textures_img;
 }	t_data;
-
-/* MLX */
-
-typedef struct s_img {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img;
-
-typedef struct s_windows
-{
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-}	t_windows;
 
 typedef struct s_env
 {
@@ -69,5 +69,7 @@ typedef struct s_env
 	t_img		img;
 	t_windows	windows;
 }	t_env;
+/* MLX */
+
 
 #endif
