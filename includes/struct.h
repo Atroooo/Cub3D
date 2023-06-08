@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/07 14:48:42 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:50:00 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ typedef struct s_env
 	t_windows	windows;
 }	t_env;
 /* MLX */
-
 
 #endif
