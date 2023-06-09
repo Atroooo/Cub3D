@@ -18,9 +18,9 @@
 # define TILE_SIZE  20
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
-# define WALL_H		1500
-# define D_E		400
-# define E_H		750
+# define WALL_H		2000
+# define D_E		0.75
+# define E_H		600
 # define RAD		0.01745329
 
 # include "../minilibx_linux/mlx.h"

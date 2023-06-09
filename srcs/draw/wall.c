@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/08 14:07:50 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:15:37 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	draw_wall(float distance, t_env *env, float x)
 		distance = 0.20;
 	distance = fix_fisheye(distance, env);
 	height = D_E * (WALL_H / distance);
-	draw_ceiling(E_H - (height / 2), env, x, &y);
-	while (y < E_H + (height / 2))
+	draw_ceiling(E_H - height / 2, env, x, &y);
+	while (y < E_H + height / 2)
 	{
 		print_pixel_textures(&textures_y, y, x, height, env);
 		y++;
