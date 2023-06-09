@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 10:15:37 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:12:45 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,34 @@ char	*get_pixel_in_texture(t_img data, int x, int y)
 	return (dst);
 }
 
-static void	print_pixel_textures(float *t_y, float y, float x, float height, t_env *env)
+static char	*print_pixel_textures(int y, float height, t_data data)
 {
 	char			*dst;
-	int				t_x;
+	float			t_x;
+	float			t_y;
 
-	(void) dst;
-	(void) env;
-	(void) y;
+	(void) t_y;
+	(void) t_x;
 	(void) height;
-	t_x = (int)x % 256;
-	*t_y = (int)y % 256;
-	dst = get_pixel_in_texture(env->data.textures_img, t_x, *t_y);
-	//my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
+	(void) y;
+	t_x = fmodf(data.wall_x, 19.85) * 25 / 2;
+	t_y = fmodf(data.wall_y, 19.85) * 25 / 2;
+	if (t_x > t_y)
+		dst = get_pixel_in_texture(data.textures_img, t_x, y * (256 / height));
+	else
+		dst = get_pixel_in_texture(data.textures_img, t_y, y * (256 / height));
+	//printf("test = %f\n", test);
+	//t_y = t_y * (height * 256) / 2;
+	//printf("t_x = %f && t_y = %f\n", t_x, t_y);
+	return (dst);
 }
 
 void	draw_wall(float distance, t_env *env, float x)
 {
 	float	height;
 	float	y;
-	float	textures_y;
+	char	*dst;
+	int		textures_y;
 
 	y = 0;
 	textures_y = 0;
@@ -74,8 +82,10 @@ void	draw_wall(float distance, t_env *env, float x)
 	draw_ceiling(E_H - height / 2, env, x, &y);
 	while (y < E_H + height / 2)
 	{
-		print_pixel_textures(&textures_y, y, x, height, env);
+		dst = print_pixel_textures(textures_y, height, env->data);
+		my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
 		y++;
+		textures_y++;
 	}
 	while (y < WIN_HEIGHT)
 	{

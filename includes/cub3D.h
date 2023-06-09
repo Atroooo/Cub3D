@@ -20,7 +20,7 @@
 # define M_PI       3.14159265358979323846
 # define WALL_H		2000
 # define D_E		0.75
-# define E_H		600
+# define E_H		500
 # define RAD		0.01745329
 
 # include "../minilibx_linux/mlx.h"

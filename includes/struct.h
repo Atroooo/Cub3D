@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/08 13:50:00 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:41:02 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_data
 	float		p_delta_y;
 	float		r_perpendicular;
 	float		angle;
+	float		wall_x;
+	float		wall_y;
 	int			*floor_color;
 	uint32_t	floor_hexa;
 	int			*ceiling_color;

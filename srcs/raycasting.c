@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 10:14:30 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:06:09 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,6 @@ static	int	check_wall_angle(int x, int y, t_data data, char **map)
 	return (1);
 }
 
-// static	float	calc_distance(float x1, float x2, float y1, float y2)
-// {
-// 	float	distance;
-
-// 	distance = ((x1 - x2) * (x1 - x2)) + ((y1 - y2) * (y1 - y2));
-// 	return (distance);
-// }
-
 float	calc_radius(t_env *env, float dy, float dx)
 {
 	int		y;
@@ -69,6 +61,9 @@ float	calc_radius(t_env *env, float dy, float dx)
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
+	//printf("pix_x = %f, pix_y = %f, x = %d, y = %d\n", pix_x, pix_y, x, y);
+	env->data.wall_x = pix_x;
+	env->data.wall_y = pix_y;
 	return (distance);
 }
 
@@ -95,5 +90,18 @@ void	raycasting(t_env *env)
 		env->img.img, 0, 0);
 }
 
-// fish_eye = distance = rayon devant le joueur * cos(env->data.p_angle);
-// recuperer angle pour calcul fisheye, reorganise raycasting, calc_radius
+// longueur mur = 20;
+// largeur mur = 20;
+
+//pix_x = 159.951569, pix_y = 19.927576, x = 7, y = 0
+//pix_x = 140.002823, pix_y = 19.897259, x = 7, y = 0
+
+// pix_x = 180.015488, pix_y = 99.999672, x = 9, y = 4
+// pix_x = 180.002579, pix_y = 80.155655, x = 9, y = 4
+
+// pix_x = 60.018707, pix_y = 59.967529, x = 3, y = 2
+// pix_x = 79.997200, pix_y = 59.847008, x = 3, y = 2
+
+// 19.978493
+
+// 19.844017

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/08 10:50:58 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:37:26 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_mlx_create_win(t_env *env)
 	draw_player_pos(env->data.p_pos_y, env->data.p_pos_x, &env->img);
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 		env->img.img, 0, 0);
-	env->data.textures_img = create_textures_img("./textures/east.xpm", &env->windows);
+	env->data.textures_img = create_textures_img("./textures/north.xpm", &env->windows);
 	mlx_hook(env->windows.win, 2, 1L << 0, key_hook, env);
 	mlx_hook(env->windows.win, 17, 1L << 8, mlx_close, env);
 }
