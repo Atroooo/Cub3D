@@ -19,7 +19,7 @@
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
 # define WALL_H		2000
-# define D_E		50
+# define D_E		0.75
 # define E_H		500
 # define RAD		0.01745329
 
@@ -52,7 +52,7 @@ void	draw_column(float distance, t_env *env, float *cam_x);
 void	raycasting(t_env *env);
 
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);
-void	my_mlx_pixel_put(t_img *data, int x, int y, uint32_t color);
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 
 /*Move*/
 void	move(t_env *env, t_data *data, int keycode);

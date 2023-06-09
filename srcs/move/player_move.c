@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/07 16:55:22 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:05:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,15 @@ void	rotate(t_env *env, t_data *data, int keycode)
 	{
 		data->p_angle -= 0.1;
 		if (data->p_angle <= 0)
-			data->p_angle += 2 * M_PI;
-		data->p_delta_x = cos(data->p_angle) * 5;
-		data->p_delta_y = sin(data->p_angle) * 5;
+			data->p_angle += 2.0 * M_PI;
 	}
 	if (keycode == Key_Right)
 	{
 		data->p_angle += 0.1;
-		if (data->p_angle > 2 * M_PI)
-			data->p_angle -= 2 * M_PI;
-		data->p_delta_x = cos(data->p_angle) * 5;
-		data->p_delta_y = sin(data->p_angle) * 5;
+		if (data->p_angle > 2.0 * M_PI)
+			data->p_angle -= 2.0 * M_PI;
 	}
+	data->p_delta_x = cos(data->p_angle) * 5.0;
+	data->p_delta_y = sin(data->p_angle) * 5.0;
 	refresh_img(env);
 }

@@ -3,18 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/07 15:27:29 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:15:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-/* PARSING */
+/*Image structure*/
+typedef struct s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
 
+/*MLX structure*/
+typedef struct s_windows
+{
+	void	*mlx;
+	void	*win;
+	t_img	*img;
+}	t_windows;
+
+/* Data */
 typedef struct s_map_info
 {
 	char	**map;
@@ -38,30 +54,17 @@ typedef struct s_data
 	float		p_delta_y;
 	float		r_perpendicular;
 	float		angle;
+	float		wall_x;
+	float		wall_y;
 	int			*floor_color;
 	uint32_t	floor_hexa;
 	int			*ceiling_color;
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
+	t_img		textures_img[4];
 }	t_data;
 
-/* MLX */
-
-typedef struct s_img {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img;
-
-typedef struct s_windows
-{
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-}	t_windows;
-
+/*Main environnement*/
 typedef struct s_env
 {
 	t_data		data;
