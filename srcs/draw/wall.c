@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 13:12:45 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:23:15 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static char	*print_pixel_textures(int y, float height, t_data data)
 	t_x = fmodf(data.wall_x, 19.85) * 25 / 2;
 	t_y = fmodf(data.wall_y, 19.85) * 25 / 2;
 	if (t_x > t_y)
-		dst = get_pixel_in_texture(data.textures_img, t_x, y * (256 / height));
+		dst = get_pixel_in_texture(data.textures_img[0], t_x, y * (256 / height));
 	else
-		dst = get_pixel_in_texture(data.textures_img, t_y, y * (256 / height));
+		dst = get_pixel_in_texture(data.textures_img[1], t_y, y * (256 / height));
 	//printf("test = %f\n", test);
 	//t_y = t_y * (height * 256) / 2;
 	//printf("t_x = %f && t_y = %f\n", t_x, t_y);

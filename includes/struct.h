@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 10:41:02 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:17:27 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_data
 	int			*ceiling_color;
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
-	t_img		textures_img;
+	t_img		textures_img[4];
 }	t_data;
 
 typedef struct s_env
