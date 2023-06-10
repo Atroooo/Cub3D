@@ -82,7 +82,10 @@ void	draw_wall(float distance, t_env *env, float x)
 	draw_ceiling(E_H - height / 2, env, x, &y);
 	while (y < E_H + height / 2)
 	{
-		dst = print_pixel_textures(textures_y, height, env->data);
+		if (E_H - height / 2 < 0)
+			dst = print_pixel_textures(textures_y - (E_H - height / 2), height , env->data);
+		else
+			dst = print_pixel_textures(textures_y, height, env->data);
 		my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
 		y++;
 		textures_y++;
