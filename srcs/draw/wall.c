@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 16:22:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/10 17:59:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_pixel_in_texture(t_img data, int x, int y)
 	dst = data.addr + (y * data.line_length + x * (bit));
 	return (dst);
 }
-
+//prendre en compte l'angle de vue, calculer la distance avec les murs, et check ou il y a un 0
 static char	*print_pixel_textures(int texture_y, float height, t_data data)
 {
 	char			*dst;
