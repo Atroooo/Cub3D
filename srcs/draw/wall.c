@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/12 11:00:58 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:03:38 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ static void	draw_ceiling(float height, t_env *env, float x, float *y)
 		*y += 1;
 	}
 }
-
-//N x 0 -> 250 | y 100 -> 103
-//S x 0 -> 250 | y 159 -> 162
-//W x 197 -> 200 | y 0 -> 250
-//E x 208 -> 210 | y 0 -> 250
 
 static t_img	choose_textures(t_data data)
 {

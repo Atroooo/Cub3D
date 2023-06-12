@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/08 11:12:15 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:17:39 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,19 @@ t_img	create_textures_img(char *path, t_windows *win)
 		data.img, &data.bits_per_pixel, \
 		&data.line_length, &data.endian);
 	return (data);
+}
+
+void	create_all_textures_img(t_env *env)
+{
+	printf("env->data.no = %s\n", env->data.no);
+	env->data.textures_img[0] = create_textures_img(\
+		env->data.no, &env->windows);
+	env->data.textures_img[1] = create_textures_img(\
+		env->data.ea, &env->windows);
+	env->data.textures_img[2] = create_textures_img(\
+		env->data.so, &env->windows);
+	env->data.textures_img[3] = create_textures_img(\
+		env->data.we, &env->windows);
+	env->data.textures_img[4] = create_textures_img(\
+		env->data.we, &env->windows);
 }
