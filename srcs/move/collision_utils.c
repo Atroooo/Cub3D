@@ -12,21 +12,42 @@
 
 #include <cub3D.h>
 
+int	check_cond_angle_no(t_data *data)
+{
+	return ((data->p_angle > 5.7f && data->p_angle < M_PI * 2) || \
+			(data->p_angle > 0.0f && data->p_angle < M_PI * 1.5f));
+}
+
+int	check_cond_angle_so(t_data *data)
+{
+	if ((data->p_angle > 5.7f && data->p_angle <= 6.22f) || \
+		(data->p_angle > 2.56f && data->p_angle < 4.78f))
+	{
+		printf("cond 1\n");
+		return (0);
+	}
+	if (data->p_angle > 0.0f && data->p_angle < 1.5f)
+	{
+		printf("cond 2\n");
+		return (1);
+	}
+	if ((data->p_angle >= 4.8f && data->p_angle < 5.7f) || \
+		(data->p_angle > 3.1f && data->p_angle < 3.42f))
+	{
+		printf("cond 3\n");
+		return (2);
+	}
+	return (-1);
+}
+
 int	check_cond_angle(int s, t_data *data)
 {
-	if (s == 1)
-		return ((data->p_angle > 5.70 && data->p_angle < M_PI * 2) || \
-			(data->p_angle > 0.0 && data->p_angle < M_PI * 1.5));
-	if (s == 2)
-		return ((data->p_angle < 5.0 && data->p_angle > M_PI * 1.5) || \
-			(data->p_angle < 5.70 && data->p_angle > M_PI * 2) || \
-			(data->p_angle > 0.0 && data->p_angle < 1.5));
 	if (s == 3)
-		return ((data->p_angle > 4.50 && data->p_angle < M_PI * 2) || \
-			(data->p_angle > 0.0 && data->p_angle < M_PI));
+		return ((data->p_angle > 4.5f && data->p_angle < M_PI * 2) || \
+			(data->p_angle > 0.0f && data->p_angle < M_PI));
 	if (s == 4)
-		return ((data->p_angle > 5.70 && data->p_angle < M_PI * 2) || \
-			(data->p_angle > 0.0 && data->p_angle < M_PI));
+		return ((data->p_angle > 5.7f && data->p_angle < M_PI * 2) || \
+			(data->p_angle > 0.0f && data->p_angle < M_PI));
 	return (0);
 }
 

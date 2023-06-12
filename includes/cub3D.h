@@ -60,7 +60,9 @@ void	rotate(t_env *env, t_data *data, int keycode);
 
 /*Collisions*/
 int		collision(float pos_x, float pos_y, t_data *data, char c);
-float   distance_wall(float x, float y, t_data *data);
-int     check_cond_angle(int s, t_data *data);
+float	distance_wall(float x, float y, t_data *data);
+int		check_cond_angle(int s, t_data *data);
+int		check_cond_angle_no(t_data *data);
+int		check_cond_angle_so(t_data *data);
 
 #endif

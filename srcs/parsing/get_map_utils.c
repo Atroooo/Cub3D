@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/06 17:04:38 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:22:18 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,24 @@ void	check_map(t_data *data)
 				}
 			}
 		}
+	}
+}
+
+void	check_if_line_empty(t_data *data)
+{
+	int	i;
+
+	i = 1;
+	while (data->map_data.base_map[i])
+	{
+		if (data->map_data.base_map[i] == '\n' && \
+		(data->map_data.base_map[i - 1] != '0' && \
+		data->map_data.base_map[i - 1] != '1' && \
+		data->map_data.base_map[i - 1] != ' '))
+		{
+			printf("Error\nInvalid map.\n");
+			free_parsing(data);
+		}
+		i++;
 	}
 }

@@ -84,6 +84,7 @@ static void	get_player_position(t_data *data)
 
 void	setup_map(t_data *data)
 {
+	check_if_line_empty(data);
 	if (data->map_data.base_map == NULL)
 	{
 		printf("Error\nNo map.\n");
