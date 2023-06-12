@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:13:27 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/07 15:56:20 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/12 07:00:25 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,14 @@ void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color)
 		steps--;
 	}
 }
+
+char	*get_pixel_in_texture(t_img data, int x, int y)
+{
+	char	*dst;
+	int		bit;
+
+	bit = data.bits_per_pixel / 8;
+	dst = data.addr + (y * data.line_length + x * (bit));
+	return (dst);
+}
+

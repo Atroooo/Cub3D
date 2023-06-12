@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:07:21 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/02 13:36:06 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/12 08:09:02 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_map(t_env *env)
 		{
 			if (map[y][x] == ' ')
 				draw_tile((float)y, x, 0x000000, &env->img);
-			else if (map[y][x] == '1')
+			if (map[y][x] == '1')
 				draw_tile((float)y, x, 0x828582, &env->img);
 			else
 				draw_tile((float)y, x, 0xdadbd9, &env->img);

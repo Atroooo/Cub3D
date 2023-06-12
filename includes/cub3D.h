@@ -53,6 +53,7 @@ void	raycasting(t_env *env);
 
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+char	*get_pixel_in_texture(t_img data, int x, int y);
 
 void	move(t_env *env, t_data *data, int keycode);
 void	rotate(t_env *env, t_data *data, int keycode);

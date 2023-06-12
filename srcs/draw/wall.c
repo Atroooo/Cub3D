@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 13:23:15 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:12:23 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,46 @@ static void	draw_ceiling(float height, t_env *env, float x, float *y)
 	}
 }
 
-char	*get_pixel_in_texture(t_img data, int x, int y)
-{
-	char	*dst;
-	int		bit;
+//N x 0 -> 250 | y 100 -> 103
+//S x 0 -> 250 | y 159 -> 162
+//W x 197 -> 200 | y 0 -> 250
+//E x 208 -> 210 | y 0 -> 250
 
-	bit = data.bits_per_pixel / 8;
-	dst = data.addr + (y * data.line_length + x * (bit));
-	return (dst);
+static t_img	choose_textures(t_data data)
+{
+	int	x;
+	int	y;
+
+	y = data.wall_y / TILE_SIZE;
+	x = data.wall_x / TILE_SIZE;
+	if ((int)((data.wall_y + 1) / TILE_SIZE) != y)
+		return (data.textures_img[0]);
+	if ((int)((data.wall_y - 1) / TILE_SIZE) != y)
+		return (data.textures_img[2]);
+	if ((int)((data.wall_x + 1) / TILE_SIZE) != x)
+		return (data.textures_img[3]);
+	if ((int)((data.wall_x - 1) / TILE_SIZE) != x)
+		return (data.textures_img[1]);
+	return (data.textures_img[4]);
 }
 
-static char	*print_pixel_textures(int y, float height, t_data data)
+static char	*choose_pixel_textures(int y, float height, t_data data)
 {
 	char			*dst;
 	float			t_x;
 	float			t_y;
+	t_img			textures;
 
-	(void) t_y;
-	(void) t_x;
-	(void) height;
-	(void) y;
 	t_x = fmodf(data.wall_x, 19.85) * 25 / 2;
 	t_y = fmodf(data.wall_y, 19.85) * 25 / 2;
+	if (E_H - height / 2 < 0)
+		y = y - (E_H - height / 2);
+	y = y * (256 / height);
+	textures = choose_textures(data);
 	if (t_x > t_y)
-		dst = get_pixel_in_texture(data.textures_img[0], t_x, y * (256 / height));
+		dst = get_pixel_in_texture(textures, t_x, y);
 	else
-		dst = get_pixel_in_texture(data.textures_img[1], t_y, y * (256 / height));
+		dst = get_pixel_in_texture(textures, t_y, y);
 	//printf("test = %f\n", test);
 	//t_y = t_y * (height * 256) / 2;
 	//printf("t_x = %f && t_y = %f\n", t_x, t_y);
@@ -82,10 +96,7 @@ void	draw_wall(float distance, t_env *env, float x)
 	draw_ceiling(E_H - height / 2, env, x, &y);
 	while (y < E_H + height / 2)
 	{
-		if (E_H - height / 2 < 0)
-			dst = print_pixel_textures(textures_y - (E_H - height / 2), height , env->data);
-		else
-			dst = print_pixel_textures(textures_y, height, env->data);
+		dst = choose_pixel_textures(textures_y, height, env->data);
 		my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
 		y++;
 		textures_y++;
