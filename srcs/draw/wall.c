@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/12 10:12:23 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:00:58 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ static t_img	choose_textures(t_data data)
 	x = data.wall_x / TILE_SIZE;
 	if ((int)((data.wall_y + 1) / TILE_SIZE) != y)
 		return (data.textures_img[0]);
-	if ((int)((data.wall_y - 1) / TILE_SIZE) != y)
+	if ((int)((data.wall_y - 1) / TILE_SIZE) != y && data.map_data.map[(int)((data.wall_y - 1) / TILE_SIZE)][x] != '1')
 		return (data.textures_img[2]);
-	if ((int)((data.wall_x + 1) / TILE_SIZE) != x)
-		return (data.textures_img[3]);
 	if ((int)((data.wall_x - 1) / TILE_SIZE) != x)
 		return (data.textures_img[1]);
+	if ((int)((data.wall_x + 1) / TILE_SIZE) != x)
+		return (data.textures_img[3]);
 	return (data.textures_img[4]);
 }
 
