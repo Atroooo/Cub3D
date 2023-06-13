@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/12 11:17:39 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:52:21 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ t_img	create_textures_img(char *path, t_windows *win)
 
 void	create_all_textures_img(t_env *env)
 {
-	printf("env->data.no = %s\n", env->data.no);
+	if (open(env->data.no, O_RDONLY) < 0 || open(env->data.ea, O_RDONLY) < 0
+	|| open(env->data.so, O_RDONLY) < 0 || open(env->data.we, O_RDONLY) < 0)
+	{
+		perror("textures");
+		free_windows_struct(env);
+	}
 	env->data.textures_img[0] = create_textures_img(\
 		env->data.no, &env->windows);
 	env->data.textures_img[1] = create_textures_img(\
@@ -42,6 +47,6 @@ void	create_all_textures_img(t_env *env)
 		env->data.so, &env->windows);
 	env->data.textures_img[3] = create_textures_img(\
 		env->data.we, &env->windows);
-	env->data.textures_img[4] = create_textures_img(\
+	env->data.textures_img[4] = create_textures_img(
 		env->data.we, &env->windows);
 }

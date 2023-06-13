@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/12 11:03:38 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:26:12 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ static void	draw_ceiling(float height, t_env *env, float x, float *y)
 	}
 }
 
-static t_img	choose_textures(t_data data)
+static int	choose_textures(t_data data, char **map)
 {
 	int	x;
 	int	y;
 
 	y = data.wall_y / TILE_SIZE;
 	x = data.wall_x / TILE_SIZE;
-	if ((int)((data.wall_y + 1) / TILE_SIZE) != y)
-		return (data.textures_img[0]);
-	if ((int)((data.wall_y - 1) / TILE_SIZE) != y && data.map_data.map[(int)((data.wall_y - 1) / TILE_SIZE)][x] != '1')
-		return (data.textures_img[2]);
-	if ((int)((data.wall_x - 1) / TILE_SIZE) != x)
-		return (data.textures_img[1]);
-	if ((int)((data.wall_x + 1) / TILE_SIZE) != x)
-		return (data.textures_img[3]);
-	return (data.textures_img[4]);
+	if ((int)((data.wall_y + 0.5) / TILE_SIZE) != y && map[(int)((data.wall_y + 0.5) / TILE_SIZE)][x] != '1')
+		return (0);
+	if ((int)((data.wall_y - 0.5) / TILE_SIZE) != y && map[(int)((data.wall_y - 0.5) / TILE_SIZE)][x] != '1')
+		return (2);
+	if ((int)((data.wall_x - 0.5) / TILE_SIZE) != x)
+		return (1);
+	if ((int)((data.wall_x + 0.5) / TILE_SIZE) != x)
+		return (3);
+	return (3);
 }
 
 static char	*choose_pixel_textures(int y, float height, t_data data)
@@ -57,23 +57,29 @@ static char	*choose_pixel_textures(int y, float height, t_data data)
 	char			*dst;
 	float			t_x;
 	float			t_y;
-	t_img			textures;
+	int				i;
 
 	t_x = fmodf(data.wall_x, 19.85) * 25 / 2;
 	t_y = fmodf(data.wall_y, 19.85) * 25 / 2;
 	if (E_H - height / 2 < 0)
 		y = y - (E_H - height / 2);
 	y = y * (256 / height);
-	textures = choose_textures(data);
-	if (t_x > t_y)
-		dst = get_pixel_in_texture(textures, t_x, y);
+	i = choose_textures(data, data.map_data.map);
+	if (i == 0)
+		dst = get_pixel_in_texture(data.textures_img[i], t_x, y);
+	else if (i == 2)
+		dst = get_pixel_in_texture(data.textures_img[i], 50 - t_x, y);
+	else if (i == 3)
+		dst = get_pixel_in_texture(data.textures_img[i], t_y, y);
 	else
-		dst = get_pixel_in_texture(textures, t_y, y);
-	//printf("test = %f\n", test);
-	//t_y = t_y * (height * 256) / 2;
-	//printf("t_x = %f && t_y = %f\n", t_x, t_y);
+		dst = get_pixel_in_texture(data.textures_img[i], t_y, y);
 	return (dst);
 }
+
+//N x 0 -> 250 | y 100 -> 103
+//S x 0 -> 250 | y 159 -> 162
+//W x 197 -> 200 | y 0 -> 250
+//E x 208 -> 210 | y 0 -> 250
 
 void	draw_wall(float distance, t_env *env, float x)
 {
