@@ -45,8 +45,8 @@ int	check_cond_angle_we(t_data *data)
 
 int	check_cond_angle_ea(t_data *data)
 {
-	return ((data->p_angle > 5.7f && data->p_angle < M_PI * 2) || \
-			(data->p_angle > 0.0f && data->p_angle < M_PI));
+	return ((data->p_angle > 5.4f && data->p_angle < M_PI * 2) || \
+			(data->p_angle > 0.0f && data->p_angle < M_PI * 1.5f));
 }
 
 
@@ -62,11 +62,15 @@ float	distance_wall(float x, float y, t_data *data)
 	while (y_t >= 0 && y_t < data->map_data.map_height && \
 	data->map_data.map[y_t][x_t] && data->map_data.map[y_t][x_t] != '1')
 	{
-		x += (x - data->p_pos_x);
-		y += (y - data->p_pos_y);
+		x += (x - data->p_pos_x) / 10.0;
+		y += (y - data->p_pos_y) / 10.0;
+		printf("x = %f, y = %f\n", x, y);
 		x_t = x / TILE_SIZE;
 		y_t = y / TILE_SIZE;
-		dist += 0.5;
+	// 	if (y_t >= 0 && y_t < data->map_data.map_height && 
+	// data->map_data.map[y_t][x_t])
+	// 		printf("x_t = %d, y_t = %d, |%c|\n", x_t, y_t, data->map_data.map[y_t][x_t]);
+		dist += 0.1;
 	}
 	return (dist);
 }
