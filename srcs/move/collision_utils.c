@@ -12,44 +12,6 @@
 
 #include <cub3D.h>
 
-int	check_cond_angle_no(t_data *data)
-{
-	return ((data->p_angle > 5.10f && data->p_angle < M_PI * 2) || \
-			(data->p_angle > 0.0f && data->p_angle < M_PI * 1.5f));
-}
-
-int	check_cond_angle_so(t_data *data)
-{
-	if ((data->p_angle > 5.64f && data->p_angle < 5.85f) || \
-		(data->p_angle > 2.33f && data->p_angle < 2.87f) || \
-		(data->p_angle > 3.45f && data->p_angle < 3.75f))
-		return (0);
-	if ((data->p_angle > 0.0f && data->p_angle < 1.5f) || \
-		(data->p_angle > 5.84f && data->p_angle < 6.27f) || \
-		(data->p_angle > 2.88f && data->p_angle < 3.45f))
-		return (1);
-	if ((data->p_angle > 3.83f && data->p_angle < 5.64f))
-		return (2);
-	return (-1);
-}
-
-int	check_cond_angle_we(t_data *data)
-{
-	if (data->p_angle < 3.77f && data->p_angle > 2.77f)
-		return (0);
-	if ((data->p_angle > 4.5f && data->p_angle < M_PI * 2) || \
-		(data->p_angle > 0.0f && data->p_angle < M_PI))
-		return (1);
-	return (1);
-}
-
-int	check_cond_angle_ea(t_data *data)
-{
-	return ((data->p_angle > 5.4f && data->p_angle < M_PI * 2) || \
-			(data->p_angle > 0.0f && data->p_angle < M_PI * 1.5f));
-}
-
-
 float	distance_wall(float x, float y, t_data *data)
 {
 	float	dist;

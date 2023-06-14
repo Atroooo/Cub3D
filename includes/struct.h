@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 17:55:58 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:01:48 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_data
 	int			*ceiling_color;
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
-	t_img		textures_img[4];
+	t_img		textures_img[5];
 }	t_data;
 
 /*Main environnement*/
@@ -71,5 +71,4 @@ typedef struct s_env
 	t_img		img;
 	t_windows	windows;
 }	t_env;
-
 #endif

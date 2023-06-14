@@ -15,6 +15,7 @@
 static void	get_north_texture(char *line, t_data *data)
 {
 	char	**split;
+	char	*tmp;
 
 	split = ft_split(line, ' ');
 	if (!split[1])
@@ -22,13 +23,16 @@ static void	get_north_texture(char *line, t_data *data)
 		printf("Error\n Missing texture ?\n");
 		free_parsing(data);
 	}
-	data->no = ft_strdup(split[1]);
+	tmp = ft_strdup(split[1]);
+	data->no = ft_strtrim(tmp, "\n");
+	free(tmp);
 	free_char_array(split);
 }
 
 static void	get_south_texture(char *line, t_data *data)
 {
 	char	**split;
+	char	*tmp;
 
 	split = ft_split(line, ' ');
 	if (!split[1])
@@ -36,13 +40,16 @@ static void	get_south_texture(char *line, t_data *data)
 		printf("Error\n Missing texture ?\n");
 		free_parsing(data);
 	}
-	data->so = ft_strdup(split[1]);
+	tmp = ft_strdup(split[1]);
+	data->so = ft_strtrim(tmp, "\n");
+	free(tmp);
 	free_char_array(split);
 }
 
 static void	get_west_texture(char *line, t_data *data)
 {
 	char	**split;
+	char	*tmp;
 
 	split = ft_split(line, ' ');
 	if (!split[1])
@@ -50,13 +57,16 @@ static void	get_west_texture(char *line, t_data *data)
 		printf("Error\n Missing texture ?\n");
 		free_parsing(data);
 	}
-	data->we = ft_strdup(split[1]);
+	tmp = ft_strdup(split[1]);
+	data->we = ft_strtrim(tmp, "\n");
+	free(tmp);
 	free_char_array(split);
 }
 
 static void	get_east_texture(char *line, t_data *data)
 {
 	char	**split;
+	char	*tmp;
 
 	split = ft_split(line, ' ');
 	if (!split[1])
@@ -64,7 +74,9 @@ static void	get_east_texture(char *line, t_data *data)
 		printf("Error\n Missing texture ?\n");
 		free_parsing(data);
 	}
-	data->ea = ft_strdup(split[1]);
+	tmp = ft_strdup(split[1]);
+	data->ea = ft_strtrim(tmp, "\n");
+	free(tmp);
 	free_char_array(split);
 }
 

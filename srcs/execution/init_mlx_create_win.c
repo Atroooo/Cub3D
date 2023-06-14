@@ -3,34 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 15:17:34 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/14 18:02:00 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	create_all_textures_img(t_env *env)
-{
-	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
-		env->img.img, 0, 0);
-	env->data.textures_img[0] = create_textures_img(\
-		"./textures/north.xpm", &env->windows);
-	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
-		env->img.img, 0, 0);
-	env->data.textures_img[1] = create_textures_img(\
-		"./textures/east.xpm", &env->windows);
-	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
-		env->img.img, 0, 0);
-	env->data.textures_img[2] = create_textures_img(\
-		"./textures/south.xpm", &env->windows);
-	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
-		env->img.img, 0, 0);
-	env->data.textures_img[3] = create_textures_img(\
-		"./textures/west.xpm", &env->windows);
-}
 
 void	init_mlx_create_win(t_env *env)
 {

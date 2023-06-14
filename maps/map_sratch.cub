@@ -1,7 +1,7 @@
-NO ./textures/NO.png
-SO ./textures/SO.png
-EA ./textures/EA.png
-WE ./textures/WE.png
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+EA ./textures/east.xpm
+WE ./textures/west.xpm
 
 C 12, 254, 78
 F 45, 65, 12
