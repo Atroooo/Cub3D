@@ -64,5 +64,7 @@ float	distance_wall(float x, float y, t_data *data);
 int		check_cond_angle(int s, t_data *data);
 int		check_cond_angle_no(t_data *data);
 int		check_cond_angle_so(t_data *data);
+int	    check_cond_angle_we(t_data *data);
+int 	check_cond_angle_ea(t_data *data);
 
 #endif

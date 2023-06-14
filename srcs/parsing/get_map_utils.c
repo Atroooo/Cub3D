@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/14 14:47:47 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/14 16:04:26 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,21 @@ static int	check_char(char c)
 
 static int	check_next_char(char **map, int i, int j, t_map_info map_info)
 {
-	if (map[0][j] && map[0][j] == '0')
+	if (map[0][j] && (map[0][j] == '0' || map[0][j] == 'N' \
+	|| map[0][j] == 'S' || map[0][j] == 'E' || map[0][j] == 'W'))
 		return (0);
-	if (map[i][0] && map[i][0] == '0')
+	if (map[i][0] && (map[i][0] == '0' || map[i][0] == 'N' \
+	|| map[i][0] == 'S' || map[i][0] == 'E' || map[i][0] == 'W'))
 		return (0);
-	if (map[i][j] == '0' && map[i][j + 1] == '\0')
+	if (map[i][j + 1] == '\0' && (map[i][j] == '0' || map[i][j] == 'N' \
+	|| map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'))
 		return (0);
 	if (map[map_info.map_height - 1][j] && \
-		map[map_info.map_height - 1][j] == '0')
+		(map[map_info.map_height - 1][j] == '0' || \
+		map[map_info.map_height - 1][j] == 'N' || \
+		map[map_info.map_height - 1][j] == 'E' || \
+		map[map_info.map_height - 1][j] == 'W' || \
+		map[map_info.map_height - 1][j] == 'S'))
 		return (0);
 	if ((map[i][j - 1] && map[i][j - 1] == ' ') || \
 		(map[i][j + 1] && map[i][j + 1] == ' ') || \
@@ -78,7 +85,8 @@ void	check_map(t_data *data)
 		{
 			if (!check_char(map[i][j]))
 				free_parsing(data);
-			if (map[i][j] && map[i][j] == '0')
+			if (map[i][j] && (map[i][j] == '0' || map[i][j] == 'N' \
+			|| map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'))
 			{
 				if (!check_next_char(map, i, j, data->map_data))
 				{

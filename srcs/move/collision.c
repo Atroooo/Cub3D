@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 11:40:23 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 15:06:09 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/14 16:31:38 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	no_collision(float x, float y, t_data *data)
 {
 	if (check_cond_angle_no(data))
 	{
-		if (distance_wall(x, y, data) <= 1.0)
+		if (distance_wall(x, y, data) <= 1.5)
 			return (0);
 	}
 	else
@@ -57,14 +57,14 @@ static int	so_collision(float x, float y, t_data *data)
 
 static int	we_collision(float x, float y, t_data *data)
 {
-	if (check_cond_angle(3, data))
+	if (check_cond_angle_we(data))
 	{
-		if (distance_wall(x, y, data) <= 2.5)
+		if (distance_wall(x, y, data) <= 2.0)
 			return (0);
 	}
 	else
 	{
-		if (distance_wall(x, y, data) <= 1.0)
+		if (distance_wall(x, y, data) <= 2.5)
 			return (0);
 	}
 	return (1);
@@ -72,13 +72,15 @@ static int	we_collision(float x, float y, t_data *data)
 
 static int	ea_collision(float x, float y, t_data *data)
 {
-	if (check_cond_angle(4, data))
+	if (check_cond_angle_ea(data))
 	{
-		if (distance_wall(x, y, data) <= 1.0)
+		printf("cond 1\n");
+		if (distance_wall(x, y, data) <= 2.0)
 			return (0);
 	}
 	else
 	{
+		printf("cond 2\n");
 		if (distance_wall(x, y, data) <= 0.5)
 			return (0);
 	}
