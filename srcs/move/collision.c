@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 11:40:23 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/12 13:45:57 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:06:09 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	so_collision(float x, float y, t_data *data)
 	}
 	if (return_value == 1)
 	{
-		if (distance_wall(x, y, data) <= 3.0)
+		if (distance_wall(x, y, data) <= 3.5)
 			return (0);
 	}
 	if (return_value == 2)
@@ -49,7 +49,7 @@ static int	so_collision(float x, float y, t_data *data)
 	}
 	else
 	{
-		if (distance_wall(x, y, data) <= 1.0)
+		if (distance_wall(x, y, data) <= 0.0)
 			return (0);
 	}
 	return (1);

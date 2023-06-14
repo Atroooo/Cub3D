@@ -20,18 +20,19 @@ int	check_cond_angle_no(t_data *data)
 
 int	check_cond_angle_so(t_data *data)
 {
-	if ((data->p_angle > 5.7f && data->p_angle <= 6.22f) || \
+	if ((data->p_angle > 5.64f && data->p_angle <= 5.84f) || \
 		(data->p_angle > 2.56f && data->p_angle < 4.78f))
 	{
 		printf("cond 1\n");
 		return (0);
 	}
-	if (data->p_angle > 0.0f && data->p_angle < 1.5f)
+	if ((data->p_angle > 0.0f && data->p_angle < 1.5f) || \
+		(data->p_angle > 5.84f && data->p_angle <= 6.26f))
 	{
 		printf("cond 2\n");
 		return (1);
 	}
-	if ((data->p_angle >= 4.8f && data->p_angle < 5.7f) || \
+	if ((data->p_angle >= 4.8f && data->p_angle < 5.64f) || \
 		(data->p_angle > 3.1f && data->p_angle < 3.42f))
 	{
 		printf("cond 3\n");

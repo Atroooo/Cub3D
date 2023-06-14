@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/12 14:22:18 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:47:47 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ void	check_if_line_empty(t_data *data)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
+	while (data->map_data.base_map[i] && data->map_data.base_map[i] != '1')
+		i++;
 	while (data->map_data.base_map[i])
 	{
 		if (data->map_data.base_map[i] == '\n' && \
