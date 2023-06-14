@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 18:21:36 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/14 22:12:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static	int	check_wall_angle(int x, int y, t_data data, char **map)
 	}
 	return (1);
 }
-
 float	calc_radius(t_env *env, float dy, float dx)
 {
 	int		y;
@@ -61,7 +60,8 @@ float	calc_radius(t_env *env, float dy, float dx)
 		if (!check_wall_angle(x, y, env->data, env->data.map_data.map))
 			break ;
 	}
-	//printf("pix_x = %f, pix_y = %f, x = %d, y = %d\n", pix_x, pix_y, x, y);
+	printf("pix_x = %f, pix_y = %f, x = %d, y = %d\n", pix_x, pix_y, x, y);
+	printf("dist = %f\n", distance);
 	env->data.wall_x = pix_x;
 	env->data.wall_y = pix_y;
 	return (distance);
@@ -82,7 +82,8 @@ void	raycasting(t_env *env)
 		dy = sin(angle) * 5.0;
 		env->data.angle = angle;
 		x++;
-		draw_wall(calc_radius(env, dy, dx), env, x);
+		// draw_wall(calc_radius(env, dy, dx), env, x); //A decommenter pour avoir l'ancien rendu
+		draw_wall(dda(dx, dy, env), env, x);
 		calc_radius(env, dy, dx);
 		angle += RAD * (40.0 / WIN_WIDTH);
 	}

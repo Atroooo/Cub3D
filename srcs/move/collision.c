@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 11:40:23 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 18:15:33 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:28:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static int	ea_collision(float x, float y, t_data *data)
 
 int	collision(float x, float y, t_data *data, char c)
 {
-	printf("data->p_angle = %f\n", data->p_angle);
-	printf("distance : %f\n", distance_wall(x, y, data));
+	// printf("data->p_angle = %f\n", data->p_angle);
+	// printf("distance : %f\n", distance_wall(x, y, data));
 	if (c == 'N')
 		return (no_collision(x, y, data));
 	if (c == 'S')

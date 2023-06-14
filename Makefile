@@ -30,6 +30,7 @@ SRC			 			= main.c \
 						  move/collision_utils.c \
 						  delete.c \
 						  raycasting.c \
+						  dda.c \
 						  
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
@@ -59,7 +60,7 @@ mkbuild:
 						@mkdir -p build
 					
 $(NAME): 				$(OBJECTS) $(LIB_DIR)$(LIBFT) $(HEADER_DIR)
-						$(GCC) $(CFLAGS) -I{HEADER_DIR} $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) $(MINILIB_DIR)$(MINILIB) $(LINUX)
+						$(GCC) $(CFLAGS) -I{HEADER_DIR} $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) $(MINILIB_DIR)$(MINILIB) $(LINUX) -ffast-math
 
 sanit :					$(OBJECTS) $(LIB_DIR)$(LIBFT)
 						$(GCC) $(SANITIZE) $(OBJECTS) -o $(NAME) $(LIB_DIR)$(LIBFT) $(MINILIB_DIR)$(MINILIB) $(LINUX)

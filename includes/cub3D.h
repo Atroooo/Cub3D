@@ -49,6 +49,7 @@ float	calc_radius(t_env *env, float dy, float dx);
 void	draw_wall(float distance, t_env *env, float x);
 void	draw_column(float distance, t_env *env, float *cam_x);
 
+float	dda(float dx, float dy, t_env *env);
 void	raycasting(t_env *env);
 
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);
@@ -63,9 +64,5 @@ void	rotate(t_env *env, t_data *data, int keycode);
 int		collision(float pos_x, float pos_y, t_data *data, char c);
 float	distance_wall(float x, float y, t_data *data);
 int		check_cond_angle(int s, t_data *data);
-int		check_cond_angle_no(t_data *data);
-int		check_cond_angle_so(t_data *data);
-int	    check_cond_angle_we(t_data *data);
-int 	check_cond_angle_ea(t_data *data);
 
 #endif

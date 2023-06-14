@@ -26,7 +26,7 @@ float	distance_wall(float x, float y, t_data *data)
 	{
 		x += (x - data->p_pos_x) / 10.0;
 		y += (y - data->p_pos_y) / 10.0;
-		printf("x = %f, y = %f\n", x, y);
+		// printf("x = %f, y = %f\n", x, y);
 		x_t = x / TILE_SIZE;
 		y_t = y / TILE_SIZE;
 	// 	if (y_t >= 0 && y_t < data->map_data.map_height && 
