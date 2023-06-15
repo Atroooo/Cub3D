@@ -15,7 +15,7 @@
 
 # define WIN_HEIGHT	1080
 # define WIN_WIDTH	1920
-# define TILE_SIZE  16
+# define TILE_SIZE  50
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
 # define WALL_H		2200

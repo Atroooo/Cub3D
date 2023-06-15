@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"cmath": "c",
+		"struct.h": "c"
+	}
+}

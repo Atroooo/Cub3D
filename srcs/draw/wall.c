@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 18:01:21 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:41:34 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,21 @@ void	draw_wall(float distance, t_env *env, float x)
 {
 	float	height;
 	float	y;
-	char	*dst;
+	//char	*dst;
 	int		textures_y;
 
 	y = 0;
 	textures_y = 0;
 	if (distance < 0.20)
 		distance = 0.20;
+	(void) choose_pixel_textures;
 	distance = fix_fisheye(distance, env);
 	height = D_E * (WALL_H / distance);
 	draw_ceiling(E_H - height / 2, env, x, &y);
 	while (y < E_H + height / 2)
 	{
-		dst = choose_pixel_textures(textures_y, height, env->data);
-		my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
+		//dst = choose_pixel_textures(textures_y, height, env->data);
+		//my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
 		y++;
 		textures_y++;
 	}
