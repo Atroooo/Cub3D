@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/15 12:50:57 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:39:54 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ float	calc_radius(t_env *env, float dy, float dx)
 	distance = 0;
 	while (env->data.map_data.map[y][x] != '1')
 	{
-		//my_mlx_pixel_put(&env->img, pix_x, pix_y, 0x41801f);
+		my_mlx_pixel_put(&env->img, pix_x, pix_y, 0x41801f);
 		pix_y += dy / 25.0;
 		pix_x += dx / 25.0;
 		distance += 0.01;
@@ -72,24 +72,23 @@ void	raycasting(t_env *env)
 	float	angle;
 	float	dy;
 	float	dx;
-	// float	x;
+	float	x;
 
-	//x = 0;
+	x = 0;
 	angle = env->data.p_angle - 20.0 * RAD;
-	dx = cos(angle) * 5.0;
-	dy = sin(angle) * 5.0;
-	(void) dx;
-	(void) dy;
 	dda(env->data.p_delta_x, env->data.p_delta_y, env);
-	// while (x < WIN_WIDTH)
-	// {
-	// 	env->data.angle = angle;
-	// 	x++;
-	// 	// draw_wall(calc_radius(env, dy, dx), env, x); //A decommenter pour avoir l'ancien rendu
-	// 	//draw_wall(dda(dx, dy, env), env, x);
-	// 	calc_radius(env, dy, dx);
-	// 	angle += RAD * (40.0 / WIN_WIDTH);
-	// }
+	while (x < WIN_WIDTH)
+	{
+		dx = cos(angle) * 5.0;
+		dy = sin(angle) * 5.0;
+		// draw_wall(calc_radius(env, dy, dx), env, x); //A decommenter pour avoir l'ancien rendu
+		draw_wall(dda(dx, dy, env), env, x);
+		// dda(dx, dy, env);
+		// calc_radius(env, dy, dx);
+		angle += RAD * (40.0 / WIN_WIDTH);
+		env->data.angle = angle;
+		x++;
+	}
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
 		env->img.img, 0, 0);
 }

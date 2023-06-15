@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 20:00:47 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/15 13:07:46 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,16 @@ typedef struct s_data
 }	t_data;
 
 /*Vectors*/
-typedef struct s_vector_2d
+typedef struct s_vector_2f
 {
 	float	x;
 	float	y;
+}	t_vector_2f;
+
+typedef struct s_vector_2d
+{
+	int	x;
+	int	y;
 }	t_vector_2d;
 
 /*Main environnement*/
