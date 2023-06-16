@@ -19,7 +19,7 @@
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
 # define WALL_H		2200
-# define D_E		0.75
+# define D_E		0.50
 # define E_H		500
 # define RAD		0.01745329
 
@@ -46,10 +46,10 @@ void	draw_map(t_env *env);
 void	draw_tile(float y, int x, uint32_t color, t_img *img);
 void	draw_player_pos(float y, int x, t_img *img);
 float	calc_radius(t_env *env, float dy, float dx);
-void	draw_wall(float distance, t_env *env, float x);
+void	draw_wall(t_ray ray, t_env *env, float x);
 void	draw_column(float distance, t_env *env, float *cam_x);
 
-float	dda(float dx, float dy, t_env *env);
+t_ray	dda(float dx, float dy, t_env *env);
 void	raycasting(t_env *env);
 
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);

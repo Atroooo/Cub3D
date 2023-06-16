@@ -71,6 +71,7 @@ void	raycasting(t_env *env)
 	float		dy;
 	float		dx;
 	float		x;
+	t_ray 		ray;
 
 	angle = env->data.p_angle - 20.0 * RAD;
 	x = 0;
@@ -78,7 +79,8 @@ void	raycasting(t_env *env)
 	{
 		dx = cos(angle);
 		dy = sin(angle);
-		draw_wall(dda(dx, dy, env), env, x);
+		ray = dda(dx, dy, env);
+		draw_wall(ray, env, x);
 		// calc_radius(env, dy, dx);
 		angle += (RAD * (40.0 / WIN_WIDTH));
 		env->data.angle = angle;

@@ -13,6 +13,14 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+typedef enum s_side
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST
+} t_side;
+
 /*Image structure*/
 typedef struct s_img {
 	void	*img;
@@ -76,6 +84,16 @@ typedef struct s_vector_2d
 	int	x;
 	int	y;
 }	t_vector_2d;
+
+typedef struct s_ray
+{
+	t_vector_2f	side_dist;
+	t_vector_2f	delta_dist;
+	t_vector_2d	map;
+	t_vector_2d	step;
+	float		length;
+	t_side		side;
+} t_ray;
 
 /*Main environnement*/
 typedef struct s_env

@@ -81,7 +81,7 @@ static char	*choose_pixel_textures(int y, float height, t_data data)
 //W x 197 -> 200 | y 0 -> 250
 //E x 208 -> 210 | y 0 -> 250
 
-void	draw_wall(float distance, t_env *env, float x)
+void	draw_wall(t_ray ray, t_env *env, float x)
 {
 	float	height;
 	float	y;
@@ -90,11 +90,11 @@ void	draw_wall(float distance, t_env *env, float x)
 
 	y = 0;
 	textures_y = 0;
-	if (distance < 0.20)
-		distance = 0.20;
+	if (ray.length < 0.20)
+		ray.length = 0.20;
 	(void) choose_pixel_textures;
-	distance = fix_fisheye(distance, env);
-	height = D_E * (WALL_H / distance);
+	ray.length = fix_fisheye(ray.length, env);
+	height = D_E * (WALL_H / ray.length);
 	draw_ceiling(E_H - height / 2, env, x, &y);
 	while (y < E_H + height / 2)
 	{
