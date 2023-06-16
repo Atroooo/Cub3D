@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:07:21 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 18:00:37 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:41:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ void	draw_map(t_env *env)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == ' ')
-				draw_tile((float)y, x, 0x000000, &env->img);
 			if (map[y][x] == '1')
 				draw_tile((float)y, x, 0x828582, &env->img);
-			else if (map[y][x])
+			else if (map[y][x] == '0' || \
+				map[y][x] == 'N' || map[y][x] == 'S' || \
+				map[y][x] == 'E' || map[y][x] == 'W')
 				draw_tile((float)y, x, 0xdadbd9, &env->img);
 			x++;
 		}

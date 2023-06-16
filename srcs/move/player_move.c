@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/09 15:05:03 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/15 23:22:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	rotate(t_env *env, t_data *data, int keycode)
 		if (data->p_angle > 2.0 * M_PI)
 			data->p_angle -= 2.0 * M_PI;
 	}
-	data->p_delta_x = cos(data->p_angle) * 5.0;
-	data->p_delta_y = sin(data->p_angle) * 5.0;
+	data->p_delta_x = cos(data->p_angle);
+	data->p_delta_y = sin(data->p_angle);
 	refresh_img(env);
 }
