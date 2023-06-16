@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/15 23:22:17 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/16 14:10:33 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void	move(t_env *env, t_data *data, int keycode)
 {
 	if (keycode == Key_W && check_collision(data, 0))
 	{
-		data->p_pos_y += data->p_delta_y;
-		data->p_pos_x += data->p_delta_x;
+		data->p_pos_x += data->p_delta_x * 5.0;
+		data->p_pos_y += data->p_delta_y * 5.0;
 	}
 	if (keycode == Key_S && check_collision(data, 1))
 	{
-		data->p_pos_y -= data->p_delta_y;
-		data->p_pos_x -= data->p_delta_x;
+		data->p_pos_x -= data->p_delta_x * 5.0;
+		data->p_pos_y -= data->p_delta_y * 5.0;
 	}
 	if (keycode == Key_A && check_collision(data, 2))
 	{

@@ -68,8 +68,8 @@ static void	get_player_position(t_data *data)
 				data->p_pos_x = j;
 				data->p_pos_y = i;
 				data->p_angle = get_angle(data->map_data.map[i][j]);
-				data->p_delta_x = cos(data->p_angle) * 5;
-				data->p_delta_y = sin(data->p_angle) * 5;
+				data->p_delta_x = cos(data->p_angle);
+				data->p_delta_y = sin(data->p_angle);
 			}
 			j++;
 		}
