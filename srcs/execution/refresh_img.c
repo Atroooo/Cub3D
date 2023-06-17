@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/16 14:54:55 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:48:43 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_img	refresh_img(t_env *env)
 	env->img.addr = mlx_get_data_addr(env->img.img, \
 	&env->img.bits_per_pixel, &env->img.line_length, &env->img.endian);
 	mlx_clear_window(env->windows.mlx, env->windows.win);
-	raycasting(env); 
 	draw_map(env);
 	draw_player_pos(env->data.p_pos_y, env->data.p_pos_x, &env->img);
+	raycasting(env); 
 	// mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 	// 	env->img.img, 0, 0);
 	return (env->img);

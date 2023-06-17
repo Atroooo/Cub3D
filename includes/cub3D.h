@@ -15,7 +15,7 @@
 
 # define WIN_HEIGHT	1080
 # define WIN_WIDTH	1920
-# define TILE_SIZE  20
+# define TILE_SIZE  50
 # define MOVE_SPEED 3
 # define M_PI       3.14159265358979323846
 # define WALL_H		2200
@@ -64,8 +64,5 @@ void	rotate(t_env *env, t_data *data, int keycode);
 int		collision(float pos_x, float pos_y, t_data *data, char c);
 float	distance_wall(float x, float y, t_data *data);
 int		check_cond_angle(int s, t_data *data);
-
-
-void	my_mlx_puts_line(t_img *data, t_vector_2f p1, t_vector_2f p2, uint32_t color);
 
 #endif

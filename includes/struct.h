@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/15 15:33:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/17 14:05:13 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_ray
 	t_vector_2f	delta_dist;
 	t_vector_2d	map;
 	t_vector_2d	step;
+	t_vector_2f collision;
 	float		length;
 	t_side		side;
 } t_ray;

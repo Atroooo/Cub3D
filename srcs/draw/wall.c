@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/17 11:18:42 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:03:12 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,25 @@ static void	draw_ceiling(float height, t_env *env, float x, float *y)
 	}
 }
 
-static char	*choose_pixel_textures(t_side side, int y, float height, t_data data)
+static char	*choose_pixel_textures(t_ray ray, int y, float height, t_data data)
 {
 	char			*dst;
 	float			t_x;
-	float			t_y;
 
-	t_x = fmodf(data.wall_x, 19.85) * 25 / 2;
-	t_y = fmodf(data.wall_y, 19.85) * 25 / 2;
+	//printf("collision.x = %f\n", ray.collision.x);
+	t_x = ray.collision.x * 256;
+	//printf("t_x = %f\n", t_x);
 	if (E_H - height / 2 < 0)
 		y = y - (E_H - height / 2);
 	y = y * (256 / height);
-	if (side == NORTH)
+	if (ray.side == NORTH)
 		dst = get_pixel_in_texture(data.textures_img[0], t_x, y);
-	else if (side == EAST)
-		dst = get_pixel_in_texture(data.textures_img[1], 50 - t_x, y);
-	else if (side == SOUTH)
-		dst = get_pixel_in_texture(data.textures_img[2], t_y, y);
+	else if (ray.side == EAST)
+		dst = get_pixel_in_texture(data.textures_img[1], t_x, y);
+	else if (ray.side == SOUTH)
+		dst = get_pixel_in_texture(data.textures_img[2], t_x, y);
 	else
-		dst = get_pixel_in_texture(data.textures_img[3], t_y, y);
+		dst = get_pixel_in_texture(data.textures_img[3], t_x, y);
 	return (dst);
 }
 
@@ -78,7 +78,7 @@ void	draw_wall(t_ray ray, t_env *env, float x)
 	draw_ceiling(E_H - height / 2, env, x, &y);
 	while (y < E_H + height / 2)
 	{
-		dst = choose_pixel_textures(ray.side, textures_y, height, env->data);
+		dst = choose_pixel_textures(ray, textures_y, height, env->data);
 		my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
 		y++;
 		textures_y++;
