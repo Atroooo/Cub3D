@@ -65,7 +65,6 @@ int	get_stepy(t_data *data, float dy, t_ray *ray)
 t_ray	dda(float dx, float dy, t_env *env)
 {
 	t_ray	ray;
-	int		side;
 
 	get_delta_dist(&ray, dx, dy);
 	ray.step.x = get_stepx(&env->data, dx, &ray);
@@ -78,18 +77,24 @@ t_ray	dda(float dx, float dy, t_env *env)
 		{
 			ray.side_dist.x += ray.delta_dist.x;
 			ray.map.x += ray.step.x;
-			side = 0;
+			if (ray.step.x == 1)
+				ray.side = EAST;
+			else
+				ray.side = WEST;	
 		}
 		else
 		{
 			ray.side_dist.y += ray.delta_dist.y;
 			ray.map.y += ray.step.y;
-			side = 1;
+			if (ray.step.y == 1)
+				ray.side = SOUTH;
+			else
+				ray.side = NORTH;
 		}
 	}
-	if (side == 0)
+	if (ray.side == EAST || ray.side == WEST)
 		ray.length = ray.side_dist.x - ray.delta_dist.x;
-	else if (side == 1)
+	else
 		ray.length = ray.side_dist.y - ray.delta_dist.y;
 	return (ray);
 }

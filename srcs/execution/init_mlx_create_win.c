@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/16 14:05:30 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/17 10:57:01 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	init_mlx_create_win(t_env *env)
 		free_parsing(&env->data);
 	}
 	env->img = img;
+	create_all_textures_img(env);
 	draw_map(env);
 	env->data.p_pos_y = (env->data.p_pos_y * TILE_SIZE) + TILE_SIZE / 2;
 	env->data.p_pos_x = (env->data.p_pos_x * TILE_SIZE) + TILE_SIZE / 2;
 	draw_player_pos(env->data.p_pos_y, env->data.p_pos_x, &env->img);
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 		env->img.img, 0, 0);
-	create_all_textures_img(env);
 	mlx_hook(env->windows.win, 2, 1L << 0, key_hook, env);
 	mlx_hook(env->windows.win, 17, 1L << 8, mlx_close, env);
 }

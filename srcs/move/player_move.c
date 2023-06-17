@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/16 14:10:33 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/17 10:53:06 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,23 @@ static int	check_collision(t_data *data, int s)
 
 void	move(t_env *env, t_data *data, int keycode)
 {
-	if (keycode == Key_W && check_collision(data, 0))
+	(void) check_collision;
+	if (keycode == Key_W)
 	{
 		data->p_pos_x += data->p_delta_x * 5.0;
 		data->p_pos_y += data->p_delta_y * 5.0;
 	}
-	if (keycode == Key_S && check_collision(data, 1))
+	if (keycode == Key_S)
 	{
 		data->p_pos_x -= data->p_delta_x * 5.0;
 		data->p_pos_y -= data->p_delta_y * 5.0;
 	}
-	if (keycode == Key_A && check_collision(data, 2))
+	if (keycode == Key_A)
 	{
 		data->p_pos_x -= cos(data->p_angle + M_PI / 2);
 		data->p_pos_y -= sin(data->p_angle + M_PI / 2);
 	}
-	if (keycode == Key_D && check_collision(data, 3))
+	if (keycode == Key_D)
 	{
 		data->p_pos_x += cos(data->p_angle + M_PI / 2);
 		data->p_pos_y += sin(data->p_angle + M_PI / 2);
