@@ -27,19 +27,6 @@ int	get_map(char *line, t_data *data)
 	return (1);
 }
 
-static float	get_angle(char c)
-{
-	if (c == 'E')
-		return (M_PI * 2);
-	else if (c == 'W')
-		return (M_PI);
-	else if (c == 'S')
-		return (M_PI / 2);
-	else if (c == 'N')
-		return (3 * M_PI / 2);
-	return (0.0);
-}
-
 static int	check_check_char(char c)
 {
 	return (c == 'N' || c == 'S' || \
@@ -51,8 +38,8 @@ static void	get_player_position(t_data *data)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (data->map_data.map[i])
+	i = -1;
+	while (data->map_data.map[++i])
 	{
 		j = 0;
 		while (data->map_data.map[i][j])
@@ -64,16 +51,9 @@ static void	get_player_position(t_data *data)
 				free_parsing(data);
 			}
 			if (check_check_char(data->map_data.map[i][j]))
-			{
-				data->p_pos_x = j;
-				data->p_pos_y = i;
-				data->p_angle = get_angle(data->map_data.map[i][j]);
-				data->p_delta_x = cos(data->p_angle);
-				data->p_delta_y = sin(data->p_angle);
-			}
+				set_variables(data, i, j);
 			j++;
 		}
-		i++;
 	}
 	if (data->p_pos_x == 0 && data->p_pos_y == 0)
 	{

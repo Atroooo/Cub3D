@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_textures_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/14 18:06:28 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/18 17:50:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	create_all_textures_img(t_env *env)
 		env->data.so, &env->windows);
 	env->data.textures_img[3] = create_textures_img(\
 		env->data.we, &env->windows);
-	env->data.textures_img[4] = create_textures_img(
+	env->data.textures_img[4] = create_textures_img(\
 		env->data.we, &env->windows);
 }

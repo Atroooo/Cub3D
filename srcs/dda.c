@@ -12,7 +12,6 @@
 
 #include <cub3D.h>
 
-
 static void	invers_point(t_vector_2f *p1, t_vector_2f *p2)
 {
 	t_vector_2f	tmp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:13:27 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/15 12:39:07 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/18 17:50:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ char	*get_pixel_in_texture(t_img data, int x, int y)
 	dst = data.addr + (y * data.line_length + x * (bit));
 	return (dst);
 }
-

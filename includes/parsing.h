@@ -26,6 +26,7 @@ void	get_size_map(t_data *data);
 void	setup_map(t_data *data);
 void	check_if_line_empty(t_data *data);
 void	check_map(t_data *data);
+void	set_variables(t_data *data, int i, int j);
 
 /*Error message*/
 void	print_error_message_exit(t_data *map_info, int s, char *str);
