@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 09:56:00 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:40:38 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef enum s_side
 	EAST,
 	SOUTH,
 	WEST
-} t_side;
+}	t_side;
 
 /*Image structure*/
 typedef struct s_img {
@@ -81,6 +81,7 @@ typedef struct s_data
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
 	t_img		textures_img[5];
+	int			is_pressed;
 }	t_data;
 
 /*Vectors*/
@@ -91,10 +92,10 @@ typedef struct s_ray
 	t_vector_2f	delta_dist;
 	t_vector_2d	map;
 	t_vector_2d	step;
-	t_vector_2f collision;
+	t_vector_2f	collision;
 	float		length;
 	t_side		side;
-} t_ray;
+}	t_ray;
 
 /*Main environnement*/
 typedef struct s_env

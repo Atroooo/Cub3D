@@ -49,6 +49,7 @@ float	calc_radius(t_env *env, float dy, float dx);
 void	draw_wall(t_ray ray, t_env *env, float x);
 void	draw_column(float distance, t_env *env, float *cam_x);
 
+/* raycasting */
 t_ray	dda(float d_x, float d_y, t_env *env);
 void	raycasting(t_env *env);
 

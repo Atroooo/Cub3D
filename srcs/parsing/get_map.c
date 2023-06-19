@@ -77,6 +77,11 @@ void	setup_map(t_data *data)
 		free_parsing(data);
 	}
 	get_size_map(data);
+	if (!check_bord_char(data))
+	{
+		printf("Error\nMap not closed.\n");
+		free_parsing(data);
+	}
 	check_map(data);
 	get_player_position(data);
 }

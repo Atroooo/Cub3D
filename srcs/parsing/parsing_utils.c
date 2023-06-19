@@ -57,3 +57,22 @@ void	set_variables(t_data *data, int i, int j)
 	data->p_delta.x = cos(data->p_angle);
 	data->p_delta.y = sin(data->p_angle);
 }
+
+void	get_size_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	data->map_data.map_width = 0;
+	while (data->map_data.map[i])
+	{
+		j = 0;
+		while (data->map_data.map[i][j])
+			j++;
+		if (j > data->map_data.map_width)
+			data->map_data.map_width = j;
+		i++;
+	}
+	data->map_data.map_height = i;
+}

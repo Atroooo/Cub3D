@@ -38,6 +38,8 @@ static void	init_value(t_data *data)
 	data->player_orientation = 0;
 	data->floor_color = NULL;
 	data->ceiling_color = NULL;
+	data->p_angle = 0;
+	data->angle = 0;
 }
 
 int	main(int argc, char **argv)

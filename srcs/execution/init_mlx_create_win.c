@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/18 17:50:22 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:01:43 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	init_game(t_env *env)
 {
+	env->data.is_pressed = 0;
 	create_all_textures_img(env);
 	draw_map(env);
 	env->data.p_pos_y = (env->data.p_pos_y * TILE_SIZE) + TILE_SIZE / 2;
@@ -22,7 +23,9 @@ static void	init_game(t_env *env)
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
 		env->img.img, 0, 0);
 	mlx_hook(env->windows.win, 2, 1L << 0, key_hook, env);
+	mlx_hook(env->windows.win, 3, 1L << 1, key_hook_unpressed, env);
 	mlx_hook(env->windows.win, 17, 1L << 8, mlx_close, env);
+	mlx_mouse_hook(env->windows.win, mouse_hook, env);
 }
 
 void	init_mlx_create_win(t_env *env)

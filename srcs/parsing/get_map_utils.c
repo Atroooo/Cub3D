@@ -6,29 +6,36 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/14 16:04:26 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:30:57 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	get_size_map(t_data *data)
+int	check_bord_char(t_data *data)
 {
-	int	i;
-	int	j;
+	char	**map;
+	int		i;
+	int		j;
 
-	i = 0;
-	data->map_data.map_width = 0;
-	while (data->map_data.map[i])
+	map = data->map_data.map;
+	j = 0;
+	while (map[0][j])
 	{
-		j = 0;
-		while (data->map_data.map[i][j])
-			j++;
-		if (j > data->map_data.map_width)
-			data->map_data.map_width = j;
+		if (map[0][j] && (map[0][j] == '0' || map[0][j] == 'N' \
+		|| map[0][j] == 'S' || map[0][j] == 'E' || map[0][j] == 'W'))
+			return (0);
+		j++;
+	}
+	i = 0;
+	while (map[i])
+	{
+		if (map[i][0] && (map[i][0] == '0' || map[i][0] == 'N' \
+		|| map[i][0] == 'S' || map[i][0] == 'E' || map[i][0] == 'W'))
+			return (0);
 		i++;
 	}
-	data->map_data.map_height = i;
+	return (1);
 }
 
 static int	check_char(char c)
@@ -46,12 +53,6 @@ static int	check_char(char c)
 
 static int	check_next_char(char **map, int i, int j, t_map_info map_info)
 {
-	if (map[0][j] && (map[0][j] == '0' || map[0][j] == 'N' \
-	|| map[0][j] == 'S' || map[0][j] == 'E' || map[0][j] == 'W'))
-		return (0);
-	if (map[i][0] && (map[i][0] == '0' || map[i][0] == 'N' \
-	|| map[i][0] == 'S' || map[i][0] == 'E' || map[i][0] == 'W'))
-		return (0);
 	if (map[i][j + 1] == '\0' && (map[i][j] == '0' || map[i][j] == 'N' \
 	|| map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'))
 		return (0);
@@ -88,7 +89,7 @@ void	check_map(t_data *data)
 			if (map[i][j] && (map[i][j] == '0' || map[i][j] == 'N' \
 			|| map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W'))
 			{
-				if (!check_next_char(map, i, j, data->map_data))
+				if (map[i][j] && !check_next_char(map, i, j, data->map_data))
 				{
 					printf("Error\nMap is not closed.\n");
 					free_parsing(data);

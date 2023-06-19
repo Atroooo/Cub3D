@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 09:56:32 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:55:24 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,19 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 		pos_y + sin(env->data.p_angle + M_PI / 4), env);
 	if (c == 'W' || c == 'E')
 	{
-		if (ray1.length < 0.20 || ray2.length < 0.20 || ray3.length < 0.20)
+		if (ray1.length < 0.30 || ray2.length < 0.30 || ray3.length < 0.30)
 			return (0);
 		return (1);
 	}
-	if (ray1.length < 0.15 || ray2.length < 0.15 || ray3.length < 0.15)
+	if (ray1.length < 0.20 || ray2.length < 0.20 || ray3.length < 0.20)
 		return (0);
 	return (1);
 }
 
 void	move(t_env *env, t_data *data, int keycode)
 {
+	if (env->data.is_pressed == 0)
+		return ;
 	if (keycode == Key_W && check_collision(env, 0))
 	{
 		data->p_pos_x += data->p_delta.x * 5.0;
@@ -81,6 +83,8 @@ void	move(t_env *env, t_data *data, int keycode)
 
 void	rotate(t_env *env, t_data *data, int keycode)
 {
+	if (env->data.is_pressed == 0)
+		return ;
 	if (keycode == Key_Left)
 	{
 		data->p_angle -= 0.1;
