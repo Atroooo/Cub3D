@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/17 17:03:12 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 09:33:19 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ static char	*choose_pixel_textures(t_ray ray, int y, float height, t_data data)
 	float			t_x;
 
 	//printf("collision.x = %f\n", ray.collision.x);
-	t_x = ray.collision.x * 256;
+	t_x = (ray.collision.x - (int) ray.collision.x) * 256;
+	//ray.collision.x = ray.collision.x * 256;
+	//t_x = fmodf(ray.collision.x, 20) * 25 / 2;
 	//printf("t_x = %f\n", t_x);
 	if (E_H - height / 2 < 0)
 		y = y - (E_H - height / 2);
@@ -53,6 +55,7 @@ static char	*choose_pixel_textures(t_ray ray, int y, float height, t_data data)
 		dst = get_pixel_in_texture(data.textures_img[2], t_x, y);
 	else
 		dst = get_pixel_in_texture(data.textures_img[3], t_x, y);
+	//printf("t_x = %f\n", t_x);
 	return (dst);
 }
 
@@ -61,6 +64,10 @@ static char	*choose_pixel_textures(t_ray ray, int y, float height, t_data data)
 //W x 197 -> 200 | y 0 -> 250
 //E x 208 -> 210 | y 0 -> 250
 
+//	if (ray.wall_face == NORTH || ray.wall_face == SOUTH)
+	// 	dp.texture.x = (ray.pos.x - (int) ray.pos.x) * dp.sprite.width;
+	// else
+	// 	dp.texture.x = (ray.pos.y - (int) ray.pos.y) * dp.sprite.width;
 void	draw_wall(t_ray ray, t_env *env, float x)
 {
 	float	height;

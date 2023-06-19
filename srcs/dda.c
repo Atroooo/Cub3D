@@ -135,13 +135,14 @@ t_ray	dda(float dx, float dy, t_env *env)
 	if (ray.side == EAST || ray.side == WEST)
 	{
 		ray.length = ray.side_dist.x - ray.delta_dist.x;
-		ray.collision.x = ((int)env->data.p_pos_y / TILE_SIZE) + ray.length * dy;
+		ray.collision.x = ((env->data.p_pos_y / TILE_SIZE) - ((int)env->data.p_pos_y / TILE_SIZE) + ray.length * dy);
 	}
 	else
 	{
 		ray.length = ray.side_dist.y - ray.delta_dist.y;
-		ray.collision.x = ((int)env->data.p_pos_x / TILE_SIZE) +  ray.length * dx;
+		ray.collision.x = ((env->data.p_pos_x / TILE_SIZE) - ((int)env->data.p_pos_x / TILE_SIZE) +  ray.length * dx);
 	}
+	//printf("ray.side = %d, collision.x = %f\n",ray.side, ray.collision.x);
 	//my_mlx_puts_line(&env->img, p_pos, ray.collision);
 	return (ray);
 }
