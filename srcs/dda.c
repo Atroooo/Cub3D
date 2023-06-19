@@ -12,12 +12,6 @@
 
 #include <cub3D.h>
 
-void	get_delta_dist(t_ray *ray, float d_x, float d_y)
-{
-	ray->delta_dist.x = fabs(1.0f / d_x);
-	ray->delta_dist.y = fabs(1.0f / d_y);
-}
-
 int	get_stepx(t_data *data, float dx, t_ray *ray)
 {
 	float	pos_in_tile;
@@ -64,11 +58,28 @@ int	get_stepy(t_data *data, float dy, t_ray *ray)
 
 void	init_ray(t_ray *ray, t_env *env, float d_x, float d_y)
 {
-	get_delta_dist(ray, d_x, d_y);
+	ray->delta_dist.x = fabs(1.0f / d_x);
+	ray->delta_dist.y = fabs(1.0f / d_y);
 	ray->step.x = get_stepx(&env->data, d_x, ray);
 	ray->step.y = get_stepy(&env->data, d_y, ray);
 	ray->map.y = (env->data.p_pos_y) / TILE_SIZE;
 	ray->map.x = (env->data.p_pos_x) / TILE_SIZE;
+}
+
+void	set_len_and_col(t_ray *ray, t_data data, float d_x, float d_y)
+{
+	if (ray->side == EAST || ray->side == WEST)
+	{
+		ray->length = ray->side_dist.x - ray->delta_dist.x;
+		ray->collision.x = ((data.p_pos_y / TILE_SIZE) \
+			- ((int)data.p_pos_y / TILE_SIZE) + ray->length * d_y);
+	}
+	else
+	{
+		ray->length = ray->side_dist.y - ray->delta_dist.y;
+		ray->collision.x = ((data.p_pos_x / TILE_SIZE) \
+			- ((int)data.p_pos_x / TILE_SIZE) + ray->length * d_x);
+	}
 }
 
 t_ray	dda(float d_x, float d_y, t_env *env)
@@ -85,7 +96,7 @@ t_ray	dda(float d_x, float d_y, t_env *env)
 			if (ray.step.x == 1)
 				ray.side = EAST;
 			else
-				ray.side = WEST;	
+				ray.side = WEST;
 		}
 		else
 		{
@@ -97,15 +108,5 @@ t_ray	dda(float d_x, float d_y, t_env *env)
 				ray.side = NORTH;
 		}
 	}
-	if (ray.side == EAST || ray.side == WEST)
-	{
-		ray.length = ray.side_dist.x - ray.delta_dist.x;
-		ray.collision.x = ((env->data.p_pos_y / TILE_SIZE) - ((int)env->data.p_pos_y / TILE_SIZE) + ray.length * d_y);
-	}
-	else
-	{
-		ray.length = ray.side_dist.y - ray.delta_dist.y;
-		ray.collision.x = ((env->data.p_pos_x / TILE_SIZE) - ((int)env->data.p_pos_x / TILE_SIZE) +  ray.length * d_x);
-	}
-	return (ray);
+	return (set_len_and_col(&ray, env->data, d_x, d_y), ray);
 }
