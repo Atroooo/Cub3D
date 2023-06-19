@@ -21,6 +21,7 @@ t_img	refresh_img(t_env *env)
 	mlx_clear_window(env->windows.mlx, env->windows.win);
 	raycasting(env); 
 	draw_map(env);
+	gun(env, env->data.textures_img[4]);
 	// mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 	// 	env->img.img, 0, 0);
 	return (env->img);

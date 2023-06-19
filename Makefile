@@ -25,6 +25,7 @@ SRC			 			= main.c \
 						  draw/mini_map.c \
 						  draw/my_mlx_pixel_put.c \
 						  draw/wall.c \
+						  draw/hud.c \
 						  move/player_move.c \
 						  raycasting.c \
 						  dda.c \
