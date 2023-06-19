@@ -17,6 +17,8 @@ int	ft_strcompare(char *str1, char *str2, int n)
 	int	i;
 
 	i = 0;
+	if (!str1 || !str2)
+		return (0);
 	while (str1[i] && str2[i] && i < n)
 	{
 		if (str1[i] != str2[i])
@@ -31,6 +33,8 @@ char	*setup_line(char *line)
 	int	i;
 
 	i = 0;
+	if (!line)
+		return (NULL);
 	while (line[i] && line[i] == ' ')
 		i++;
 	return (&line[i]);

@@ -43,7 +43,10 @@ static void	get_floor_color(char *line, t_data *data)
 	}
 	data->floor_color = malloc(sizeof(int) * 3);
 	if (data->floor_color == NULL)
+	{
+		free_split(split, split2);
 		print_error_message_exit(data, 0, line);
+	}
 	data->floor_color[0] = ft_atoi(split2[1]);
 	data->floor_color[1] = ft_atoi(split[1]);
 	data->floor_color[2] = ft_atoi(split[2]);
@@ -68,7 +71,10 @@ static void	get_ceiling_color(char *line, t_data *data)
 	}
 	data->ceiling_color = malloc(sizeof(int) * 3);
 	if (!data->ceiling_color)
+	{
+		free_split(split, split2);
 		print_error_message_exit(data, 0, line);
+	}
 	data->ceiling_color[0] = ft_atoi(split2[1]);
 	data->ceiling_color[1] = ft_atoi(split[1]);
 	data->ceiling_color[2] = ft_atoi(split[2]);

@@ -33,6 +33,8 @@ static int	check_line(char *line)
 	int	i;
 
 	i = 0;
+	if (!line)
+		return (0);
 	while (line[i])
 	{
 		if (ft_isalpha(line[i]) || ft_isdigit(line[i]))
@@ -46,7 +48,7 @@ static int	parse_line(char *line, t_data *data)
 {
 	char	*tmp;
 
-	if (check_line(line) == 0)
+	if (!check_line(line))
 		return (0);
 	tmp = setup_line(line);
 	if (!tmp)
@@ -68,7 +70,7 @@ static int	open_map(char *map_path, int flags, t_data *data)
 	int	fd;
 
 	fd = open(map_path, flags);
-	if (fd == -1)
+	if (fd < 0)
 		print_error(data, 0);
 	return (fd);
 }

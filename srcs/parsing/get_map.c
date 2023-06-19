@@ -64,12 +64,12 @@ static void	get_player_position(t_data *data)
 
 void	setup_map(t_data *data)
 {
-	check_if_line_empty(data);
 	if (data->map_data.base_map == NULL)
 	{
 		printf("Error\nNo map.\n");
 		free_parsing(data);
 	}
+	check_if_line_empty(data);
 	data->map_data.map = ft_split(data->map_data.base_map, '\n');
 	if (data->map_data.map == NULL)
 	{

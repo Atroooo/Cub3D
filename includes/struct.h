@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 14:40:38 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:49:39 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_data
 	float		p_pos_x;
 	float		p_pos_y;
 	char		player_orientation;
+	t_vector_2f	p_pos_index;
 	float		p_angle;
 	t_vector_2f	p_delta;
 	float		r_perpendicular;

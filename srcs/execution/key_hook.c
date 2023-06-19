@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 16:45:34 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:26:58 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	mlx_close(t_env *env)
 		mlx_destroy_display(env->windows.mlx);
 		free_windows_struct(env);
 	}
+	free_parsing(&env->data);
 	exit(0);
 	return (0);
 }
