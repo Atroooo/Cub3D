@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 08:44:19 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 09:52:29 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@
 void	raycasting(t_env *env)
 {
 	float		angle;
-	float		dy;
-	float		dx;
+	t_vector_2f	dir;
 	float		x;
 	t_ray 		ray;
 
@@ -55,9 +54,9 @@ void	raycasting(t_env *env)
 	x = 0;
 	while (x / 100 < WIN_WIDTH / 100)
 	{
-		dx = cos(angle);
-		dy = sin(angle);
-		ray = dda(dx, dy, env);
+		dir.x = cos(angle);
+		dir.y = sin(angle);
+		ray = dda(dir.x, dir.y, env);
 		draw_wall(ray, env, x);
 		// calc_radius(env, dy, dx);
 		angle += (RAD * (40.00 / WIN_WIDTH));

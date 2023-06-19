@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/18 17:38:37 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/19 09:56:32 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	check_collision(t_env *env, int s)
 {
 	if (s == 0)
-		return (collision(env->data.p_delta_x, env->data.p_delta_y, env, 'N'));
+		return (collision(env->data.p_delta.x, env->data.p_delta.y, env, 'N'));
 	if (s == 1)
-		return (collision(env->data.p_delta_x, env->data.p_delta_y, env, 'S'));
+		return (collision(env->data.p_delta.x, env->data.p_delta.y, env, 'S'));
 	if (s == 2)
 		return (collision(cos(env->data.p_angle + M_PI / 2), \
 			sin(env->data.p_angle + M_PI / 2), env, 'W'));
@@ -27,22 +27,22 @@ static int	check_collision(t_env *env, int s)
 	return (0);
 }
 
-int	collision(float x, float y, t_env *env, char c)
+int	collision(float pos_x, float pos_y, t_env *env, char c)
 {
-	t_ray	ray1;
-	t_ray	ray2;
-	t_ray	ray3;
+	t_ray		ray1;
+	t_ray		ray2;
+	t_ray		ray3;
 
 	if (c == 'S')
 	{
-		x = -x;
-		y = -y;
+		pos_x = -pos_x;
+		pos_y = -pos_y;
 	}
-	ray1 = dda(x, y, env);
-	ray2 = dda(x - cos(env->data.p_angle + M_PI / 4), \
-		y - sin(env->data.p_angle + M_PI / 4), env);
-	ray3 = dda(x + cos(env->data.p_angle + M_PI / 4), \
-		y + sin(env->data.p_angle + M_PI / 4), env);
+	ray1 = dda(pos_x, pos_y, env);
+	ray2 = dda(pos_x - cos(env->data.p_angle + M_PI / 4), \
+		pos_y - sin(env->data.p_angle + M_PI / 4), env);
+	ray3 = dda(pos_x + cos(env->data.p_angle + M_PI / 4), \
+		pos_y + sin(env->data.p_angle + M_PI / 4), env);
 	if (c == 'W' || c == 'E')
 	{
 		if (ray1.length < 0.20 || ray2.length < 0.20 || ray3.length < 0.20)
@@ -58,13 +58,13 @@ void	move(t_env *env, t_data *data, int keycode)
 {
 	if (keycode == Key_W && check_collision(env, 0))
 	{
-		data->p_pos_x += data->p_delta_x * 5.0;
-		data->p_pos_y += data->p_delta_y * 5.0;
+		data->p_pos_x += data->p_delta.x * 5.0;
+		data->p_pos_y += data->p_delta.y * 5.0;
 	}
 	if (keycode == Key_S && check_collision(env, 1))
 	{
-		data->p_pos_x -= data->p_delta_x * 5.0;
-		data->p_pos_y -= data->p_delta_y * 5.0;
+		data->p_pos_x -= data->p_delta.x * 5.0;
+		data->p_pos_y -= data->p_delta.y * 5.0;
 	}
 	if (keycode == Key_A && check_collision(env, 2))
 	{
@@ -93,7 +93,7 @@ void	rotate(t_env *env, t_data *data, int keycode)
 		if (data->p_angle > 2.0 * M_PI)
 			data->p_angle -= 2.0 * M_PI;
 	}
-	data->p_delta_x = cos(data->p_angle);
-	data->p_delta_y = sin(data->p_angle);
+	data->p_delta.x = cos(data->p_angle);
+	data->p_delta.y = sin(data->p_angle);
 	refresh_img(env);
 }

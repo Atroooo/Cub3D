@@ -6,12 +6,24 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/17 14:05:13 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 09:56:00 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_vector_2f
+{
+	float	x;
+	float	y;
+}	t_vector_2f;
+
+typedef struct s_vector_2d
+{
+	int	x;
+	int	y;
+}	t_vector_2d;
 
 typedef enum s_side
 {
@@ -58,8 +70,7 @@ typedef struct s_data
 	float		p_pos_y;
 	char		player_orientation;
 	float		p_angle;
-	float		p_delta_x;
-	float		p_delta_y;
+	t_vector_2f	p_delta;
 	float		r_perpendicular;
 	float		angle;
 	float		wall_x;
@@ -73,17 +84,6 @@ typedef struct s_data
 }	t_data;
 
 /*Vectors*/
-typedef struct s_vector_2f
-{
-	float	x;
-	float	y;
-}	t_vector_2f;
-
-typedef struct s_vector_2d
-{
-	int	x;
-	int	y;
-}	t_vector_2d;
 
 typedef struct s_ray
 {
