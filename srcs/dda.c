@@ -71,14 +71,14 @@ void	set_len_and_col(t_ray *ray, t_data data, float d_x, float d_y)
 	if (ray->side == EAST || ray->side == WEST)
 	{
 		ray->length = ray->side_dist.x - ray->delta_dist.x;
-		ray->collision.x = ((data.p_pos_y / TILE_SIZE) \
-			- ((int)data.p_pos_y / TILE_SIZE) + ray->length * d_y);
+		ray->collision.x = (((data.p_pos_y / TILE_SIZE) \
+			- ((int)data.p_pos_y / TILE_SIZE)) + ray->length * d_y);
 	}
 	else
 	{
 		ray->length = ray->side_dist.y - ray->delta_dist.y;
-		ray->collision.x = ((data.p_pos_x / TILE_SIZE) \
-			- ((int)data.p_pos_x / TILE_SIZE) + ray->length * d_x);
+		ray->collision.x = (((data.p_pos_x / TILE_SIZE) \
+			- ((int)data.p_pos_x / TILE_SIZE)) + ray->length * d_x);
 	}
 }
 

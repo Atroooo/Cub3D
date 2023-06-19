@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 09:56:00 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:48:02 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef enum s_side
 	EAST,
 	SOUTH,
 	WEST
-} t_side;
+}	t_side;
 
 /*Image structure*/
 typedef struct s_img {
@@ -69,6 +69,7 @@ typedef struct s_data
 	float		p_pos_x;
 	float		p_pos_y;
 	char		player_orientation;
+	t_vector_2f	p_pos_index;
 	float		p_angle;
 	t_vector_2f	p_delta;
 	float		r_perpendicular;

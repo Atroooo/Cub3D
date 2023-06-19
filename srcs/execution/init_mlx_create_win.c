@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/18 17:50:22 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/19 13:50:35 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	init_game(t_env *env)
 	draw_map(env);
 	env->data.p_pos_y = (env->data.p_pos_y * TILE_SIZE) + TILE_SIZE / 2;
 	env->data.p_pos_x = (env->data.p_pos_x * TILE_SIZE) + TILE_SIZE / 2;
-	draw_player_pos(env->data.p_pos_y, env->data.p_pos_x, &env->img);
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
 		env->img.img, 0, 0);
 	mlx_hook(env->windows.win, 2, 1L << 0, key_hook, env);

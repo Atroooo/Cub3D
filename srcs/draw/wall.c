@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 09:36:59 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:21:39 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ static void	draw_ceiling(float height, t_env *env, float x, float *y)
 static char	*choose_pixel_textures(t_ray ray, int y, float height, t_data data)
 {
 	char			*dst;
-	float			t_x;
+	int				t_x;
 
 	t_x = (ray.collision.x - (int) ray.collision.x) * 256;
 	if (E_H - height / 2 < 0)
 		y = y - (E_H - height / 2);
 	y = y * (256 / height);
+	if (t_x < 0 && y == 0)
+		y++;
 	if (ray.side == NORTH)
 		dst = get_pixel_in_texture(data.textures_img[0], t_x, y);
 	else if (ray.side == EAST)
@@ -65,7 +67,6 @@ void	draw_wall(t_ray ray, t_env *env, float x)
 	textures_y = 0;
 	if (ray.length < 0.20)
 		ray.length = 0.20;
-	(void) choose_pixel_textures;
 	ray.length = fix_fisheye(ray.length, env);
 	height = D_E * (WALL_H / ray.length);
 	draw_ceiling(E_H - height / 2, env, x, &y);

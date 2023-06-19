@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 09:56:32 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:48:41 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	move(t_env *env, t_data *data, int keycode)
 		data->p_pos_x += cos(data->p_angle + M_PI / 2);
 		data->p_pos_y += sin(data->p_angle + M_PI / 2);
 	}
+	data->p_pos_index.x = data->p_pos_x / TILE_SIZE;
+	data->p_pos_index.y = data->p_pos_y / TILE_SIZE;
 	refresh_img(env);
 }
 
