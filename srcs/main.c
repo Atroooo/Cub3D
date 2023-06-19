@@ -40,6 +40,10 @@ static void	init_value(t_data *data)
 	data->ceiling_color = NULL;
 	data->p_angle = 0;
 	data->angle = 0;
+	data->textures_img[0] = NULL;
+	data->textures_img[1] = NULL;
+	data->textures_img[2] = NULL;
+	data->textures_img[3] = NULL;
 }
 
 int	main(int argc, char **argv)

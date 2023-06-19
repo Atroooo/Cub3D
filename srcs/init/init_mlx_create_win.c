@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 17:34:43 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/19 23:58:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,15 @@ static void	handle_mlx_errors(t_env *env, int s, t_img img)
 	{
 		mlx_destroy_window(env->windows.mlx, env->windows.win);
 		mlx_destroy_display(env->windows.mlx);
-		free(env->windows.mlx);
-		free_parsing(&env->data);
 	}
 	if (s == 1)
 	{
 		mlx_destroy_image(env->windows.mlx, img.img);
 		mlx_destroy_window(env->windows.mlx, env->windows.win);
 		mlx_destroy_display(env->windows.mlx);
-		free(env->windows.mlx);
-		free_parsing(&env->data);
 	}
+	free(env->windows.mlx);
+	free_parsing(&env->data);
 }
 
 void	init_mlx_create_win(t_env *env)

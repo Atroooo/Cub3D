@@ -40,7 +40,6 @@
 
 void	free_char_array(char **array);
 void	free_windows_struct(t_env *env);
-void	free_error_mlx(t_env *env);
 void	print_param(t_data *map_info);
 
 /* mini_map */
@@ -52,6 +51,7 @@ void	draw_wall(t_ray ray, t_env *env, float x);
 void	draw_column(float distance, t_env *env, float *cam_x);
 
 /* raycasting */
+void	init_ray(t_ray *ray, t_env *env, float d_x, float d_y);
 t_ray	dda(float d_x, float d_y, t_env *env);
 void	raycasting(t_env *env);
 

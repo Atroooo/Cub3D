@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   create_textures_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 15:25:53 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:01:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	handle_mlx_errors(t_env *env, int s, t_img img)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (env->data.textures_img[i].img != NULL)
+			mlx_destroy_image(env->windows.mlx, \
+				env->data.textures_img[i].img);
+		i++;
+	}
+	if (s == 1)
+		mlx_destroy_image(env->windows.mlx, img.img);
+	mlx_destroy_window(env->windows.mlx, env->windows.win);
+	mlx_destroy_display(env->windows.mlx);
+	free(env->windows.mlx);
+	free_parsing(&env->data);
+}
 
 static t_img	create_textures_img(char *path, t_windows *win, t_env *env)
 {
@@ -28,9 +48,13 @@ static t_img	create_textures_img(char *path, t_windows *win, t_env *env)
 	else
 		close(fd);
 	data.img = mlx_xpm_file_to_image(win->mlx, path, &img_width, &img_height);
+	if (!data.img)
+		handle_mlx_errors(env, 0, data);
 	data.addr = mlx_get_data_addr(\
 		data.img, &data.bits_per_pixel, \
 		&data.line_length, &data.endian);
+	if (!data.addr)
+		handle_mlx_errors(env, 1, data);
 	return (data);
 }
 

@@ -9,7 +9,6 @@ HEADER_DIR				= includes/
 DIR						= srcs/
 SRC			 			= main.c \
 						  free_functions/free.c \
-						  free_functions/free_mlx.c \
 						  parsing/parsing.c \
 						  parsing/parsing_utils.c \
 						  parsing/get_texture.c \
@@ -18,16 +17,17 @@ SRC			 			= main.c \
 						  parsing/get_map.c \
 						  parsing/get_map_utils.c \
 						  parsing/error_message_parsing.c \
-						  execution/init_mlx_create_win.c \
-						  execution/key_hook.c \
-						  execution/refresh_img.c \
-						  execution/create_textures_img.c \
+						  init/init_mlx_create_win.c \
+						  init/key_hook.c \
+						  init/create_textures_img.c \
 						  draw/mini_map.c \
 						  draw/my_mlx_pixel_put.c \
+						  draw/raycasting.c \
+						  draw/dda.c \
+						  draw/dda_utils.c \
 						  draw/wall.c \
+						  draw/refresh_img.c \
 						  move/player_move.c \
-						  raycasting.c \
-						  dda.c \
 						  
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 17:26:58 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/20 00:01:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	mlx_close(t_env *env)
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(env->windows.mlx, env->data.textures_img[i].img);
+		if (env->windows.mlx && env->data.textures_img[i].img != NULL)
+			mlx_destroy_image(env->windows.mlx, \
+				env->data.textures_img[i].img);
 		i++;
 	}
 	if (env->windows.mlx && env->img.img)
