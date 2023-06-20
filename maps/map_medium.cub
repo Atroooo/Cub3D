@@ -3,8 +3,8 @@ SO ./textures/dirty_south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
 
-F 117, 142, 79
-C 135, 245, 251
+F 61, 66, 74
+C 27, 28, 31
 
 1111111111
 1000000001

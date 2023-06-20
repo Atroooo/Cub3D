@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:07:21 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 15:47:55 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/20 18:18:52 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	draw_tile(t_vector_2d pixel, uint32_t color, t_img *img)
 	d = (pixel.x + TILE_SIZE) - pixel.x;
 	steps = d;
 	x_inc = d / steps;
-	while (pixel.y < y_len)
+	while (pixel.y < y_len - 1)
 	{
 		pixel.x = tmp_x;
-		while (pixel.x < (tmp_x + TILE_SIZE))
+		while (pixel.x < (tmp_x + TILE_SIZE) - 1)
 		{
 			if (pixel.x < 1920 && pixel.x > 0)
 				my_mlx_pixel_put(img, pixel.x, pixel.y, color);
@@ -50,6 +50,7 @@ void	draw_player_pos(float y, float x, t_vector_2f p_index, t_img *img)
 	(void) incr;
 	incr.y = ((p_index.y * TILE_SIZE) - (int)(p_index.y * TILE_SIZE));
 	incr.x = ((p_index.x * TILE_SIZE) - (int)(p_index.x * TILE_SIZE));
+	y += incr.y;
 	y_len = y + 10;
 	tmp_x = x;
 	while (y < y_len)
