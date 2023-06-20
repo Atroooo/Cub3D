@@ -3,32 +3,35 @@
 
 void gun(t_env *env, t_img sprite)
 {
-	float	y;
-	float	x;
-	int		t_y;
-	int		t_x;
-	char	*dst;
+	t_vector_2f	pix;
+	t_vector_2d	textures;
+	t_vector_2f	size;
+	char		*dst;
 
-	x = WIN_WIDTH / 3;
-	t_x = 0;
-	while (x < WIN_WIDTH / 2)
+	textures.x = 0;
+	textures.y = 0;
+	pix.x = WIN_WIDTH / 3;
+	textures.x = 0;
+	size.x = (WIN_WIDTH / 2);
+	size.y = (WIN_WIDTH / 2);
+	while (pix.x < WIN_WIDTH / 2)
 	{
-		t_y = 0;
-		y = WIN_HEIGHT / 3;
-		t_x = fmodf(x, sprite.width) * sprite.width / 2;
-		while (y < WIN_HEIGHT)
+		textures.y = 0;
+		pix.y = WIN_HEIGHT - 500;
+		textures.x = pix.x * (sprite.height / size.x);
+		while (pix.y < WIN_HEIGHT)
 		{
-			//printf("%f * (%d / %d) = %f\n", y ,sprite.height, (WIN_HEIGHT / 6),  y * (sprite.height / 5));
-			t_y = fmodf(y, sprite.height)  * sprite.height / 2;
-			dst = get_pixel_in_texture(sprite, t_x, t_y);
-			//printf("t_y = %d, t_x = %d, dst = %d\n", t_y, t_x, *(unsigned int *)dst);
+			textures.y = pix.y * (sprite.width / size.y);
+			//printf("%f * (%d / %f) = %f\n", pix.y, sprite.height, size.y, pix.y * (sprite.height / size.y));
+			dst = get_pixel_in_texture(sprite, textures.x, textures.y);
+			//printf("t_y = %d, t_x = %d\n", textures.y, textures.x);
 			if (*(unsigned int *)dst != 0xffffff)
-				my_mlx_pixel_put(&env->img, x, y, *(unsigned int *)dst);
-			y++;
-			t_y++;
+				my_mlx_pixel_put(&env->img, pix.x, pix.y, *(unsigned int *)dst);
+			pix.y++;
+			textures.y++;
 		}
-		x++;
-		t_x++;
+		pix.x++;
+		textures.x++;
 	}
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win, env->img.img, 0, 0);	
 }

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 14:22:48 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:04:29 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	raycasting(t_env *env)
 	float		angle;
 	t_vector_2f	dir;
 	float		x;
-	t_ray 		ray;
+	t_ray		ray;
 
 	(void) ray;
 	angle = env->data.p_angle - 20.0 * RAD;
