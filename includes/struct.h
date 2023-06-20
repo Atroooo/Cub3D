@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 13:48:02 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:38:30 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,9 @@ typedef struct s_data
 	int			*ceiling_color;
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
-	t_img		textures_img[5];
+	t_img		textures_img[4];
+	t_img		sprites_img[2];
+	int			frame;
 }	t_data;
 
 /*Vectors*/
@@ -94,10 +96,10 @@ typedef struct s_ray
 	t_vector_2f	delta_dist;
 	t_vector_2d	map;
 	t_vector_2d	step;
-	t_vector_2f collision;
+	t_vector_2f	collision;
 	float		length;
 	t_side		side;
-} t_ray;
+}	t_ray;
 
 /*Main environnement*/
 typedef struct s_env

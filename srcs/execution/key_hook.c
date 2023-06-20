@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/05 16:10:46 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:57:27 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int	key_hook(int keycode, t_env *env)
 		move(env, &env->data, keycode);
 	if (keycode == Key_Left || keycode == Key_Right)
 		rotate(env, &env->data, keycode);
+	if (keycode == Key_Space)
+		env->data.frame = 1;
 	return (0);
 }

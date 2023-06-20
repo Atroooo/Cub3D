@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 13:48:41 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:54:51 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 
 void	move(t_env *env, t_data *data, int keycode)
 {
+	(void) env;
 	if (keycode == Key_W && check_collision(env, 0))
 	{
 		data->p_pos_x += data->p_delta.x * 5.0;
@@ -78,11 +79,11 @@ void	move(t_env *env, t_data *data, int keycode)
 	}
 	data->p_pos_index.x = data->p_pos_x / TILE_SIZE;
 	data->p_pos_index.y = data->p_pos_y / TILE_SIZE;
-	refresh_img(env);
 }
 
 void	rotate(t_env *env, t_data *data, int keycode)
 {
+	(void) env;
 	if (keycode == Key_Left)
 	{
 		data->p_angle -= 0.1;
@@ -97,5 +98,4 @@ void	rotate(t_env *env, t_data *data, int keycode)
 	}
 	data->p_delta.x = cos(data->p_angle);
 	data->p_delta.y = sin(data->p_angle);
-	refresh_img(env);
 }
