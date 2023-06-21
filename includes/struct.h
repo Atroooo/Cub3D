@@ -6,12 +6,18 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 09:05:28 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/21 10:30:20 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef enum s_bools
+{
+	FALSE,
+	TRUE
+}	t_bools;
 
 typedef struct s_vector_2f
 {
@@ -70,6 +76,7 @@ typedef struct s_ray
 	t_vector_2f	collision;
 	float		length;
 	t_side		side;
+	t_bools		exist;
 }	t_ray;
 
 typedef struct s_data
@@ -94,6 +101,7 @@ typedef struct s_data
 	t_map_info	map_data;
 	t_ray		ray_wall;
 	t_ray		ray_opp;
+	float		opp_x;
 	t_img		textures_img[4];
 	t_img		sprites_img[3];
 	int			frame;

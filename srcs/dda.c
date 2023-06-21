@@ -66,30 +66,34 @@ void	init_ray(t_ray *ray, t_data *data, float d_x, float d_y)
 	ray->map.x = (data->p_pos_x) / TILE_SIZE;
 }
 
-void	set_len_and_col(t_ray *ray, t_data *data, float d_x, float d_y)
+void	set_len_and_col(t_ray *ray, t_env *env, float d_x, float d_y)
 {
 	if (ray->side == EAST || ray->side == WEST)
 	{
 		ray->length = ray->side_dist.x - ray->delta_dist.x;
-		ray->collision.x = (((data->p_pos_y / TILE_SIZE) \
-			- ((int)data->p_pos_y / TILE_SIZE)) + ray->length * d_y);
+		ray->collision.x = (((env->data.p_pos_y / TILE_SIZE) \
+			- ((int)env->data.p_pos_y / TILE_SIZE)) + ray->length * d_y);
 	}
 	else
 	{
 		ray->length = ray->side_dist.y - ray->delta_dist.y;
-		ray->collision.x = (((data->p_pos_x / TILE_SIZE) \
-			- ((int)data->p_pos_x / TILE_SIZE)) + ray->length * d_x);
+		ray->collision.x = (((env->data.p_pos_x / TILE_SIZE) \
+			- ((int)env->data.p_pos_x / TILE_SIZE)) + ray->length * d_x);
 	}
-	if (data->map_data.map[ray->map.y][ray->map.x] != 'O')
-		data->ray_opp = *ray;
+	if (env->data.ray_opp.exist == FALSE
+		&& env->data.map_data.map[ray->map.y][ray->map.x] == 'O')
+	{
+		env->data.ray_opp = *ray;
+		env->data.ray_opp.exist = TRUE;
+	}
 	else
-		data->ray_wall = *ray;
+		env->data.ray_wall = *ray;
 }
 
-void	dda(float d_x, float d_y, t_data *data, t_ray *ray)
+void	dda(float d_x, float d_y, t_env *env, t_ray *ray)
 {
-	init_ray(ray, data, d_x, d_y);
-	while (data->map_data.map[ray->map.y][ray->map.x] != '1')
+	init_ray(ray, &env->data, d_x, d_y);
+	while (env->data.map_data.map[ray->map.y][ray->map.x] != '1')
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
@@ -109,8 +113,8 @@ void	dda(float d_x, float d_y, t_data *data, t_ray *ray)
 			else
 				ray->side = NORTH;
 		}
-		if (data->map_data.map[ray->map.y][ray->map.x] != 'O')
-			set_len_and_col(ray, data, d_x, d_y);
+		if (env->data.map_data.map[ray->map.y][ray->map.x] == 'O')
+			set_len_and_col(ray, env, d_x, d_y);
 	}
-	set_len_and_col(ray, data, d_x, d_y);
+	set_len_and_col(ray, env, d_x, d_y);
 }
