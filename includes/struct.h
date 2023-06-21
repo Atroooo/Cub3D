@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 07:44:15 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/21 09:05:28 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,17 @@ typedef struct s_map_info
 	char	*base_map;
 }	t_map_info;
 
+typedef struct s_ray
+{
+	t_vector_2f	side_dist;
+	t_vector_2f	delta_dist;
+	t_vector_2d	map;
+	t_vector_2d	step;
+	t_vector_2f	collision;
+	float		length;
+	t_side		side;
+}	t_ray;
+
 typedef struct s_data
 {
 	int			fd;
@@ -76,13 +87,13 @@ typedef struct s_data
 	t_vector_2f	p_delta;
 	float		r_perpendicular;
 	float		angle;
-	float		wall_x;
-	float		wall_y;
 	int			*floor_color;
 	uint32_t	floor_hexa;
 	int			*ceiling_color;
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
+	t_ray		ray_wall;
+	t_ray		ray_opp;
 	t_img		textures_img[4];
 	t_img		sprites_img[3];
 	int			frame;
@@ -90,16 +101,6 @@ typedef struct s_data
 
 /*Vectors*/
 
-typedef struct s_ray
-{
-	t_vector_2f	side_dist;
-	t_vector_2f	delta_dist;
-	t_vector_2d	map;
-	t_vector_2d	step;
-	t_vector_2f	collision;
-	float		length;
-	t_side		side;
-}	t_ray;
 
 /*Main environnement*/
 typedef struct s_env

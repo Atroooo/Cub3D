@@ -53,7 +53,7 @@ void	draw_column(float distance, t_env *env, float *cam_x);
 void	frame_gun(t_env *env);
 void	frame_opps(t_env *env);
 
-t_ray	dda(float d_x, float d_y, t_env *env);
+void	dda(float d_x, float d_y, t_data *data, t_ray *ray);
 void	raycasting(t_env *env);
 
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);

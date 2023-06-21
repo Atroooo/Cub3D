@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 08:54:07 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/21 09:09:57 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 		pos_x = -pos_x;
 		pos_y = -pos_y;
 	}
-	ray1 = dda(pos_x, pos_y, env);
-	ray2 = dda(pos_x - cos(env->data.p_angle + M_PI / 4), \
-		pos_y - sin(env->data.p_angle + M_PI / 4), env);
-	ray3 = dda(pos_x + cos(env->data.p_angle + M_PI / 4), \
-		pos_y + sin(env->data.p_angle + M_PI / 4), env);
+	dda(pos_x, pos_y, &env->data, &ray1);
+	dda(pos_x - cos(env->data.p_angle + M_PI / 4), \
+		pos_y - sin(env->data.p_angle + M_PI / 4), &env->data, &ray2);
+	dda(pos_x + cos(env->data.p_angle + M_PI / 4), \
+		pos_y + sin(env->data.p_angle + M_PI / 4), &env->data, &ray3);
 	if (c == 'W' || c == 'E')
 	{
 		if (ray1.length < 0.20 || ray2.length < 0.20 || ray3.length < 0.20)

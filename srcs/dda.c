@@ -56,57 +56,61 @@ int	get_stepy(t_data *data, float dy, t_ray *ray)
 	return (0);
 }
 
-void	init_ray(t_ray *ray, t_env *env, float d_x, float d_y)
+void	init_ray(t_ray *ray, t_data *data, float d_x, float d_y)
 {
 	ray->delta_dist.x = fabs(1.0f / d_x);
 	ray->delta_dist.y = fabs(1.0f / d_y);
-	ray->step.x = get_stepx(&env->data, d_x, ray);
-	ray->step.y = get_stepy(&env->data, d_y, ray);
-	ray->map.y = (env->data.p_pos_y) / TILE_SIZE;
-	ray->map.x = (env->data.p_pos_x) / TILE_SIZE;
+	ray->step.x = get_stepx(data, d_x, ray);
+	ray->step.y = get_stepy(data, d_y, ray);
+	ray->map.y = (data->p_pos_y) / TILE_SIZE;
+	ray->map.x = (data->p_pos_x) / TILE_SIZE;
 }
 
-void	set_len_and_col(t_ray *ray, t_data data, float d_x, float d_y)
+void	set_len_and_col(t_ray *ray, t_data *data, float d_x, float d_y)
 {
 	if (ray->side == EAST || ray->side == WEST)
 	{
 		ray->length = ray->side_dist.x - ray->delta_dist.x;
-		ray->collision.x = (((data.p_pos_y / TILE_SIZE) \
-			- ((int)data.p_pos_y / TILE_SIZE)) + ray->length * d_y);
+		ray->collision.x = (((data->p_pos_y / TILE_SIZE) \
+			- ((int)data->p_pos_y / TILE_SIZE)) + ray->length * d_y);
 	}
 	else
 	{
 		ray->length = ray->side_dist.y - ray->delta_dist.y;
-		ray->collision.x = (((data.p_pos_x / TILE_SIZE) \
-			- ((int)data.p_pos_x / TILE_SIZE)) + ray->length * d_x);
+		ray->collision.x = (((data->p_pos_x / TILE_SIZE) \
+			- ((int)data->p_pos_x / TILE_SIZE)) + ray->length * d_x);
 	}
+	if (data->map_data.map[ray->map.y][ray->map.x] != 'O')
+		data->ray_opp = *ray;
+	else
+		data->ray_wall = *ray;
 }
 
-t_ray	dda(float d_x, float d_y, t_env *env)
+void	dda(float d_x, float d_y, t_data *data, t_ray *ray)
 {
-	t_ray		ray;
-
-	init_ray(&ray, env, d_x, d_y);
-	while (env->data.map_data.map[ray.map.y][ray.map.x] != '1')
+	init_ray(ray, data, d_x, d_y);
+	while (data->map_data.map[ray->map.y][ray->map.x] != '1')
 	{
-		if (ray.side_dist.x < ray.side_dist.y)
+		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			ray.side_dist.x += ray.delta_dist.x;
-			ray.map.x += ray.step.x;
-			if (ray.step.x == 1)
-				ray.side = EAST;
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->map.x += ray->step.x;
+			if (ray->step.x == 1)
+				ray->side = EAST;
 			else
-				ray.side = WEST;
+				ray->side = WEST;
 		}
 		else
 		{
-			ray.side_dist.y += ray.delta_dist.y;
-			ray.map.y += ray.step.y;
-			if (ray.step.y == 1)
-				ray.side = SOUTH;
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->map.y += ray->step.y;
+			if (ray->step.y == 1)
+				ray->side = SOUTH;
 			else
-				ray.side = NORTH;
+				ray->side = NORTH;
 		}
+		if (data->map_data.map[ray->map.y][ray->map.x] != 'O')
+			set_len_and_col(ray, data, d_x, d_y);
 	}
-	return (set_len_and_col(&ray, env->data, d_x, d_y), ray);
+	set_len_and_col(ray, data, d_x, d_y);
 }
