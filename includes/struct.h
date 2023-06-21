@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 10:30:20 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:13:56 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ typedef struct s_data
 	t_vector_2f	p_pos_index;
 	float		p_angle;
 	t_vector_2f	p_delta;
-	float		r_perpendicular;
 	float		angle;
 	int			*floor_color;
 	uint32_t	floor_hexa;
@@ -105,6 +104,7 @@ typedef struct s_data
 	t_img		textures_img[4];
 	t_img		sprites_img[3];
 	int			frame;
+	int			opp_frame;
 }	t_data;
 
 /*Vectors*/

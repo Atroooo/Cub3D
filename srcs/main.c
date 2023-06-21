@@ -39,6 +39,7 @@ static void	init_value(t_data *data)
 	data->floor_color = NULL;
 	data->ceiling_color = NULL;
 	data->frame = 0;
+	data->opp_frame = 0;
 }
 
 int	main(int argc, char **argv)
