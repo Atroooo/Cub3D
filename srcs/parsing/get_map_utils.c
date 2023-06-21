@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/14 16:04:26 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/21 07:55:04 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	get_size_map(t_data *data)
 static int	check_char(char c)
 {
 	if (c == '0' || c == '1' || c == ' ' || \
-		c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		c == 'N' || c == 'S' || c == 'E' || c == 'W' ||
+		c == 'O')
 		return (1);
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/20 17:38:30 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/21 07:44:15 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
 	t_img		textures_img[4];
-	t_img		sprites_img[2];
+	t_img		sprites_img[3];
 	int			frame;
 }	t_data;
 

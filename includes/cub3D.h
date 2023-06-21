@@ -19,6 +19,7 @@
 # define MOVE_SPEED 	3
 # define M_PI       	3.14159265358979323846
 # define WALL_H			2200
+# define OPP_H			1200
 # define D_E			0.50
 # define E_H			500
 # define RAD			0.01745329
@@ -50,6 +51,7 @@ float	calc_radius(t_env *env, float dy, float dx);
 void	draw_wall(t_ray ray, t_env *env, float x);
 void	draw_column(float distance, t_env *env, float *cam_x);
 void	frame_gun(t_env *env);
+void	frame_opps(t_env *env);
 
 t_ray	dda(float d_x, float d_y, t_env *env);
 void	raycasting(t_env *env);

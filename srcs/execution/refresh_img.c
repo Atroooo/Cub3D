@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/20 17:52:09 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/21 08:31:44 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	refresh_img(t_env *env)
 	raycasting(env);
 	draw_map(env);
 	frame_gun(env);
+	frame_opps(env);
 	// mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 	// 	env->img.img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/20 18:44:06 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/21 07:29:00 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	draw_wall(t_ray ray, t_env *env, float x)
 	int				textures_y;
 
 	y = 0;
-	(void) pixel_brigthness;
+	(void) pixel_brightness;
 	textures_y = 0;
 	if (ray.length < 0.20)
 		ray.length = 0.20;
