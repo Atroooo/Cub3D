@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 07:45:04 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:28:38 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	create_all_textures_img(t_env *env)
 		"./textures/pompe.xpm", &env->windows);
 	env->data.sprites_img[1] = create_textures_img(\
 		"./textures/pompe_shoot.xpm", &env->windows);
-	env->data.sprites_img[2] = create_textures_img(\
+	env->data.opp.sprite = create_textures_img(\
 		"./textures/alien_spritesheet.xpm", &env->windows);
 }

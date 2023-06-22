@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 10:56:56 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:32:06 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ int	refresh_img(t_env *env)
 	mlx_clear_window(env->windows.mlx, env->windows.win);
 	raycasting(env);
 	draw_map(env);
-	if (env->data.ray_opp.exist == TRUE)
+	if (env->data.opp.ray.exist == TRUE)
 	{
-		frame_opps(env, env->data, env->data.opp_x);
-		env->data.ray_opp.exist = FALSE;
-		env->data.opp_x = 0;
+		frame_opps(env, &env->data.opp);
+		env->data.opp.ray.exist = FALSE;
+		env->data.opp.pos.x = 0;
 	}
 	frame_gun(env);
+	env->data.opp.frame++;
 	// mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 	// 	env->img.img, 0, 0);
 	return (0);
