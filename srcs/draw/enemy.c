@@ -6,13 +6,17 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/22 14:32:51 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:03:23 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //height = sprite.height - 1325; (1 img);
+
+//(dp.screen.x - dp.draw_start.x)
+				// * dp.sprite.width / dp.width;
+	
 static char	*choose_sprite_in_img(t_vector_2f size,
 	t_vector_2d textures, t_sprite opp)
 {
@@ -21,8 +25,8 @@ static char	*choose_sprite_in_img(t_vector_2f size,
 	int		t_y;
 	int		height;
 
-	t_x = fmodf(textures.x, size.x);
-	height = opp.sprite.height - (1325 - opp.pos.y);
+	t_x = textures.x * ((size.x) / (size.y + opp.ray.length));
+	height = opp.sprite.height - ((opp.sprite.height - 80) - opp.pos.y);
 	t_y = textures.y * (height / (size.y * opp.mult));
 	if (t_y < opp.pos.y)
 		t_y += opp.pos.y + 80;
@@ -42,9 +46,10 @@ static void	draw_opps_sprite(t_env *env, t_sprite opp)
 
 	textures.x = 0;
 	pix.x = opp.pos.x;
-	size.x = opp.sprite.width / 5.50;
+	//printf("pix.x = %f\n", pix.x);
+	size.x = (opp.sprite.width / 5);
 	size.y = (OPP_H / opp.ray.length);
-	while (pix.x > 0 && textures.x < size.x)
+	while (pix.x > 0 && textures.x < (size.x))
 	{
 		textures.y = 0;
 		pix.y = E_H - (size.y / 2);
@@ -63,6 +68,7 @@ static void	draw_opps_sprite(t_env *env, t_sprite opp)
 
 void	frame_opps(t_env *env, t_sprite *opp)
 {
+	//printf("x = %d\n", opp->pos.x);
 	if (opp->frame < 15)
 	{
 		opp->pos.y = 0;
