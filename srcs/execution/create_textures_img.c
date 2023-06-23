@@ -19,7 +19,10 @@ t_img	create_textures_img(char *path, t_windows *win)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
+	{
+		printf("Error with textures : %s\n", path);
 		exit (0);
+	}
 	else
 		close(fd);
 	data.img = mlx_xpm_file_to_image(win->mlx, path, &data.width, &data.height);
@@ -45,6 +48,8 @@ void	create_all_textures_img(t_env *env)
 		env->data.so, &env->windows);
 	env->data.textures_img[3] = create_textures_img(\
 		env->data.we, &env->windows);
+	env->data.textures_img[4] = create_textures_img(\
+		"./textures/door.xpm", &env->windows);
 	env->data.sprites_img[0] = create_textures_img(\
 		"./textures/pompe.xpm", &env->windows);
 	env->data.sprites_img[1] = create_textures_img(\

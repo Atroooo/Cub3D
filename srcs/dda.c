@@ -58,6 +58,7 @@ int	get_stepy(t_data *data, float dy, t_ray *ray)
 
 void	init_ray(t_ray *ray, t_data *data, float d_x, float d_y)
 {
+	ray->door.is_meet = FALSE;
 	ray->delta_dist.x = fabs(1.0f / d_x);
 	ray->delta_dist.y = fabs(1.0f / d_y);
 	ray->step.x = get_stepx(data, d_x, ray);
@@ -88,12 +89,15 @@ void	set_len_and_col(t_ray *ray, t_env *env, float d_x, float d_y)
 	}
 	else
 		env->data.ray_wall = *ray;
+	if (env->data.map_data.map[ray->map.y][ray->map.x] == 'D')
+		set_door(ray, FALSE);
 }
 
 void	dda(float d_x, float d_y, t_env *env, t_ray *ray)
 {
 	init_ray(ray, &env->data, d_x, d_y);
-	while (env->data.map_data.map[ray->map.y][ray->map.x] != '1')
+	while (env->data.map_data.map[ray->map.y][ray->map.x] != '1'
+		&& env->data.map_data.map[ray->map.y][ray->map.x] != 'D')
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
@@ -115,6 +119,8 @@ void	dda(float d_x, float d_y, t_env *env, t_ray *ray)
 		}
 		if (env->data.map_data.map[ray->map.y][ray->map.x] == 'O')
 			set_len_and_col(ray, env, d_x, d_y);
+		if (env->data.map_data.map[ray->map.y][ray->map.x] == 'I')
+			set_door(ray, TRUE);
 	}
 	set_len_and_col(ray, env, d_x, d_y);
 }

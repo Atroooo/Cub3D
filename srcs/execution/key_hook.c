@@ -36,7 +36,10 @@ int	key_hook(int keycode, t_env *env)
 		move(env, &env->data, keycode);
 	if (keycode == Key_Left || keycode == Key_Right)
 		rotate(env, &env->data, keycode);
+	if (keycode == Key_E)
+		open_door(env, &env->data);
 	if (keycode == Key_Space)
 		env->data.frame = 1;
+
 	return (0);
 }

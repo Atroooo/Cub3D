@@ -21,12 +21,12 @@ int	refresh_img(t_env *env)
 	mlx_clear_window(env->windows.mlx, env->windows.win);
 	raycasting(env);
 	draw_map(env);
-	if (env->data.opp.ray.exist == TRUE)
-	{
-		frame_opps(env, &env->data.opp);
-		env->data.opp.ray.exist = FALSE;
-		env->data.opp.pos.x = 0;
-	}
+	// if (env->data.opp.ray.exist == TRUE)
+	// {
+	// 	frame_opps(env, &env->data.opp);
+	// 	env->data.opp.ray.exist = FALSE;
+	// 	env->data.opp.pos.x = 0;
+	// }
 	frame_gun(env);
 	env->data.opp.frame++;
 	// mlx_put_image_to_window(env->windows.mlx, env->windows.win,
