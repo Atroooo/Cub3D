@@ -54,7 +54,10 @@ void	draw_column(float distance, t_env *env, float *cam_x);
 void	frame_gun(t_env *env);
 void	frame_opps(t_env *env, t_opps *opp);
 void	draw_opps_sprite(t_env *env, t_opps opp);
+void 	malloc_opp_arr(t_data *data);
+void	set_ray_opp(t_ray ray, t_data *data);
 void	set_door(t_ray *ray, t_bools is_open);
+int		search_opp(int y, int x, t_data data);
 
 void	dda(float d_x, float d_y, t_env *env, t_ray *ray);
 void	raycasting(t_env *env);

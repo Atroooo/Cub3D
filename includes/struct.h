@@ -91,7 +91,6 @@ typedef struct s_ray
 	t_vector_2f	collision;
 	float		length;
 	t_side		side;
-	t_bools		exist;
 	t_door		door;
 }	t_ray;
 
@@ -104,12 +103,15 @@ typedef struct s_sprite
 
 typedef struct s_opps
 {
-	t_sprite	sprite_data;
-	t_ray		ray;
-	int			pv;
-	int			frame_hit;
-	float		x;
-	int			frame;
+	t_sprite		sprite_data;
+	t_ray			ray;
+	int				pv;
+	int				frame_hit;
+	float			x;
+	int				frame;
+	t_vector_2d		index;
+	t_bools			in_fov;
+	struct s_opps	*next;
 }	t_opps;
 
 
@@ -133,10 +135,12 @@ typedef struct s_data
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
 	t_ray		ray_wall;
+	t_ray		ray_opp;
 	t_img		textures_img[5];
 	t_img		sprites_img[3];
 	int			frame;
-	t_opps		data_opp;		
+	t_opps		*data_opp;
+	int			opp_nb;	
 }	t_data;
 
 /*Vectors*/
