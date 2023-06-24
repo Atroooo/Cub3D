@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 11:48:21 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:47:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct s_opps
 typedef struct s_data
 {
 	int			fd;
+	int			is_pressed;
 	char		*no;
 	char		*so;
 	char		*we;
