@@ -70,15 +70,15 @@ void	draw_opps_sprite(t_env *env, t_opps opp)
 
 static void	set_sprite_opp(t_opps *opp)
 {
-	if (opp->frame < 15)
-	{
-		opp->sprite_data.pos.y = 0;
-		opp->sprite_data.mult.y = 1;
-	}
-	else if (opp->frame < 30)
+	if (opp->frame > 15 && opp->frame < 30)
 	{
 		opp->sprite_data.pos.y = 95;
 		opp->sprite_data.mult.y = 2;
+	}
+	else if (opp->frame > 30 && opp->frame < 45)
+	{
+		opp->sprite_data.pos.y = 270;
+		opp->sprite_data.mult.y = 4;
 	}
 	else
 	{
@@ -107,7 +107,7 @@ void	frame_opps(t_env *env, t_opps *opp)
 		opp->sprite_data.mult.x = 5;
 		opp->sprite_data.pos.x = opp->sprite_data.sprite.width - 80;
 	}
-	if (opp->frame == 30)
+	if (opp->frame == 60)
 		opp->frame = 0;
 	if (opp->frame_hit == 5)
 		opp->frame_hit = 0;
