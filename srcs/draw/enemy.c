@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 11:29:12 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:01:11 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static char	*choose_sprite_in_img(t_vector_2f size,
 	int		t_x;
 	int		t_y;
 	int		height;
+	int		width;
 
-	t_x = textures.x * ((opp.sprite.width / 5.50) / size.x);
+	width = opp.sprite.width - ((opp.sprite.width - 80) - 100);
+	t_x = textures.x * (width / (size.x * 6));
 	height = opp.sprite.height - ((opp.sprite.height - 80) - opp.pos.y);
 	t_y = textures.y * (height / (size.y * opp.mult));
 	if (t_y < opp.pos.y)
@@ -44,8 +46,8 @@ void	draw_opps_sprite(t_env *env, t_opps opp)
 	char		*dst;
 
 	textures.x = 0;
-	pix.x = opp.sprite_data.pos.x;
-	size.x = (opp.sprite_data.sprite.width / 5.50) * (OPP_W / opp.ray.length);
+	pix.x = opp.x;
+	size.x = opp.sprite_data.pos.x * (OPP_W / opp.ray.length);
 	size.y = (OPP_H / opp.ray.length);
 	while (pix.x > 0 && textures.x < size.x)
 	{
@@ -85,14 +87,20 @@ static void	set_sprite_opp(t_opps *opp)
 
 void	frame_opps(t_env *env, t_opps *opp)
 {
-	//printf("x = %d\n", opp->pos.x);
-	if (opp->frame_hit == 0)
+	// printf("opp->pv = %d\n", opp->pv);
+	opp->sprite_data.pos.x = opp->sprite_data.sprite.width / 6;
+	if (opp->frame_hit == 0 && opp->pv > 0)
 		set_sprite_opp(opp);
-	else
+	else if (opp->pv > 0)
 	{
 		opp->sprite_data.pos.y = 700;
 		opp->sprite_data.mult = 11;
 		opp->frame_hit++;
+	}
+	if (opp->pv <= 0)
+	{
+		opp->sprite_data.pos.y = 700;
+		opp->sprite_data.mult = 11;
 	}
 	if (opp->frame == 30)
 		opp->frame = 0;

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 11:28:45 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 11:48:21 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_opps
 	t_ray		ray;
 	int			pv;
 	int			frame_hit;
-	float		opp_x;
+	float		x;
 	int			frame;
 }	t_opps;
 

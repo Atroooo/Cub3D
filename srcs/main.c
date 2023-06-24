@@ -41,6 +41,7 @@ static void	init_value(t_data *data)
 	data->frame = 0;
 	data->data_opp.frame = 0;
 	data->data_opp.frame_hit = 0;
+	data->data_opp.pv = 100;
 }
 
 int	main(int argc, char **argv)
