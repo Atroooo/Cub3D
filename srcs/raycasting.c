@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 10:22:24 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 11:30:51 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ void	raycasting(t_env *env)
 	float		x;
 	t_ray		ray;
 
-	(void) ray;
 	angle = env->data.p_angle - 20.0 * RAD;
 	x = 0;
-	env->data.opp.ray.exist = FALSE;
+	env->data.data_opp.ray.exist = FALSE;
 	while (x < WIN_WIDTH)
 	{
 		dir.x = cos(angle);
 		dir.y = sin(angle);
 		dda(dir.x, dir.y, env, &ray);
-		if (env->data.opp.ray.exist == FALSE)
-			env->data.opp.pos.x = x;
+		if (env->data.data_opp.ray.exist == FALSE)
+			env->data.data_opp.sprite_data.pos.x = x;
 		draw_wall(ray, env, x);
 		angle += (RAD * (40.00 / (WIN_WIDTH)));
 		env->data.angle = angle;

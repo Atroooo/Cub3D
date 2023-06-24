@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   open_door.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/24 10:36:27 by gclement          #+#    #+#             */
+/*   Updated: 2023/06/24 10:36:56 by gclement         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h" 
 
 void	set_door(t_ray *ray, t_bools is_open)
@@ -12,9 +24,9 @@ void	set_door(t_ray *ray, t_bools is_open)
 	ray->door.index.x = ray->map.x;
 }
 
-void open_door(t_env *env, t_data *data)
+void	open_door(t_env *env, t_data *data)
 {
-	t_ray ray;
+	t_ray	ray;
 
 	dda(data->p_delta.x, data->p_delta.y, env, &ray);
 	if (ray.door.is_meet == TRUE && ray.door.is_open == TRUE)

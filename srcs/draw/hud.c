@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:08 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 09:46:21 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 10:51:03 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	frame_gun(t_env *env)
 		env->data.frame++;
 		if (env->data.frame == 5)
 			env->data.frame = 0;
+		shoot(env);
 	}
 	mlx_put_image_to_window(
 		env->windows.mlx, env->windows.win, env->img.img, 0, 0);

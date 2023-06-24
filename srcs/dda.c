@@ -81,11 +81,11 @@ void	set_len_and_col(t_ray *ray, t_env *env, float d_x, float d_y)
 		ray->collision.x = (((env->data.p_pos_x / TILE_SIZE) \
 			- ((int)env->data.p_pos_x / TILE_SIZE)) + ray->length * d_x);
 	}
-	if (env->data.opp.ray.exist == FALSE
+	if (env->data.data_opp.ray.exist == FALSE
 		&& env->data.map_data.map[ray->map.y][ray->map.x] == 'O')
 	{
-		env->data.opp.ray = *ray;
-		env->data.opp.ray.exist = TRUE;
+		env->data.data_opp.ray = *ray;
+		env->data.data_opp.ray.exist = TRUE;
 	}
 	else
 		env->data.ray_wall = *ray;

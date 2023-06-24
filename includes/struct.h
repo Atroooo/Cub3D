@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/22 17:02:07 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 11:28:45 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,20 @@ typedef struct s_ray
 
 typedef struct s_sprite
 {
-	t_ray			ray;
-	int				frame;
 	t_img			sprite;
 	int				mult;
 	t_vector_2d		pos;
 }	t_sprite;
+
+typedef struct s_opps
+{
+	t_sprite	sprite_data;
+	t_ray		ray;
+	int			pv;
+	int			frame_hit;
+	float		opp_x;
+	int			frame;
+}	t_opps;
 
 
 typedef struct s_data
@@ -125,11 +133,10 @@ typedef struct s_data
 	uint32_t	ceiling_hexa;
 	t_map_info	map_data;
 	t_ray		ray_wall;
-	float		opp_x;
 	t_img		textures_img[5];
 	t_img		sprites_img[3];
 	int			frame;
-	t_sprite	opp;
+	t_opps		data_opp;		
 }	t_data;
 
 /*Vectors*/

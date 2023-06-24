@@ -52,7 +52,8 @@ float	calc_radius(t_env *env, float dy, float dx);
 void	draw_wall(t_ray ray, t_env *env, float x);
 void	draw_column(float distance, t_env *env, float *cam_x);
 void	frame_gun(t_env *env);
-void	frame_opps(t_env *env, t_sprite *opp);
+void	frame_opps(t_env *env, t_opps *opp);
+void	draw_opps_sprite(t_env *env, t_opps opp);
 void	set_door(t_ray *ray, t_bools is_open);
 
 void	dda(float d_x, float d_y, t_env *env, t_ray *ray);
@@ -65,7 +66,8 @@ char	*get_pixel_in_texture(t_img data, int x, int y);
 /*Move*/
 void	move(t_env *env, t_data *data, int keycode);
 void	rotate(t_env *env, t_data *data, int keycode);
-void 	open_door(t_env *env, t_data *data);
+void	open_door(t_env *env, t_data *data);
+void	shoot(t_env	*env);
 
 /*Collisions*/
 int		collision(float pos_x, float pos_y, t_env *env, char c);

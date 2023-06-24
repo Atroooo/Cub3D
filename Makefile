@@ -29,6 +29,7 @@ SRC			 			= main.c \
 						  draw/enemy.c \
 						  move/player_move.c \
 						  move/open_door.c \
+						  move/shoot.c \
 						  raycasting.c \
 						  dda.c \
 						  
