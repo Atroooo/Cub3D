@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/20 00:01:55 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/24 13:36:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,5 @@ int	key_hook(int keycode, t_env *env)
 		move(env, &env->data, keycode);
 	if (keycode == Key_Left || keycode == Key_Right)
 		rotate(env, &env->data, keycode);
-	return (0);
-}
-
-int	mouse_hook(int button, int x, int y, t_env *env)
-{
-	(void) x;
-	(void) y;
-	if (button == 1)
-	{
-		env->data.p_angle -= 0.1;
-		if (env->data.p_angle <= 0)
-			env->data.p_angle += 2.0 * M_PI;
-	}
-	if (button == 3)
-	{
-		env->data.p_angle += 0.1;
-		if (env->data.p_angle > 2.0 * M_PI)
-			env->data.p_angle -= 2.0 * M_PI;
-	}
-	env->data.p_delta.x = cos(env->data.p_angle);
-	env->data.p_delta.y = sin(env->data.p_angle);
-	refresh_img(env);
 	return (0);
 }
