@@ -19,6 +19,13 @@ typedef enum s_bools
 	TRUE
 }	t_bools;
 
+typedef enum s_type
+{
+	WALL,
+	DOOR,
+	OPP
+}	t_type;
+
 typedef struct s_vector_2f
 {
 	float	x;
@@ -67,6 +74,14 @@ typedef struct s_map_info
 	char	*base_map;
 }	t_map_info;
 
+typedef struct s_door
+{
+	t_bools		is_meet;
+	t_bools		is_open;
+	int			length;
+	t_vector_2d	index;
+}	t_door;
+
 typedef struct s_ray
 {
 	t_vector_2f	side_dist;
@@ -77,6 +92,7 @@ typedef struct s_ray
 	float		length;
 	t_side		side;
 	t_bools		exist;
+	t_door		door;
 }	t_ray;
 
 typedef struct s_sprite
@@ -110,7 +126,7 @@ typedef struct s_data
 	t_map_info	map_data;
 	t_ray		ray_wall;
 	float		opp_x;
-	t_img		textures_img[4];
+	t_img		textures_img[5];
 	t_img		sprites_img[3];
 	int			frame;
 	t_sprite	opp;

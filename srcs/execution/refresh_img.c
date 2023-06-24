@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/22 17:00:01 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 10:17:54 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	refresh_img(t_env *env)
 	if (env->data.opp.ray.exist == TRUE)
 	{
 		frame_opps(env, &env->data.opp);
-		//env->data.opp.ray.exist = FALSE;
+		env->data.opp.ray.exist = FALSE;
+		env->data.opp.pos.x = 0;
 	}
 	frame_gun(env);
 	env->data.opp.frame++;

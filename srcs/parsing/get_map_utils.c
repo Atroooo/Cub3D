@@ -35,7 +35,7 @@ static int	check_char(char c)
 {
 	if (c == '0' || c == '1' || c == ' ' || \
 		c == 'N' || c == 'S' || c == 'E' || c == 'W' ||
-		c == 'O')
+		c == 'O' || c == 'D')
 		return (1);
 	else
 	{

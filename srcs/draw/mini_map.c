@@ -86,6 +86,8 @@ void	draw_map(t_env *env)
 				draw_tile(count, 0x828582, &env->img);
 			else if (map[index.y][index.x] && map[index.y][index.x] == ' ')
 				draw_tile(count, 0x000000, &env->img);
+			else if (map[index.y][index.x] && (map[index.y][index.x] == 'D' || map[index.y][index.x] == 'I'))
+				draw_tile(count, 0xe37f14, &env->img);
 			else
 				draw_tile(count, 0xdadbd9, &env->img);
 
