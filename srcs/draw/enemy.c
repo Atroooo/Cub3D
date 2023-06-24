@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/22 17:03:23 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 10:34:13 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 //(dp.screen.x - dp.draw_start.x)
 				// * dp.sprite.width / dp.width;
-	
+
 static char	*choose_sprite_in_img(t_vector_2f size,
 	t_vector_2d textures, t_sprite opp)
 {
@@ -25,7 +25,8 @@ static char	*choose_sprite_in_img(t_vector_2f size,
 	int		t_y;
 	int		height;
 
-	t_x = textures.x * ((size.x) / (size.y + opp.ray.length));
+	t_x = textures.x * ((opp.sprite.width / 5.50) / size.x);
+	//t_x = fmodf(textures.x, size.x);
 	height = opp.sprite.height - ((opp.sprite.height - 80) - opp.pos.y);
 	t_y = textures.y * (height / (size.y * opp.mult));
 	if (t_y < opp.pos.y)
@@ -47,7 +48,7 @@ static void	draw_opps_sprite(t_env *env, t_sprite opp)
 	textures.x = 0;
 	pix.x = opp.pos.x;
 	//printf("pix.x = %f\n", pix.x);
-	size.x = (opp.sprite.width / 5);
+	size.x = (opp.sprite.width / 5.50) * (OPP_W / opp.ray.length);
 	size.y = (OPP_H / opp.ray.length);
 	while (pix.x > 0 && textures.x < (size.x))
 	{

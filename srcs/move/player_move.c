@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/21 10:09:18 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:15:59 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	move(t_env *env, t_data *data, int keycode)
 	(void) env;
 	if (keycode == Key_W && check_collision(env, 0))
 	{
-		data->p_pos_x += data->p_delta.x * 5.0;
-		data->p_pos_y += data->p_delta.y * 5.0;
+		data->p_pos_x += data->p_delta.x * 3.0;
+		data->p_pos_y += data->p_delta.y * 3.0;
 	}
 	if (keycode == Key_S && check_collision(env, 1))
 	{
-		data->p_pos_x -= data->p_delta.x * 5.0;
-		data->p_pos_y -= data->p_delta.y * 5.0;
+		data->p_pos_x -= data->p_delta.x * 3.0;
+		data->p_pos_y -= data->p_delta.y * 3.0;
 	}
 	if (keycode == Key_A && check_collision(env, 2))
 	{
