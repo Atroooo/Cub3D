@@ -19,6 +19,9 @@ void	shoot(t_env	*env)
 	dda(env->data.p_delta.x, env->data.p_delta.y, env, &ray);
 	if (env->data.data_opp.ray.exist == FALSE)
 		return ;
-	env->data.data_opp.frame_hit = 1;
-	env->data.data_opp.pv -= 50;
+	if (env->data.data_opp.frame_hit == 0)
+	{
+		env->data.data_opp.frame_hit = 1;
+		env->data.data_opp.pv -= 50;
+	}
 }
