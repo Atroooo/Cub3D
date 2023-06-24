@@ -65,7 +65,7 @@ char	*get_pixel_in_texture(t_img data, int x, int y);
 
 /*Move*/
 void	move(t_env *env, t_data *data, int keycode);
-void	rotate(t_env *env, t_data *data, int keycode);
+void	rotate(t_data *data, int keycode);
 void	open_door(t_env *env, t_data *data);
 void	shoot(t_env	*env);
 

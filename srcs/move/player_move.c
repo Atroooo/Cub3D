@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/22 17:15:59 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:20:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+# define HITBOX	0.3
 
 static int	check_collision(t_env *env, int s)
 {
@@ -33,7 +35,7 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 	t_ray		ray2;
 	t_ray		ray3;
 
-	if (c == 'S')
+	if (c == 'S' || c == 'W')
 	{
 		pos_x = -pos_x;
 		pos_y = -pos_y;
@@ -45,11 +47,11 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 		pos_y + sin(env->data.p_angle + M_PI / 4), env, &ray3);
 	if (c == 'W' || c == 'E')
 	{
-		if (ray1.length < 0.20 || ray2.length < 0.20 || ray3.length < 0.20)
+		if (ray1.length < HITBOX || ray2.length < HITBOX || ray3.length < HITBOX)
 			return (0);
 		return (1);
 	}
-	if (ray1.length < 0.15 || ray2.length < 0.15 || ray3.length < 0.15)
+	if (ray1.length < HITBOX - 0.1 || ray2.length < HITBOX - 0.1 || ray3.length < HITBOX - 0.1)
 		return (0);
 	return (1);
 }
@@ -81,9 +83,8 @@ void	move(t_env *env, t_data *data, int keycode)
 	data->p_pos_index.y = data->p_pos_y / TILE_SIZE;
 }
 
-void	rotate(t_env *env, t_data *data, int keycode)
+void	rotate(t_data *data, int keycode)
 {
-	(void) env;
 	if (keycode == Key_Left)
 	{
 		data->p_angle -= 0.1;
