@@ -98,7 +98,7 @@ typedef struct s_ray
 typedef struct s_sprite
 {
 	t_img			sprite;
-	int				mult;
+	t_vector_2d		mult;
 	t_vector_2d		pos;
 }	t_sprite;
 

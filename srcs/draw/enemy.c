@@ -24,12 +24,14 @@ static char	*choose_sprite_in_img(t_vector_2f size,
 	int		t_x;
 	int		t_y;
 	int		height;
-	int		width;
 
-	width = opp.sprite.width - ((opp.sprite.width - 80) - 100);
-	t_x = textures.x * (width / (size.x * 6));
+	t_x = textures.x * ((opp.pos.x + 80) / (size.x * opp.mult.x));
+	if (t_x < opp.pos.x)
+		t_x += opp.pos.x;
+	else if (t_x > opp.pos.x + 80)
+		t_x -= opp.pos.x;
 	height = opp.sprite.height - ((opp.sprite.height - 80) - opp.pos.y);
-	t_y = textures.y * (height / (size.y * opp.mult));
+	t_y = textures.y * (height / (size.y * opp.mult.y));
 	if (t_y < opp.pos.y)
 		t_y += opp.pos.y + 80;
 	else if (t_y > height)
@@ -47,7 +49,7 @@ void	draw_opps_sprite(t_env *env, t_opps opp)
 
 	textures.x = 0;
 	pix.x = opp.x;
-	size.x = opp.sprite_data.pos.x * (OPP_W / opp.ray.length);
+	size.x = OPP_W / opp.ray.length;
 	size.y = (OPP_H / opp.ray.length);
 	while (pix.x > 0 && textures.x < size.x)
 	{
@@ -71,40 +73,43 @@ static void	set_sprite_opp(t_opps *opp)
 	if (opp->frame < 15)
 	{
 		opp->sprite_data.pos.y = 0;
-		opp->sprite_data.mult = 1;
+		opp->sprite_data.mult.y = 1;
 	}
 	else if (opp->frame < 30)
 	{
 		opp->sprite_data.pos.y = 95;
-		opp->sprite_data.mult = 2;
+		opp->sprite_data.mult.y = 2;
 	}
 	else
 	{
 		opp->sprite_data.pos.y = 0;
-		opp->sprite_data.mult = 1;
+		opp->sprite_data.mult.y = 1;
 	}
 }
 
 void	frame_opps(t_env *env, t_opps *opp)
 {
 	// printf("opp->pv = %d\n", opp->pv);
-	opp->sprite_data.pos.x = opp->sprite_data.sprite.width / 6;
+	opp->sprite_data.pos.x = 0;
+	opp->sprite_data.mult.x = 1;
 	if (opp->frame_hit == 0 && opp->pv > 0)
 		set_sprite_opp(opp);
 	else if (opp->pv > 0)
 	{
 		opp->sprite_data.pos.y = 700;
-		opp->sprite_data.mult = 11;
+		opp->sprite_data.mult.y = 11;
 		opp->frame_hit++;
 	}
 	if (opp->pv <= 0)
 	{
 		opp->sprite_data.pos.y = 700;
-		opp->sprite_data.mult = 11;
+		opp->sprite_data.mult.y = 14;
+		opp->sprite_data.mult.x = 5;
+		opp->sprite_data.pos.x = opp->sprite_data.sprite.width - 80;
 	}
 	if (opp->frame == 30)
 		opp->frame = 0;
-	if (opp->frame_hit == 3)
+	if (opp->frame_hit == 5)
 		opp->frame_hit = 0;
 	draw_opps_sprite(env, *opp);
 }
