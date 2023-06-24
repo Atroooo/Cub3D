@@ -54,6 +54,6 @@ void	create_all_textures_img(t_env *env)
 		"./textures/pompe.xpm", &env->windows);
 	env->data.sprites_img[1] = create_textures_img(\
 		"./textures/pompe_shoot.xpm", &env->windows);
-	env->data.data_opp.sprite_data.sprite = create_textures_img(\
+	env->data.sprites_img[2] = create_textures_img(\
 		"./textures/alien_spritesheet.xpm", &env->windows);
 }

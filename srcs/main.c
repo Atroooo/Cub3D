@@ -39,9 +39,7 @@ static void	init_value(t_data *data)
 	data->floor_color = NULL;
 	data->ceiling_color = NULL;
 	data->frame = 0;
-	data->data_opp.frame = 0;
-	data->data_opp.frame_hit = 0;
-	data->data_opp.pv = 100;
+
 }
 
 int	main(int argc, char **argv)
@@ -59,6 +57,7 @@ int	main(int argc, char **argv)
 	parse_map(argv[1], &map_info);
 	env.data = map_info;
 	init_mlx_create_win(&env);
+	malloc_opp_arr(&env.data);
 	mlx_loop(env.windows.mlx);
 	return (0);
 }

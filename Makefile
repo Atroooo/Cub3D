@@ -32,6 +32,7 @@ SRC			 			= main.c \
 						  move/shoot.c \
 						  raycasting.c \
 						  dda.c \
+						  opps.c \
 						  
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)
