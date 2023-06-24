@@ -20,7 +20,6 @@ SRC			 			= main.c \
 						  init/init_mlx_create_win.c \
 						  init/key_hook.c \
 						  init/create_textures_img.c \
-						  draw/mini_map.c \
 						  draw/my_mlx_pixel_put.c \
 						  draw/raycasting.c \
 						  draw/dda.c \

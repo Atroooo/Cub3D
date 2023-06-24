@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 16:49:29 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:25:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	raycasting(t_env *env)
 	float		x;
 	t_ray		ray;
 
-	(void) ray;
 	angle = env->data.p_angle - 20.0 * RAD;
 	x = 0;
 	while (x < WIN_WIDTH)

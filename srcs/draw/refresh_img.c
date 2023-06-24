@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 23:54:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/24 14:29:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-t_img	refresh_img(t_env *env)
+int	refresh_img(t_env *env)
 {
 	mlx_destroy_image(env->windows.mlx, env->img.img);
 	env->img.img = mlx_new_image(env->windows.mlx, WIN_WIDTH, WIN_HEIGHT);
@@ -20,6 +20,5 @@ t_img	refresh_img(t_env *env)
 	&env->img.bits_per_pixel, &env->img.line_length, &env->img.endian);
 	mlx_clear_window(env->windows.mlx, env->windows.win);
 	raycasting(env);
-	draw_map(env);
-	return (env->img);
+	return (0);
 }

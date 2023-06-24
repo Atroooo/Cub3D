@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 13:36:40 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/24 14:28:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static void	init_game(t_env *env)
 {
 	env->data.is_pressed = 0;
 	create_all_textures_img(env);
-	draw_map(env);
 	env->data.p_pos_y = (env->data.p_pos_y * TILE_SIZE) + TILE_SIZE / 2;
 	env->data.p_pos_x = (env->data.p_pos_x * TILE_SIZE) + TILE_SIZE / 2;
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win, \
 		env->img.img, 0, 0);
+	mlx_loop_hook(env->windows.mlx, refresh_img, env);
 	mlx_hook(env->windows.win, 2, 1L << 0, key_hook, env);
 	mlx_hook(env->windows.win, 3, 1L << 1, key_hook_unpressed, env);
 	mlx_hook(env->windows.win, 17, 1L << 8, mlx_close, env);
