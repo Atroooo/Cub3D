@@ -37,10 +37,10 @@ int	check_line_correct(char *str)
 
 	if (str == NULL)
 		return (0);
-	i = 0;
 	tmp = ft_strtrim(str, "\n ");
 	if (!tmp)
 		return (0);
+	i = 0;
 	while (tmp[i])
 	{
 		if (!ft_isdigit(tmp[i]))
