@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 14:26:59 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/27 00:29:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-#define HITBOX 0.3
+#define HITBOX 0.4
 
 static int	check_collision(t_env *env, int s)
 {
