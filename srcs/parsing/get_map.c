@@ -62,6 +62,35 @@ static void	get_player_position(t_data *data)
 	}
 }
 
+static void	check_if_line_empty(t_data *data)
+{
+	int	i;
+	int	verif;
+
+	i = 0;
+	while (data->map_data.base_map[i] && data->map_data.base_map[i] != '1')
+		i++;
+	verif = 0;
+	while (data->map_data.base_map[++i])
+	{
+		while (data->map_data.base_map[i] && data->map_data.base_map[i] != '\n')
+		{
+			if (data->map_data.base_map[i] == '0' \
+				|| data->map_data.base_map[i] == '1')
+				verif++;
+			i++;
+		}
+		if (verif != 0 && data->map_data.base_map[i] == '\0')
+			break ;
+		if (verif == 0)
+		{
+			printf("Error\nEmpty line in map.\n");
+			free_parsing(data);
+		}
+		verif = 0;
+	}
+}
+
 void	setup_map(t_data *data)
 {
 	if (data->map_data.base_map == NULL)

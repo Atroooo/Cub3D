@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_textures_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/20 00:01:25 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/26 14:00:05 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,25 @@ static void	handle_mlx_errors(t_env *env, int s, t_img img)
 	free_parsing(&env->data);
 }
 
-static t_img	create_textures_img(char *path, t_windows *win, t_env *env)
+static void	handle_wrong_texture(t_env *env, int i)
+{
+	int	index_texture;
+
+	index_texture = 0;
+	while (index_texture < i - 1)
+	{
+		mlx_destroy_image(env->windows.mlx, \
+				env->data.textures_img[index_texture].img);
+		index_texture++;
+	}
+	mlx_destroy_image(env->windows.mlx, env->img.img);
+	mlx_destroy_window(env->windows.mlx, env->windows.win);
+	mlx_destroy_display(env->windows.mlx);
+	free_windows_struct(env);
+}
+
+static t_img	create_textures_img(char *path, \
+	t_windows *win, t_env *env, int i)
 {
 	t_img	data;
 	int		fd;
@@ -43,7 +61,7 @@ static t_img	create_textures_img(char *path, t_windows *win, t_env *env)
 	if (fd < 0)
 	{
 		perror("textures");
-		free_windows_struct(env);
+		handle_wrong_texture(env, i);
 	}
 	else
 		close(fd);
@@ -61,11 +79,11 @@ static t_img	create_textures_img(char *path, t_windows *win, t_env *env)
 void	create_all_textures_img(t_env *env)
 {
 	env->data.textures_img[0] = create_textures_img(\
-		env->data.no, &env->windows, env);
+		env->data.no, &env->windows, env, 1);
 	env->data.textures_img[1] = create_textures_img(\
-		env->data.ea, &env->windows, env);
+		env->data.ea, &env->windows, env, 2);
 	env->data.textures_img[2] = create_textures_img(\
-		env->data.so, &env->windows, env);
+		env->data.so, &env->windows, env, 3);
 	env->data.textures_img[3] = create_textures_img(\
-		env->data.we, &env->windows, env);
+		env->data.we, &env->windows, env, 4);
 }

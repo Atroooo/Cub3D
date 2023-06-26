@@ -16,7 +16,6 @@
 /* Parsing utils */
 char	*setup_line(char *line);
 int		check_line_correct(char *str);
-void	check_if_line_empty(t_data *data);
 int		ft_strcompare(char *str1, char *str, int n);
 void	set_variables(t_data *data, int i, int j);
 
