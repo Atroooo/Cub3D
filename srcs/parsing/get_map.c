@@ -20,9 +20,22 @@ int	get_map(char *line, t_data *data)
 		tmp_map = ft_strdup(data->map_data.base_map);
 	else
 		tmp_map = ft_strdup("");
+	if (!tmp_map)
+	{
+		printf("Error malloc.\n");
+		free(line);
+		free_parsing(data);
+	}
 	if (data->map_data.base_map != NULL)
 		free(data->map_data.base_map);
 	data->map_data.base_map = ft_strjoin(tmp_map, line);
+	if (!data->map_data.base_map)
+	{
+		printf("Error malloc.\n");
+		free(line);
+		free(tmp_map);
+		free_parsing(data);
+	}
 	free(tmp_map);
 	return (1);
 }
@@ -62,14 +75,41 @@ static void	get_player_position(t_data *data)
 	}
 }
 
+static void	check_if_line_empty(t_data *data, int s, int e)
+{
+	int	verif;
+
+	verif = 0;
+	while (s < e && data->map_data.base_map[s])
+	{
+		while (s < e && data->map_data.base_map[s] \
+			&& data->map_data.base_map[s] != '\n')
+		{
+			if (data->map_data.base_map[s] == '0' \
+				|| data->map_data.base_map[s] == '1')
+				verif++;
+			s++;
+		}
+		if (verif != 0 && data->map_data.base_map[s] == '\0')
+			break ;
+		if (verif == 0)
+		{
+			printf("Error\nEmpty line in map.\n");
+			free_parsing(data);
+		}
+		verif = 0;
+		s++;
+	}
+}
+
 void	setup_map(t_data *data)
 {
-	check_if_line_empty(data);
 	if (data->map_data.base_map == NULL)
 	{
 		printf("Error\nNo map.\n");
 		free_parsing(data);
 	}
+	check_if_line_empty(data, get_start(data), get_end(data));
 	data->map_data.map = ft_split(data->map_data.base_map, '\n');
 	if (data->map_data.map == NULL)
 	{
@@ -77,6 +117,11 @@ void	setup_map(t_data *data)
 		free_parsing(data);
 	}
 	get_size_map(data);
+	if (!check_bord_char(data))
+	{
+		printf("Error\nMap not closed.\n");
+		free_parsing(data);
+	}
 	check_map(data);
 	get_player_position(data);
 }
