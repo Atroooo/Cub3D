@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/26 13:45:55 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:17:17 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	check_bord_char(t_data *data)
 
 	map = data->map_data.map;
 	j = 0;
+	if (!map[0] || !map[0][0])
+		return (0);
 	while (map[0][j])
 	{
 		if (map[0][j] && (map[0][j] == '0' || map[0][j] == 'N' \

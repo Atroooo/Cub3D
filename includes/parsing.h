@@ -29,6 +29,8 @@ void	parse_map(char *map_path, t_data *map_info);
 int		get_map(char *line, t_data *map_info);
 void	get_size_map(t_data *data);
 void	setup_map(t_data *data);
+int	    get_start(t_data *data);
+int	    get_end(t_data *data);
 void	check_map(t_data *data);
 int		check_bord_char(t_data *data);
 
