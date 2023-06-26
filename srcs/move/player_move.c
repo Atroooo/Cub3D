@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 14:20:24 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/26 13:31:04 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 
 void	move(t_env *env, t_data *data, int keycode)
 {
-	(void) env;
 	if (keycode == Key_W && check_collision(env, 0))
 	{
 		data->p_pos_x += data->p_delta.x * 3.0;

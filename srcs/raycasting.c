@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 11:48:23 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:38:32 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	raycasting(t_env *env)
 
 	angle = env->data.p_angle - 20.0 * RAD;
 	x = 0;
+	env->data.ray_opp.active = FALSE;
 	while (x < WIN_WIDTH)
 	{
 		dir.x = cos(angle);
@@ -29,13 +30,15 @@ void	raycasting(t_env *env)
 		dda(dir.x, dir.y, env, &ray);
 		draw_wall(ray, env, x);
 		i = search_opp(env->data.ray_opp.map.y, env->data.ray_opp.map.x, env->data);
-		if (i != -1 && env->data.data_opp[i].x == -1)
+		if (i != -1 && env->data.ray_opp.active == TRUE && env->data.data_opp[i].x == -1)
 			env->data.data_opp[i].x = x;
 		angle += (RAD * (40.00 / (WIN_WIDTH)));
 		env->data.angle = angle;
 		x++;
 	}
 	env->data.ray_opp = ray;
+	mlx_put_image_to_window(env->windows.mlx, env->windows.win,
+		env->img.img, 0, 0);
 }
 
 // longueur mur = 20;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   opps.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/26 12:49:54 by gclement          #+#    #+#             */
+/*   Updated: 2023/06/26 13:37:37 by gclement         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static void	init_opp(t_opps *opp, t_img sprite, int y, int x)
@@ -11,9 +23,10 @@ static void	init_opp(t_opps *opp, t_img sprite, int y, int x)
 	opp->sprite_data.sprite = sprite;
 	opp->x = -1;
 }
+
 static void	init_all_opps(t_data *data, t_opps *opps_arr)
 {
-	int y;
+	int	y;
 	int	x;
 	int	count;
 
@@ -37,7 +50,7 @@ static void	init_all_opps(t_data *data, t_opps *opps_arr)
 
 int	search_opp(int y, int x, t_data data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data.opp_nb)
@@ -50,7 +63,7 @@ int	search_opp(int y, int x, t_data data)
 	return (-1);
 }
 
-void set_ray_opp(t_ray ray, t_data *data)
+void	set_ray_opp(t_ray ray, t_data *data)
 {
 	int	i;
 
@@ -60,11 +73,12 @@ void set_ray_opp(t_ray ray, t_data *data)
 	data->data_opp[i].ray = ray;
 	data->data_opp[i].in_fov = TRUE;
 	data->ray_opp = ray;
+	data->ray_opp.active = TRUE;
 }
 
-void malloc_opp_arr(t_data *data)
+void	malloc_opp_arr(t_data *data)
 {
-	int y;
+	int	y;
 	int	x;
 	int	count;
 

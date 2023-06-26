@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 11:48:34 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:39:45 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	check_which_opp_display(t_env *env, t_opps *opps)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < env->data.opp_nb)
@@ -26,10 +26,12 @@ static void	check_which_opp_display(t_env *env, t_opps *opps)
 			opps[i].in_fov = FALSE;
 			opps[i].frame++;
 			opps[i].x = -1;
+			env->data.ray_opp.active = FALSE;
 		}
 		i++;
 	}
 }
+
 int	refresh_img(t_env *env)
 {
 	mlx_destroy_image(env->windows.mlx, env->img.img);
