@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:49:54 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 13:37:37 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:05:53 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	init_opp(t_opps *opp, t_img sprite, int y, int x)
 	opp->index.y = y;
 	opp->sprite_data.sprite = sprite;
 	opp->x = -1;
+	opp->len_sou = 0;
 }
 
 static void	init_all_opps(t_data *data, t_opps *opps_arr)

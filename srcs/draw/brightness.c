@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mlx.c                                         :+:      :+:    :+:   */
+/*   brightness.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 16:24:55 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/26 18:23:37 by gclement         ###   ########.fr       */
+/*   Created: 2023/06/26 17:39:10 by gclement          #+#    #+#             */
+/*   Updated: 2023/06/26 17:47:34 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_windows_struct(t_env *env)
+int	create_rgb(unsigned char r, unsigned char g, unsigned char b)
 {
-	if (env->windows.mlx)
-		free(env->windows.mlx);
-	if (env->data.data_opp)
-		free(env->data.data_opp);
-	free_parsing(&env->data);
+	return (*(int *)(unsigned char [3]){b, g, r});
+}
+
+unsigned char	get_r(int trgb)
+{
+	return (((unsigned char *)&trgb)[2]);
+}
+
+unsigned char	get_g(int trgb)
+{
+	return (((unsigned char *)&trgb)[1]);
+}
+
+unsigned char	get_b(int trgb)
+{
+	return (((unsigned char *)&trgb)[0]);
 }

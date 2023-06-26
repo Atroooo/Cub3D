@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 13:32:32 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:16:20 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //(dp.screen.x - dp.draw_start.x)
 				// * dp.sprite.width / dp.width;
 
-static char	*choose_sprite_in_img(t_vector_2f size,
+static unsigned int	choose_sprite_in_img(t_vector_2f size,
 	t_vector_2d textures, t_sprite opp)
 {
 	char	*dst;
@@ -37,15 +37,15 @@ static char	*choose_sprite_in_img(t_vector_2f size,
 	else if (t_y > height)
 		t_y -= opp.pos.y;
 	dst = get_pixel_in_texture(opp.sprite, t_x, t_y);
-	return (dst);
+	return (*(unsigned int *)dst);
 }
 
 void	draw_opps_sprite(t_env *env, t_opps opp)
 {
-	t_vector_2f	pix;
-	t_vector_2d	textures;
-	t_vector_2f	size;
-	char		*dst;
+	t_vector_2f		pix;
+	t_vector_2d		textures;
+	t_vector_2f		size;
+	unsigned int	dst;
 
 	textures.x = 0;
 	pix.x = opp.x;
@@ -58,8 +58,11 @@ void	draw_opps_sprite(t_env *env, t_opps opp)
 		while (pix.y < E_H + size.y / 2)
 		{
 			dst = choose_sprite_in_img(size, textures, opp.sprite_data);
-			if (*(unsigned int *)dst != 0x00b7ff)
-				my_mlx_pixel_put(&env->img, pix.x, pix.y, *(unsigned int *)dst);
+			if (dst != 0x00b7ff)
+			{
+				dst = pixel_brightness(opp.ray.length, dst);
+				my_mlx_pixel_put(&env->img, pix.x, pix.y, dst);
+			}
 			pix.y++;
 			textures.y++;
 		}
@@ -75,11 +78,6 @@ static void	set_sprite_opp(t_opps *opp)
 		opp->sprite_data.pos.y = 95;
 		opp->sprite_data.mult.y = 2;
 	}
-	else if (opp->frame > 30 && opp->frame < 45)
-	{
-		opp->sprite_data.pos.y = 270;
-		opp->sprite_data.mult.y = 4;
-	}
 	else
 	{
 		opp->sprite_data.pos.y = 0;
@@ -89,13 +87,14 @@ static void	set_sprite_opp(t_opps *opp)
 
 void	frame_opps(t_env *env, t_opps *opp)
 {
+	opp->ray.length -= opp->len_sou;
 	opp->sprite_data.pos.x = 0;
 	opp->sprite_data.mult.x = 1;
 	if (opp->frame_hit == 0 && opp->pv > 0)
 		set_sprite_opp(opp);
 	else if (opp->pv > 0)
 	{
-		opp->sprite_data.pos.y = 700;
+		opp->sprite_data.pos.y = 690;
 		opp->sprite_data.mult.y = 11;
 		opp->frame_hit++;
 	}
@@ -106,7 +105,7 @@ void	frame_opps(t_env *env, t_opps *opp)
 		opp->sprite_data.mult.x = 5;
 		opp->sprite_data.pos.x = opp->sprite_data.sprite.width - 80;
 	}
-	if (opp->frame == 60)
+	if (opp->frame == 40)
 		opp->frame = 0;
 	if (opp->frame_hit == 5)
 		opp->frame_hit = 0;

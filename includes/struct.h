@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 13:36:46 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 16:58:49 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,14 @@ typedef struct s_opps
 	int				frame;
 	t_vector_2d		index;
 	t_bools			in_fov;
+	float			len_sou;
 	struct s_opps	*next;
 }	t_opps;
 
 
 typedef struct s_data
 {
+	t_bools		game_over;
 	int			fd;
 	int			is_pressed;
 	char		*no;
@@ -138,7 +140,7 @@ typedef struct s_data
 	t_map_info	map_data;
 	t_ray		ray_wall;
 	t_ray		ray_opp;
-	t_img		textures_img[5];
+	t_img		textures_img[6];
 	t_img		sprites_img[3];
 	int			frame;
 	t_opps		*data_opp;

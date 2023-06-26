@@ -18,7 +18,7 @@
 # define TILE_SIZE  	20
 # define MOVE_SPEED 	3
 # define M_PI       	3.14159265358979323846
-# define WALL_H			2200
+# define WALL_H			2600
 # define OPP_H			1250
 # define OPP_W			900
 # define D_E			0.50
@@ -52,12 +52,16 @@ float	calc_radius(t_env *env, float dy, float dx);
 void	draw_wall(t_ray ray, t_env *env, float x);
 void	draw_column(float distance, t_env *env, float *cam_x);
 void	frame_gun(t_env *env);
+
+/* OPPS */
 void	frame_opps(t_env *env, t_opps *opp);
 void	draw_opps_sprite(t_env *env, t_opps opp);
-void 	malloc_opp_arr(t_data *data);
+void	malloc_opp_arr(t_data *data);
 void	set_ray_opp(t_ray ray, t_data *data);
 void	set_door(t_ray *ray, t_bools is_open);
 int		search_opp(int y, int x, t_data data);
+void	game_over_screen(t_env *env);
+void	move_opp(t_env *env, t_opps *opp);
 
 void	dda(float d_x, float d_y, t_env *env, t_ray *ray);
 void	raycasting(t_env *env);
@@ -74,5 +78,12 @@ void	shoot(t_env	*env);
 
 /*Collisions*/
 int		collision(float pos_x, float pos_y, t_env *env, char c);
+
+unsigned char	get_b(int trgb);
+unsigned char	get_g(int trgb);
+unsigned char	get_r(int trgb);
+int				create_rgb( \
+unsigned char r, unsigned char g, unsigned char b);
+unsigned int	pixel_brightness(float distance, unsigned int color);
 
 #endif

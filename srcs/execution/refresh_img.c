@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 13:39:45 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:19:44 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@ static void	check_which_opp_display(t_env *env, t_opps *opps)
 	{
 		if (opps[i].in_fov == TRUE)
 		{
-			//printf("opp.width = %d, index;x = %d, index.y = %d\n", opps[i].sprite_data.sprite.width, opps[i].index.x, opps[i].index.y);
-			frame_opps(env, &opps[i]);
-			opps[i].in_fov = FALSE;
-			opps[i].frame++;
-			opps[i].x = -1;
-			env->data.ray_opp.active = FALSE;
+			if (opps[i].ray.length - opps[i].len_sou < 1.5 && opps[i].pv > 0)
+				env->data.game_over = TRUE;
+			else
+			{
+				frame_opps(env, &opps[i]);
+				opps[i].in_fov = FALSE;
+				opps[i].frame++;
+				opps[i].x = -1;
+				env->data.ray_opp.active = FALSE;
+				if (opps[i].frame == 15 && opps[i].pv > 0)
+					opps[i].len_sou += 0.8;
+				if (opps[i].pv <= 0 && opps[i].frame == 40)
+					env->data.map_data.map[opps[i].index.y][opps[i].index.x] = '0';
+			}
 		}
 		i++;
 	}
@@ -38,11 +46,16 @@ int	refresh_img(t_env *env)
 	env->img.img = mlx_new_image(env->windows.mlx, WIN_WIDTH, WIN_HEIGHT);
 	env->img.addr = mlx_get_data_addr(env->img.img, \
 	&env->img.bits_per_pixel, &env->img.line_length, &env->img.endian);
+	if (env->data.game_over == FALSE)
+	{
+		raycasting(env);
+		draw_map(env);
+		check_which_opp_display(env, env->data.data_opp);
+		frame_gun(env);
+	}
+	else
+		game_over_screen(env);
 	mlx_clear_window(env->windows.mlx, env->windows.win);
-	raycasting(env);
-	draw_map(env);
-	check_which_opp_display(env, env->data.data_opp);
-	frame_gun(env);
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 		env->img.img, 0, 0);
 	return (0);

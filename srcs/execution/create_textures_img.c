@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 11:27:49 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 14:33:52 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	create_all_textures_img(t_env *env)
 		env->data.we, &env->windows);
 	env->data.textures_img[4] = create_textures_img(\
 		"./textures/door.xpm", &env->windows);
+	env->data.textures_img[5] = create_textures_img(\
+		"./textures/game_over.xpm", &env->windows);
 	env->data.sprites_img[0] = create_textures_img(\
 		"./textures/pompe.xpm", &env->windows);
 	env->data.sprites_img[1] = create_textures_img(\

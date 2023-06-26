@@ -39,6 +39,7 @@ static void	init_value(t_data *data)
 	data->floor_color = NULL;
 	data->ceiling_color = NULL;
 	data->frame = 0;
+	data->game_over = FALSE;
 
 }
 
