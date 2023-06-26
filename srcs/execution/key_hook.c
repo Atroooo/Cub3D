@@ -57,17 +57,17 @@ int	mouse_hook(int x, int y, t_env *env)
 	
 	(void) y;
 	angle_inc = 0.001;
-	if (x > 0 && x < (WIN_WIDTH / 2 - 225))
+	if (x > 0 && x < (WIN_WIDTH / 2 - 600))
 	{
 		env->data.p_angle -= angle_inc;
 		if (env->data.p_angle > 2.0 * M_PI)
-			env->data.p_angle -= 2.0 * M_PI;
+			env->data.p_angle -= 5.0 * M_PI;
 	}
-	else if (x > (WIN_WIDTH / 2 + 225) && x < WIN_WIDTH)
+	else if (x > (WIN_WIDTH / 2 + 600) && x < WIN_WIDTH)
 	{
 		env->data.p_angle += angle_inc;
 		if (env->data.p_angle <= 0)
-			env->data.p_angle += 2.0 * M_PI;
+			env->data.p_angle += 5.0 * M_PI;
 	}
 	env->data.p_delta.x = cos(env->data.p_angle);
 	env->data.p_delta.y = sin(env->data.p_angle);

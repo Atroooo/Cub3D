@@ -89,7 +89,6 @@ static void	set_sprite_opp(t_opps *opp)
 
 void	frame_opps(t_env *env, t_opps *opp)
 {
-	printf("opp->x = %f\n", opp->x);
 	opp->sprite_data.pos.x = 0;
 	opp->sprite_data.mult.x = 1;
 	if (opp->frame_hit == 0 && opp->pv > 0)
