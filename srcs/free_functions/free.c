@@ -54,3 +54,12 @@ void	free_split(char **split, char **split2)
 	free_char_array(split);
 	free_char_array(split2);
 }
+
+void	free_windows_struct(t_env *env)
+{
+	if (env->windows.mlx)
+		free(env->windows.mlx);
+	if (env->data.data_opp)
+		free(env->data.data_opp);
+	free_parsing(&env->data);
+}

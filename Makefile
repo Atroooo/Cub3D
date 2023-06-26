@@ -9,7 +9,6 @@ HEADER_DIR				= includes/
 DIR						= srcs/
 SRC			 			= main.c \
 						  free_functions/free.c \
-						  free_functions/free_mlx.c \
 						  parsing/parsing.c \
 						  parsing/parsing_utils.c \
 						  parsing/get_texture.c \

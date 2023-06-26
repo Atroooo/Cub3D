@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_textures_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 18:59:20 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 00:49:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	handle_mlx_errors(t_env *env, int s, t_img img)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 6)
 	{
 		if (env->data.textures_img[i].img != NULL)
 			mlx_destroy_image(env->windows.mlx, \
@@ -37,11 +37,21 @@ static void	handle_wrong_texture(t_env *env, int i)
 	int	index_texture;
 
 	index_texture = 0;
-	while (index_texture < i - 1)
+	while (index_texture < i - 1 && index_texture < 6)
 	{
 		mlx_destroy_image(env->windows.mlx, \
 				env->data.textures_img[index_texture].img);
 		index_texture++;
+	}
+	if (i > 6)
+	{
+		index_texture = 0;
+		while (index_texture < i - 6)
+		{
+			mlx_destroy_image(env->windows.mlx, \
+				env->data.textures_img[index_texture].img);
+			index_texture++;
+		}
 	}
 	mlx_destroy_image(env->windows.mlx, env->img.img);
 	mlx_destroy_window(env->windows.mlx, env->windows.win);
@@ -89,9 +99,9 @@ void	create_all_textures_img(t_env *env)
 	env->data.textures_img[5] = create_textures_img(\
 		"./textures/game_over.xpm", &env->windows, env, 6);
 	env->data.sprites_img[0] = create_textures_img(\
-		"./textures/pompe.xpm", &env->windows, env, 1);
+		"./textures/pompe.xpm", &env->windows, env, 7);
 	env->data.sprites_img[1] = create_textures_img(\
-		"./textures/pompe_shoot.xpm", &env->windows, env, 2);
+		"./textures/pompe_shoot.xpm", &env->windows, env, 8);
 	env->data.sprites_img[2] = create_textures_img(\
-		"./textures/alien_spritesheet.xpm", &env->windows, env, 3);
+		"./textures/alien_spritesheet.xpm", &env->windows, env, 9);
 }

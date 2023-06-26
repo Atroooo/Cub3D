@@ -3,29 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   refresh_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-<<<<<<< HEAD:srcs/execution/refresh_img.c
-/*   Updated: 2023/06/26 18:19:44 by gclement         ###   ########.fr       */
-=======
-/*   Updated: 2023/06/26 14:42:02 by lcompieg         ###   ########.fr       */
->>>>>>> a551f3f0def2cba5eaad530f7aa1ffb9ce2972b9:srcs/draw/refresh_img.c
+/*   Updated: 2023/06/27 00:47:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-<<<<<<< HEAD:srcs/execution/refresh_img.c
 static void	check_which_opp_display(t_env *env, t_opps *opps)
-=======
-static void	handle_mlx_errors(t_env *env, int s, t_img img)
->>>>>>> a551f3f0def2cba5eaad530f7aa1ffb9ce2972b9:srcs/draw/refresh_img.c
 {
 	int	i;
 
 	i = 0;
-<<<<<<< HEAD:srcs/execution/refresh_img.c
 	while (i < env->data.opp_nb)
 	{
 		if (opps[i].in_fov == TRUE)
@@ -47,7 +38,12 @@ static void	handle_mlx_errors(t_env *env, int s, t_img img)
 		}
 		i++;
 	}
-=======
+}
+static void	handle_mlx_errors(t_env *env, int s, t_img img)
+{
+	int	i;
+
+	i = 0;
 	while (i < 4)
 	{
 		if (env->windows.mlx && env->data.textures_img[i].img != NULL)
@@ -68,7 +64,6 @@ static void	handle_mlx_errors(t_env *env, int s, t_img img)
 	}
 	free(env->windows.mlx);
 	free_parsing(&env->data);
->>>>>>> a551f3f0def2cba5eaad530f7aa1ffb9ce2972b9:srcs/draw/refresh_img.c
 }
 
 int	refresh_img(t_env *env)
@@ -79,7 +74,8 @@ int	refresh_img(t_env *env)
 		handle_mlx_errors(env, 0, env->img);
 	env->img.addr = mlx_get_data_addr(env->img.img, \
 	&env->img.bits_per_pixel, &env->img.line_length, &env->img.endian);
-<<<<<<< HEAD:srcs/execution/refresh_img.c
+	if (!env->img.addr)
+		handle_mlx_errors(env, 1, env->img);
 	if (env->data.game_over == FALSE)
 	{
 		raycasting(env);
@@ -92,11 +88,7 @@ int	refresh_img(t_env *env)
 	mlx_clear_window(env->windows.mlx, env->windows.win);
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 		env->img.img, 0, 0);
-=======
-	if (!env->img.addr)
-		handle_mlx_errors(env, 1, env->img);
 	mlx_clear_window(env->windows.mlx, env->windows.win);
 	raycasting(env);
->>>>>>> a551f3f0def2cba5eaad530f7aa1ffb9ce2972b9:srcs/draw/refresh_img.c
 	return (0);
 }
