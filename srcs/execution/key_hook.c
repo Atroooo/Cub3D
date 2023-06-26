@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 14:06:32 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/26 14:18:06 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,23 @@ int	key_hook(int keycode, t_env *env)
 	return (0);
 }
 
+static void	teleport_cursor(t_env *env, int x)
+{
+	if (x > WIN_WIDTH - 200)
+		mlx_mouse_move(env->windows.mlx, env->windows.win, \
+			WIN_WIDTH - 300, WIN_HEIGHT / 2);
+	else if (x < 200)
+		mlx_mouse_move(env->windows.mlx, env->windows.win, \
+			300, WIN_HEIGHT / 2);
+}
+
 int	mouse_hook(int x, int y, t_env *env)
 {
 	float	angle_inc;
-	
+
 	(void) y;
-	angle_inc = 0.001;
+	teleport_cursor(env, x);
+	angle_inc = 0.003;
 	if (x > 0 && x < (WIN_WIDTH / 2 - 600))
 	{
 		env->data.p_angle -= angle_inc;

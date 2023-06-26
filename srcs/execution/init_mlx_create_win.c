@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_create_win.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 12:52:22 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/26 14:12:21 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void	init_game(t_env *env)
 	mlx_hook(env->windows.win, 3, 1L << 1, key_hook_unpressed, env);
 	mlx_hook(env->windows.win, 17, 1L << 8, mlx_close, env);
 	mlx_mouse_hide(env->windows.mlx, env->windows.win);
-	mlx_mouse_move(env->windows.mlx, env->windows.win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	mlx_mouse_move(env->windows.mlx, env->windows.win, \
+		WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_hook(env->windows.win, 6, 1L << 6, mouse_hook, env);
 }
 
