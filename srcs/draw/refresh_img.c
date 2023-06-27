@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 18:38:26 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 00:17:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,11 @@ static void	check_which_opp_display(t_env *env, t_opps *opps)
 
 static void	handle_mlx_errors(t_env *env, int s, t_img img)
 {
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (env->windows.mlx && env->data.textures_img[i].img != NULL)
-			mlx_destroy_image(env->windows.mlx, \
-				env->data.textures_img[i].img);
-		i++;
-	}
-	if (s == 0)
-	{
-		mlx_destroy_window(env->windows.mlx, env->windows.win);
-		mlx_destroy_display(env->windows.mlx);
-	}
+	free_img(env);
 	if (s == 1)
-	{
 		mlx_destroy_image(env->windows.mlx, img.img);
-		mlx_destroy_window(env->windows.mlx, env->windows.win);
-		mlx_destroy_display(env->windows.mlx);
-	}
+	mlx_destroy_window(env->windows.mlx, env->windows.win);
+	mlx_destroy_display(env->windows.mlx);
 	free(env->windows.mlx);
 	free_parsing(&env->data);
 }

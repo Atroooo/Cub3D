@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 10:07:21 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 14:42:15 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/28 00:20:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,11 @@ void	draw_tile(t_vector_2d pixel, uint32_t color, t_img *img)
 	}
 }
 
-static void	draw_player_pos(float y, float x, t_img *img, t_data data)
+static void	draw_player_pos(float y, float x, t_img *img)
 {
 	float		y_len;
 	float		tmp_x;
 
-	(void) data;
 	y += 5;
 	x += 5;
 	y_len = y + 10;
@@ -103,5 +102,5 @@ void	draw_map(t_env *env)
 		index.y++;
 	}
 	draw_player_pos((MINI_MAP_SIZE / 2) * TILE_SIZE, \
-		(MINI_MAP_SIZE / 2) * TILE_SIZE, &env->img, env->data);
+		(MINI_MAP_SIZE / 2) * TILE_SIZE, &env->img);
 }

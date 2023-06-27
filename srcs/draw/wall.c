@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 18:38:44 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 00:20:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,10 @@ static unsigned int	choose_pixel_textures(t_ray ray, int y,
 	return (*(unsigned int *)dst);
 }
 
-static void	draw_floor(t_ray ray, t_env *env, float x, float y)
+static void	draw_floor(t_env *env, float x, float y)
 {
 	unsigned int	dst;
 
-	(void) ray;
 	while (y < WIN_HEIGHT)
 	{
 		dst = pixel_brightness((WIN_HEIGHT / (y / 2)) \
@@ -95,5 +94,5 @@ void	draw_wall(t_ray ray, t_env *env, float x)
 		y++;
 		textures_y++;
 	}
-	draw_floor(ray, env, x, y);
+	draw_floor(env, x, y);
 }
