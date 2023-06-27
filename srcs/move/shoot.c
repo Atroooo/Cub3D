@@ -6,19 +6,19 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 10:36:22 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 19:12:38 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 00:23:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int    mouse_hook_button(int button, int x, int y, t_env *env)
+int	mouse_hook_button(int button, int x, int y, t_env *env)
 {
-    (void) x;
-    (void) y;
-    if (button == 1)
-        shoot(env);
-    return (0);
+	(void) x;
+	(void) y;
+	if (button == 1)
+		shoot(env);
+	return (0);
 }
 
 static t_vector_2d	check_shoot(t_env *env, float dy, float dx)
