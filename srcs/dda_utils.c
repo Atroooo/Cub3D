@@ -56,13 +56,13 @@ static int	get_stepy(t_data *data, float dy, t_ray *ray)
 	return (0);
 }
 
-void	init_ray(t_ray *ray, t_env *env, float d_x, float d_y)
+void	init_ray(t_ray *ray, t_data *data, float d_x, float d_y)
 {
+	ray->door.is_meet = FALSE;
 	ray->delta_dist.x = fabs(1.0f / d_x);
 	ray->delta_dist.y = fabs(1.0f / d_y);
-	ray->step.x = get_stepx(&env->data, d_x, ray);
-	ray->step.y = get_stepy(&env->data, d_y, ray);
-	ray->map.y = (env->data.p_pos_y) / TILE_SIZE;
-	ray->map.x = (env->data.p_pos_x) / TILE_SIZE;
-	ray->length = 0.0f;
+	ray->step.x = get_stepx(data, d_x, ray);
+	ray->step.y = get_stepy(data, d_y, ray);
+	ray->map.y = (data->p_pos_y) / TILE_SIZE;
+	ray->map.x = (data->p_pos_x) / TILE_SIZE;
 }

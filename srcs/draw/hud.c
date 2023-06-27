@@ -6,10 +6,9 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:08 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 10:51:03 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:51:50 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3D.h"
 
@@ -57,4 +56,3 @@ void	frame_gun(t_env *env)
 	mlx_put_image_to_window(
 		env->windows.mlx, env->windows.win, env->img.img, 0, 0);
 }
-

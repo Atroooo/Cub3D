@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 18:05:29 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:38:41 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static void	draw_ceiling(float height, t_env *env, float x, float *y)
 	}
 }
 
-static unsigned int	choose_pixel_textures(t_ray ray, int y, float height, t_data data)
+static unsigned int	choose_pixel_textures(t_ray ray, int y,
+	float height, t_data data)
 {
 	char			*dst;
 	int				t_x;
 	t_img			textures;
-
 
 	if (ray.door.is_meet == TRUE && ray.door.is_open == FALSE)
 		textures = data.textures_img[4];
@@ -61,20 +61,17 @@ static unsigned int	choose_pixel_textures(t_ray ray, int y, float height, t_data
 	return (*(unsigned int *)dst);
 }
 
-unsigned int	pixel_brightness(float distance, unsigned int color)
+static void	draw_floor(t_ray ray, t_env *env, float x, float y)
 {
-	char	r;
-	char	g;
-	char	b;
+	unsigned int	dst;
 
-	if (distance > 1)
+	(void) ray;
+	while (y < WIN_HEIGHT)
 	{
-		r = get_r(color) / distance;
-		g = get_g(color) / distance;
-		b = get_b(color) / distance;
-		color = create_rgb(r, g, b);
+		dst = pixel_brightness((WIN_HEIGHT / (y / 2)) * 1.50, env->data.floor_hexa);
+		my_mlx_pixel_put(&env->img, x, y, dst);
+		y++;
 	}
-	return (color);
 }
 
 void	draw_wall(t_ray ray, t_env *env, float x)
@@ -97,10 +94,5 @@ void	draw_wall(t_ray ray, t_env *env, float x)
 		y++;
 		textures_y++;
 	}
-	while (y < WIN_HEIGHT)
-	{
-		dst = pixel_brightness(ray.length, env->data.floor_hexa);
-		my_mlx_pixel_put(&env->img, x, y, dst);
-		y++;
-	}
+	draw_floor(ray, env, x, y);
 }

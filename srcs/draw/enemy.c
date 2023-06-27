@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 18:16:20 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:50:45 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 				// * dp.sprite.width / dp.width;
 
 static unsigned int	choose_sprite_in_img(t_vector_2f size,
-	t_vector_2d textures, t_sprite opp)
+	t_vector_2d textures, t_sprite opp, float len)
 {
 	char	*dst;
 	int		t_x;
@@ -37,6 +37,8 @@ static unsigned int	choose_sprite_in_img(t_vector_2f size,
 	else if (t_y > height)
 		t_y -= opp.pos.y;
 	dst = get_pixel_in_texture(opp.sprite, t_x, t_y);
+	if (*(unsigned int *)dst != 0x00b7ff)
+		return (pixel_brightness(len, *(unsigned int *)dst));
 	return (*(unsigned int *)dst);
 }
 
@@ -57,12 +59,10 @@ void	draw_opps_sprite(t_env *env, t_opps opp)
 		pix.y = E_H - (size.y / 2);
 		while (pix.y < E_H + size.y / 2)
 		{
-			dst = choose_sprite_in_img(size, textures, opp.sprite_data);
+			dst = choose_sprite_in_img(size, \
+				textures, opp.sprite_data, opp.ray.length);
 			if (dst != 0x00b7ff)
-			{
-				dst = pixel_brightness(opp.ray.length, dst);
 				my_mlx_pixel_put(&env->img, pix.x, pix.y, dst);
-			}
 			pix.y++;
 			textures.y++;
 		}

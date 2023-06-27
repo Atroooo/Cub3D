@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 14:18:06 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/27 13:23:27 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	key_hook_unpressed(int keycode, t_env *env)
 
 int	mlx_close(t_env *env)
 {
+	if (env->data.data_opp)
+		free(env->data.data_opp);
 	if (env->windows.mlx && env->img.img)
 		mlx_destroy_image(env->windows.mlx, env->img.img);
 	if (env->windows.mlx && env->windows.win)

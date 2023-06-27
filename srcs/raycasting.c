@@ -6,11 +6,22 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 18:23:48 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:54:19 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	set_x_for_opp(int x, t_env *env)
+{
+	int	i;
+
+	i = search_opp(env->data.ray_opp.map.y, \
+		env->data.ray_opp.map.x, env->data);
+	if (i != -1 && env->data.ray_opp.active == TRUE
+		&& env->data.data_opp[i].x == -1)
+		env->data.data_opp[i].x = x;
+}
 
 void	raycasting(t_env *env)
 {
@@ -18,7 +29,6 @@ void	raycasting(t_env *env)
 	t_vector_2f	dir;
 	float		x;
 	t_ray		ray;
-	int			i;
 
 	angle = env->data.p_angle - 20.0 * RAD;
 	x = 0;
@@ -29,9 +39,7 @@ void	raycasting(t_env *env)
 		dir.y = sin(angle);
 		dda(dir.x, dir.y, env, &ray);
 		draw_wall(ray, env, x);
-		i = search_opp(env->data.ray_opp.map.y, env->data.ray_opp.map.x, env->data);
-		if (i != -1 && env->data.ray_opp.active == TRUE && env->data.data_opp[i].x == -1)
-			env->data.data_opp[i].x = x;
+		set_x_for_opp(x, env);
 		angle += (RAD * (40.00 / (WIN_WIDTH)));
 		env->data.angle = angle;
 		x++;

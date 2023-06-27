@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 00:47:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/27 13:28:34 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ static void	check_which_opp_display(t_env *env, t_opps *opps)
 				opps[i].frame++;
 				opps[i].x = -1;
 				env->data.ray_opp.active = FALSE;
-				if (opps[i].frame == 15 && opps[i].pv > 0)
-					opps[i].len_sou += 0.8;
+				if ((opps[i].frame == 15 || opps[i].frame == 0)
+					&& opps[i].pv > 0)
+					opps[i].len_sou += 0.2;
 				if (opps[i].pv <= 0 && opps[i].frame == 40)
-					env->data.map_data.map[opps[i].index.y][opps[i].index.x] = '0';
+					env->data.map_data.map \
+						[opps[i].index.y][opps[i].index.x] = '0';
 			}
 		}
 		i++;
 	}
 }
+
 static void	handle_mlx_errors(t_env *env, int s, t_img img)
 {
 	int	i;
@@ -79,8 +82,8 @@ int	refresh_img(t_env *env)
 	if (env->data.game_over == FALSE)
 	{
 		raycasting(env);
-		draw_map(env);
 		check_which_opp_display(env, env->data.data_opp);
+		draw_map(env);
 		frame_gun(env);
 	}
 	else
@@ -88,7 +91,5 @@ int	refresh_img(t_env *env)
 	mlx_clear_window(env->windows.mlx, env->windows.win);
 	mlx_put_image_to_window(env->windows.mlx, env->windows.win,
 		env->img.img, 0, 0);
-	mlx_clear_window(env->windows.mlx, env->windows.win);
-	raycasting(env);
 	return (0);
 }

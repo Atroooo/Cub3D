@@ -40,7 +40,10 @@ static void	init_value(t_data *data)
 	data->ceiling_color = NULL;
 	data->frame = 0;
 	data->game_over = FALSE;
-
+	data->p_pos_index.x = 0;
+	data->p_pos_index.y = 0;
+	data->angle = 0;
+	data->p_angle = 0;
 }
 
 int	main(int argc, char **argv)

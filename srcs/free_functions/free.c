@@ -59,7 +59,5 @@ void	free_windows_struct(t_env *env)
 {
 	if (env->windows.mlx)
 		free(env->windows.mlx);
-	if (env->data.data_opp)
-		free(env->data.data_opp);
 	free_parsing(&env->data);
 }
