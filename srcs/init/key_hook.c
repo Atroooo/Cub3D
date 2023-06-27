@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 00:51:28 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/27 18:49:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,8 @@ int	key_hook_unpressed(int keycode, t_env *env)
 
 int	mlx_close(t_env *env)
 {
-	int	i;
-
-	i = 0;
-	while (i < 6)
-	{
-		if (env->windows.mlx && env->data.textures_img[i].img != NULL)
-			mlx_destroy_image(env->windows.mlx, \
-				env->data.textures_img[i].img);
-		i++;
-	}
+	free_img(env);
+	mlx_mouse_show(env->windows.mlx, env->windows.win);
 	if (env->windows.mlx && env->img.img)
 		mlx_destroy_image(env->windows.mlx, env->img.img);
 	if (env->windows.mlx && env->windows.win)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 14:38:41 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:38:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static void	draw_floor(t_ray ray, t_env *env, float x, float y)
 	(void) ray;
 	while (y < WIN_HEIGHT)
 	{
-		dst = pixel_brightness((WIN_HEIGHT / (y / 2)) * 1.50, env->data.floor_hexa);
+		dst = pixel_brightness((WIN_HEIGHT / (y / 2)) \
+			* 1.50, env->data.floor_hexa);
 		my_mlx_pixel_put(&env->img, x, y, dst);
 		y++;
 	}

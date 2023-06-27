@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 13:28:34 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:38:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	check_which_opp_display(t_env *env, t_opps *opps)
 {
 	int	i;
 
-	i = 0;
-	while (i < env->data.opp_nb)
+	i = -1;
+	while (++i < env->data.opp_nb)
 	{
 		if (opps[i].in_fov == TRUE)
 		{
@@ -38,7 +38,6 @@ static void	check_which_opp_display(t_env *env, t_opps *opps)
 						[opps[i].index.y][opps[i].index.x] = '0';
 			}
 		}
-		i++;
 	}
 }
 

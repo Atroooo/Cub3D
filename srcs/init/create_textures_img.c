@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_textures_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 13:22:38 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:08:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ static void	handle_mlx_errors(t_env *env, int s, t_img img)
 			mlx_destroy_image(env->windows.mlx, \
 				env->data.textures_img[i].img);
 		i++;
+	}
+	i = 0;
+	while (i < 3)
+	{
+		if (env->data.sprites_img[i].img != NULL)
+			mlx_destroy_image(env->windows.mlx, \
+				env->data.sprites_img[i].img);
 	}
 	if (s == 1)
 		mlx_destroy_image(env->windows.mlx, img.img);
@@ -46,10 +53,10 @@ static void	handle_wrong_texture(t_env *env, int i)
 	if (i > 6)
 	{
 		index_texture = 0;
-		while (index_texture < i - 6)
+		while (index_texture < i - 7)
 		{
 			mlx_destroy_image(env->windows.mlx, \
-				env->data.textures_img[index_texture].img);
+				env->data.sprites_img[index_texture].img);
 			index_texture++;
 		}
 	}

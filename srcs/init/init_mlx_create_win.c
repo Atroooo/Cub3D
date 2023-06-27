@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 13:17:57 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 00:45:20 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/27 19:12:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	init_game(t_env *env)
 	mlx_mouse_move(env->windows.mlx, env->windows.win, \
 		WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	mlx_hook(env->windows.win, 6, 1L << 6, mouse_hook, env);
+	mlx_mouse_hook(env->windows.win, mouse_hook_button, env);
 }
 
 static void	handle_mlx_errors(t_env *env, int s, t_img img)

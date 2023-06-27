@@ -18,10 +18,10 @@ SRC			 			= main.c \
 						  parsing/get_map_utils.c \
 						  parsing/get_map_utils_bis.c \
 						  parsing/error_message_parsing.c \
-						  execution/init_mlx_create_win.c \
-						  execution/key_hook.c \
-						  execution/refresh_img.c \
-						  execution/create_textures_img.c \
+						  init/init_mlx_create_win.c \
+						  init/key_hook.c \
+						  init/create_textures_img.c \
+						  draw/refresh_img.c \
 						  draw/mini_map.c \
 						  draw/my_mlx_pixel_put.c \
 						  draw/wall.c \
@@ -33,9 +33,10 @@ SRC			 			= main.c \
 						  move/open_door.c \
 						  move/shoot.c \
 						  move/opps_move.c \
-						  raycasting.c \
-						  dda.c \
-						  opps.c \
+						  ray/raycasting.c \
+						  ray/dda.c \
+						  ray/dda_utils.c \
+						  ray/opps.c \
 						  
 							
 OBJECTS			    	= $(SRC:%.c=$(BUILD_DIR)%.o)

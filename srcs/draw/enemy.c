@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:46:04 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 10:50:45 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:49:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-//height = sprite.height - 1325; (1 img);
-
-//(dp.screen.x - dp.draw_start.x)
-				// * dp.sprite.width / dp.width;
 
 static unsigned int	choose_sprite_in_img(t_vector_2f size,
 	t_vector_2d textures, t_sprite opp, float len)

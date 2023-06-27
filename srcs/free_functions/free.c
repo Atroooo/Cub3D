@@ -61,3 +61,25 @@ void	free_windows_struct(t_env *env)
 		free(env->windows.mlx);
 	free_parsing(&env->data);
 }
+
+void	free_img(t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (env->windows.mlx && env->data.textures_img[i].img != NULL)
+			mlx_destroy_image(env->windows.mlx, \
+				env->data.textures_img[i].img);
+		i++;
+	}
+	i = 0;
+	while (i < 3)
+	{
+		if (env->windows.mlx && env->data.sprites_img[i].img != NULL)
+			mlx_destroy_image(env->windows.mlx, \
+				env->data.sprites_img[i].img);
+		i++;
+	}
+}

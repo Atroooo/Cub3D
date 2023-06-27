@@ -44,6 +44,18 @@ static int	is_true(t_ray *ray, t_env *env)
 	return (0);
 }
 
+static void	incr_ray_x(t_ray *ray)
+{
+	ray->side_dist.x += ray->delta_dist.x;
+	ray->map.x += ray->step.x;
+}
+
+static void	incr_ray_y(t_ray *ray)
+{
+	ray->side_dist.y += ray->delta_dist.y;
+	ray->map.y += ray->step.y;
+}
+
 void	dda(float d_x, float d_y, t_env *env, t_ray *ray)
 {
 	init_ray(ray, &env->data, d_x, d_y);
@@ -51,8 +63,7 @@ void	dda(float d_x, float d_y, t_env *env, t_ray *ray)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			ray->side_dist.x += ray->delta_dist.x;
-			ray->map.x += ray->step.x;
+			incr_ray_x(ray);
 			if (ray->step.x == 1)
 				ray->side = EAST;
 			else
@@ -60,8 +71,7 @@ void	dda(float d_x, float d_y, t_env *env, t_ray *ray)
 		}
 		else
 		{
-			ray->side_dist.y += ray->delta_dist.y;
-			ray->map.y += ray->step.y;
+			incr_ray_y(ray);
 			if (ray->step.y == 1)
 				ray->side = SOUTH;
 			else

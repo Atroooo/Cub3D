@@ -39,15 +39,14 @@
 # include <fcntl.h>
 # include <math.h>
 
-
+/* Free */
 void			free_char_array(char **array);
 void			free_windows_struct(t_env *env);
-void			print_param(t_data *map_info);
+void	        free_img(t_env *env);
 
-/* mini_map */
+/* Mini_map */
 void			draw_map(t_env *env);
 void			draw_tile(t_vector_2d pixel, uint32_t color, t_img *img);
-float			calc_radius(t_env *env, float dy, float dx);
 void			draw_wall(t_ray ray, t_env *env, float x);
 void			draw_column(float distance, t_env *env, float *cam_x);
 void			frame_gun(t_env *env);
@@ -63,10 +62,13 @@ int				search_opp(int y, int x, t_data data);
 void			game_over_screen(t_env *env);
 void			move_opp(t_env *env, t_opps *opp);
 
+/* Raycasting */
+void	        init_ray(t_ray *ray, t_data *data, float d_x, float d_y);
 void			dda(float d_x, float d_y, t_env *env, t_ray *ray);
 void			init_ray(t_ray *ray, t_data *data, float d_x, float d_y);
 void			raycasting(t_env *env);
 
+/* Pixel print */
 void			my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 char			*get_pixel_in_texture(t_img data, int x, int y);
@@ -77,7 +79,7 @@ void			rotate(t_data *data, int keycode);
 void			open_door(t_env *env, t_data *data);
 void			shoot(t_env	*env);
 
-/*Collisions*/
+/* Collisions */
 int				collision(float pos_x, float pos_y, t_env *env, char c);
 
 #endif
