@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shoot.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 10:36:22 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/28 00:23:21 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:51:46 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static t_vector_2d	check_shoot(t_env *env, float dy, float dx)
 	pix_y = env->data.p_pos_y + 5.0;
 	while (env->data.map_data.map[index.y][index.x] != '1')
 	{
-		pix_y += dy * TILE_SIZE;
-		pix_x += dx * TILE_SIZE;
+		pix_y += dy;
+		pix_x += dx;
 		index.y = pix_y / TILE_SIZE;
 		index.x = pix_x / TILE_SIZE;
 		i = search_opp(index.y, index.x, env->data);
@@ -51,6 +51,7 @@ void	shoot(t_env	*env)
 	t_vector_2d	index;
 	int			i;
 
+	env->data.frame = 1;
 	index = check_shoot(env, env->data.p_delta.y, env->data.p_delta.x);
 	i = search_opp(index.y, index.x, env->data);
 	if (i == -1)

@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:39:10 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 14:40:07 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:55:43 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ unsigned int	pixel_brightness(float distance, unsigned int color)
 	char	g;
 	char	b;
 
-	if (distance > 1)
+	if (distance > 1.10)
 	{
 		r = get_r(color) / distance + 22;
 		g = get_g(color) / distance + 22;

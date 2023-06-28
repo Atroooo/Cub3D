@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	parse_map(argv[1], &map_info);
 	env.data = map_info;
 	init_mlx_create_win(&env);
-	malloc_opp_arr(&env.data);
+	malloc_opp_arr(&env);
 	mlx_loop(env.windows.mlx);
 	return (0);
 }

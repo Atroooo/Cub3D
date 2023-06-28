@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/28 12:26:16 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:43:38 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	key_hook_unpressed(int keycode, t_env *env)
 int	mlx_close(t_env *env)
 {
 	free_img(env);
-	mlx_mouse_show(env->windows.mlx, env->windows.win);
+	if (env->data.data_opp)
+		free(env->data.data_opp);
 	if (env->windows.mlx && env->img.img)
 		mlx_destroy_image(env->windows.mlx, env->img.img);
 	if (env->windows.mlx && env->windows.win)
@@ -50,18 +51,18 @@ int	key_hook(int keycode, t_env *env)
 	if (keycode == Key_E)
 		open_door(env, &env->data);
 	if (keycode == Key_Space)
-		env->data.frame = 1;
+		shoot(env);
 	return (0);
 }
 
 static void	teleport_cursor(t_env *env, int x)
 {
-	if (x > WIN_WIDTH - 200)
+	if (x > WIN_WIDTH / 2)
 		mlx_mouse_move(env->windows.mlx, env->windows.win, \
-			WIN_WIDTH - 300, WIN_HEIGHT / 2);
-	else if (x < 200)
+			WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	else if (x < WIN_WIDTH / 2)
 		mlx_mouse_move(env->windows.mlx, env->windows.win, \
-			300, WIN_HEIGHT / 2);
+		WIN_WIDTH / 2, WIN_HEIGHT / 2);
 }
 
 int	mouse_hook(int x, int y, t_env *env)
@@ -71,13 +72,13 @@ int	mouse_hook(int x, int y, t_env *env)
 	(void) y;
 	teleport_cursor(env, x);
 	angle_inc = 0.005;
-	if (x > 0 && x < (WIN_WIDTH / 2 - 600))
+	if (x > 0 && x < (WIN_WIDTH / 2))
 	{
 		env->data.p_angle -= angle_inc;
 		if (env->data.p_angle <= 0)
 			env->data.p_angle += 2.0 * M_PI;
 	}
-	else if (x > (WIN_WIDTH / 2 + 600) && x < WIN_WIDTH)
+	else if (x > (WIN_WIDTH / 2) && x < WIN_WIDTH)
 	{
 		env->data.p_angle += angle_inc;
 		if (env->data.p_angle > 2.0 * M_PI)
