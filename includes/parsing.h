@@ -14,6 +14,7 @@
 # define PARSING_H
 
 /* Parsing utils */
+void	verif_param(t_data *data);
 char	*setup_line(char *line);
 int		check_line_correct(char *str);
 int		ft_strcompare(char *str1, char *str, int n);

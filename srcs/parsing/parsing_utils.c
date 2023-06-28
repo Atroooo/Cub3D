@@ -61,3 +61,18 @@ void	set_variables(t_data *data, int i, int j)
 	data->p_delta.x = cos(data->p_angle);
 	data->p_delta.y = sin(data->p_angle);
 }
+
+void	verif_param(t_data *data)
+{
+	if (data->no == NULL || data->so == NULL || data->we == NULL || \
+		data->ea == NULL)
+	{
+		printf("Error\nMissing texture ?\n");
+		free_parsing(data);
+	}
+	if (data->floor_color == NULL || data->ceiling_color == NULL)
+	{
+		printf("Error\nMissing color ?\n");
+		free_parsing(data);
+	}
+}
