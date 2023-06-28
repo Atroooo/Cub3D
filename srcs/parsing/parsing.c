@@ -17,7 +17,10 @@ static void	print_error(t_data *data, int s)
 	if (s == 0)
 		printf("Error opening file.\n");
 	if (s == 1)
+	{
 		printf("Error reading file.\n");
+		close(data->fd);
+	}
 	if (s == 2)
 		printf("Malloc error\n");
 	if (s == 3)
