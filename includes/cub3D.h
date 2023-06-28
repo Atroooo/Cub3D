@@ -25,7 +25,7 @@
 # define E_H			500
 # define RAD			0.01745329
 # define MINI_MAP_SIZE	10
-# define HITBOX	0.4
+# define HITBOX         0.3
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"

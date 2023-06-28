@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/28 00:21:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:24:52 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,8 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 		pos_y - sin(env->data.p_angle + M_PI / 4), env, &ray2);
 	dda(pos_x + cos(env->data.p_angle + M_PI / 4), \
 		pos_y + sin(env->data.p_angle + M_PI / 4), env, &ray3);
-	if (c == 'W' || c == 'E')
-	{
-		if (ray1.length < HITBOX || \
-			ray2.length < HITBOX || ray3.length < HITBOX)
-			return (0);
-		return (1);
-	}
-	if (ray1.length < HITBOX - 0.1 || \
-		ray2.length < HITBOX - 0.1 || ray3.length < HITBOX - 0.1)
+	if (ray1.length < HITBOX || \
+		ray2.length < HITBOX || ray3.length < HITBOX)
 		return (0);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 18:49:04 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:25:30 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,19 @@ int	mouse_hook(int x, int y, t_env *env)
 
 	(void) y;
 	teleport_cursor(env, x);
-	angle_inc = 0.003;
+	angle_inc = 0.005;
+	printf("%f\n", env->data.p_angle);
 	if (x > 0 && x < (WIN_WIDTH / 2 - 600))
 	{
 		env->data.p_angle -= angle_inc;
-		if (env->data.p_angle > 2.0 * M_PI)
-			env->data.p_angle -= 5.0 * M_PI;
+		if (env->data.p_angle <= 0)
+			env->data.p_angle += 2.0 * M_PI;
 	}
 	else if (x > (WIN_WIDTH / 2 + 600) && x < WIN_WIDTH)
 	{
 		env->data.p_angle += angle_inc;
-		if (env->data.p_angle <= 0)
-			env->data.p_angle += 5.0 * M_PI;
+		if (env->data.p_angle > 2.0 * M_PI)
+			env->data.p_angle -= 2.0 * M_PI;
 	}
 	env->data.p_delta.x = cos(env->data.p_angle);
 	env->data.p_delta.y = sin(env->data.p_angle);
