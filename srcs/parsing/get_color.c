@@ -86,12 +86,24 @@ int	get_color(char *line, t_data *data)
 {
 	if (ft_strcompare("F ", line, 2))
 	{
+		if (data->floor_color != NULL)
+		{
+			printf("Error\nFloor color already set.\n");
+			free(line);
+			free_parsing(data);
+		}
 		get_floor_color(line, data);
 		convert_to_hexa(data, 'F');
 		return (1);
 	}
 	else if (ft_strcompare("C ", line, 2))
 	{
+		if (data->ceiling_color != NULL)
+		{
+			printf("Error\nCeiling color already set.\n");
+			free(line);
+			free_parsing(data);
+		}
 		get_ceiling_color(line, data);
 		convert_to_hexa(data, 'C');
 		return (1);
