@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:41:28 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/26 16:58:49 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:27:08 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef enum s_type
 	OPP
 }	t_type;
 
+/*Vectors*/
 typedef struct s_vector_2f
 {
 	float	x;
@@ -82,6 +83,7 @@ typedef struct s_door
 	t_vector_2d	index;
 }	t_door;
 
+/* Ray */
 typedef struct s_ray
 {
 	t_vector_2f	side_dist;
@@ -116,7 +118,6 @@ typedef struct s_opps
 	struct s_opps	*next;
 }	t_opps;
 
-
 typedef struct s_data
 {
 	t_bools		game_over;
@@ -146,9 +147,6 @@ typedef struct s_data
 	t_opps		*data_opp;
 	int			opp_nb;	
 }	t_data;
-
-/*Vectors*/
-
 
 /*Main environnement*/
 typedef struct s_env

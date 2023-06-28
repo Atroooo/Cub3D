@@ -43,7 +43,7 @@
 /* Free */
 void			free_char_array(char **array);
 void			free_windows_struct(t_env *env);
-void	        free_img(t_env *env);
+void			free_img(t_env *env);
 
 /* Mini_map */
 void			draw_map(t_env *env);
@@ -64,7 +64,7 @@ void			game_over_screen(t_env *env);
 void			move_opp(t_env *env, t_opps *opp);
 
 /* Raycasting */
-void	        init_ray(t_ray *ray, t_data *data, float d_x, float d_y);
+void			init_ray(t_ray *ray, t_data *data, float d_x, float d_y);
 void			dda(float d_x, float d_y, t_env *env, t_ray *ray);
 void			init_ray(t_ray *ray, t_data *data, float d_x, float d_y);
 void			raycasting(t_env *env);
