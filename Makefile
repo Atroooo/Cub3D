@@ -17,6 +17,7 @@ SRC			 			= main.c \
 						  parsing/get_map.c \
 						  parsing/get_map_utils.c \
 						  parsing/get_map_utils_bis.c \
+						  parsing/get_map_utils_th.c \
 						  parsing/error_message_parsing.c \
 						  init/init_mlx_create_win.c \
 						  init/key_hook.c \
