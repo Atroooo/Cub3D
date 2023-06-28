@@ -73,9 +73,9 @@ void	dda(float d_x, float d_y, t_env *env, t_ray *ray)
 		{
 			incr_ray_y(ray);
 			if (ray->step.y == 1)
-				ray->side = SOUTH;
-			else
 				ray->side = NORTH;
+			else
+				ray->side = SOUTH;
 		}
 		if (env->data.map_data.map[ray->map.y][ray->map.x] == 'O')
 			set_len_and_col(ray, env, d_x, d_y);

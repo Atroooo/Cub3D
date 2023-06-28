@@ -44,6 +44,8 @@ static void	init_value(t_data *data)
 	data->p_pos_index.y = 0;
 	data->angle = 0;
 	data->p_angle = 0;
+	data->ceiling_hexa = 0;
+	data->floor_hexa = 0;
 }
 
 int	main(int argc, char **argv)

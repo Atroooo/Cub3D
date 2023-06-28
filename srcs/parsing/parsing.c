@@ -96,5 +96,6 @@ void	parse_map(char *map_path, t_data *data)
 		line = get_next_line(data->fd);
 	}
 	close(data->fd);
+	verif_param(data);
 	setup_map(data);
 }
