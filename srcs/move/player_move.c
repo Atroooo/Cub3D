@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/28 12:31:12 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:28:25 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	move(t_env *env, t_data *data, int keycode)
 	}
 	data->p_pos_index.x = data->p_pos_x / TILE_SIZE;
 	data->p_pos_index.y = data->p_pos_y / TILE_SIZE;
-	refresh_img(env);
 }
 
 void	rotate(t_env *env, t_data *data, int keycode)
@@ -96,5 +95,4 @@ void	rotate(t_env *env, t_data *data, int keycode)
 	}
 	data->p_delta.x = cos(data->p_angle);
 	data->p_delta.y = sin(data->p_angle);
-	refresh_img(env);
 }
