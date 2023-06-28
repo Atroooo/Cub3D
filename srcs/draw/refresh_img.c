@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   refresh_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:06:07 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/28 00:17:59 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:37:29 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	handle_mlx_errors(t_env *env, int s, t_img img)
 	mlx_destroy_window(env->windows.mlx, env->windows.win);
 	mlx_destroy_display(env->windows.mlx);
 	free(env->windows.mlx);
+	free(env->data.data_opp);
 	free_parsing(&env->data);
 }
 

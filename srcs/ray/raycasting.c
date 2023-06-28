@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:35:38 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/28 00:21:38 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:31:13 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	raycasting(t_env *env)
 	angle = env->data.p_angle - 20.0 * RAD;
 	x = 0;
 	env->data.ray_opp.active = FALSE;
+	env->data.ray_opp.map.x = 0;
+	env->data.ray_opp.map.y = 0;
 	while (x < WIN_WIDTH)
 	{
 		dir.x = cos(angle);

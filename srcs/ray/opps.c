@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:49:54 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 11:05:49 by gclement         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:44:08 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	set_ray_opp(t_ray ray, t_data *data)
 	data->ray_opp.active = TRUE;
 }
 
-void	malloc_opp_arr(t_data *data)
+void	malloc_opp_arr(t_env *env)
 {
 	int	y;
 	int	x;
@@ -85,20 +85,20 @@ void	malloc_opp_arr(t_data *data)
 
 	y = 0;
 	count = 0;
-	while (data->map_data.map[y])
+	while (env->data.map_data.map[y])
 	{
 		x = 0;
-		while (data->map_data.map[y][x])
+		while (env->data.map_data.map[y][x])
 		{
-			if (data->map_data.map[y][x] == 'O')
+			if (env->data.map_data.map[y][x] == 'O')
 				count++;
 			x++;
 		}
 		y++;
 	}
-	data->data_opp = malloc(count * sizeof(t_opps));
-	if (!data->data_opp)
-		free_parsing(data);
-	data->opp_nb = count;
-	init_all_opps(data, data->data_opp);
+	env->data.data_opp = malloc(count * sizeof(t_opps));
+	if (!env->data.data_opp)
+		mlx_close(env);
+	env->data.opp_nb = count;
+	init_all_opps(&env->data, env->data.data_opp);
 }
