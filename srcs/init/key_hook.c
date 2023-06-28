@@ -6,7 +6,7 @@
 /*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:27:49 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/28 12:25:30 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:26:16 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	mouse_hook(int x, int y, t_env *env)
 	(void) y;
 	teleport_cursor(env, x);
 	angle_inc = 0.005;
-	printf("%f\n", env->data.p_angle);
 	if (x > 0 && x < (WIN_WIDTH / 2 - 600))
 	{
 		env->data.p_angle -= angle_inc;
