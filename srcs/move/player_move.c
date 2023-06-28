@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:17:39 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/24 14:26:59 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:29:04 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-#define HITBOX 0.3
 
 static int	check_collision(t_env *env, int s)
 {
@@ -45,15 +43,8 @@ int	collision(float pos_x, float pos_y, t_env *env, char c)
 		pos_y - sin(env->data.p_angle + M_PI / 4), env);
 	ray3 = dda(pos_x + cos(env->data.p_angle + M_PI / 4), \
 		pos_y + sin(env->data.p_angle + M_PI / 4), env);
-	if (c == 'W' || c == 'E')
-	{
-		if (ray1.length < HITBOX || ray2.length < HITBOX \
-			|| ray3.length < HITBOX)
-			return (0);
-		return (1);
-	}
-	if (ray1.length < HITBOX - 0.1 || ray2.length < HITBOX - 0.1 \
-		|| ray3.length < HITBOX - 0.1)
+	if (ray1.length < HITBOX || ray2.length < HITBOX \
+		|| ray3.length < HITBOX)
 		return (0);
 	return (1);
 }
