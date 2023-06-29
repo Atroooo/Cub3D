@@ -58,9 +58,9 @@ t_ray	dda(float d_x, float d_y, t_env *env)
 			ray.side_dist.y += ray.delta_dist.y;
 			ray.map.y += ray.step.y;
 			if (ray.step.y == 1)
-				ray.side = SOUTH;
-			else
 				ray.side = NORTH;
+			else
+				ray.side = SOUTH;
 		}
 	}
 	return (set_len_and_col(&ray, env->data, d_x, d_y), ray);

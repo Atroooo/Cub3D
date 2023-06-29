@@ -17,7 +17,10 @@ static void	print_error(t_data *data, int s)
 	if (s == 0)
 		printf("Error opening file.\n");
 	if (s == 1)
+	{
 		printf("Error reading file.\n");
+		close(data->fd);
+	}
 	if (s == 2)
 		printf("Malloc error\n");
 	if (s == 3)
@@ -98,5 +101,6 @@ void	parse_map(char *map_path, t_data *data)
 		line = get_next_line(data->fd);
 	}
 	close(data->fd);
+	verif_param(data);
 	setup_map(data);
 }

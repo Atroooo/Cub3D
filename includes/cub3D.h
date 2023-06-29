@@ -23,6 +23,7 @@
 # define E_H			500
 # define RAD			0.01745329
 # define MINI_MAP_SIZE	10
+# define HITBOX			0.3
 
 # include "../minilibx_linux/mlx.h"
 # include "../libft/header/libft.h"
@@ -37,7 +38,7 @@
 # include <fcntl.h>
 # include <math.h>
 
-
+/* Free */
 void	free_char_array(char **array);
 void	free_windows_struct(t_env *env);
 
@@ -47,11 +48,12 @@ t_ray	dda(float d_x, float d_y, t_env *env);
 void	raycasting(t_env *env);
 void	draw_wall(t_ray ray, t_env *env, float x);
 
+/* Pixel print*/
 void	my_mlx_put_line(t_img *img, int p1, int p2, uint32_t color);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 char	*get_pixel_in_texture(t_img data, int x, int y);
 
-/*Move*/
+/* Move */
 void	move(t_env *env, t_data *data, int keycode);
 void	rotate(t_env *env, t_data *data, int keycode);
 
