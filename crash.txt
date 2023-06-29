@@ -1,0 +1,67 @@
+==26746== Memcheck, a memory error detector
+==26746== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==26746== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==26746== Command: ./cub3D maps/map_medium.cub
+==26746== 
+==26746== Warning: set address range perms: large range [0x59c6000, 0x2ffd6000) (defined)
+==26746== Invalid read of size 4
+==26746==    at 0x119766: mlx_int_parse_xpm (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x119AC1: mlx_xpm_file_to_image (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x112E6B: create_textures_img (create_textures_img.c:94)
+==26746==    by 0x112FFF: create_all_textures_img (create_textures_img.c:109)
+==26746==    by 0x1122DE: init_game (init_mlx_create_win.c:18)
+==26746==    by 0x1126E2: init_mlx_create_win (init_mlx_create_win.c:67)
+==26746==    by 0x10FCB2: main (main.c:65)
+==26746==  Address 0x4d99a48 is 158,952 bytes inside a block of size 262,144 free'd
+==26746==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==26746==    by 0x11981B: mlx_int_parse_xpm (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x119AC1: mlx_xpm_file_to_image (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x112E6B: create_textures_img (create_textures_img.c:94)
+==26746==    by 0x112F95: create_all_textures_img (create_textures_img.c:107)
+==26746==    by 0x1122DE: init_game (init_mlx_create_win.c:18)
+==26746==    by 0x1126E2: init_mlx_create_win (init_mlx_create_win.c:67)
+==26746==    by 0x10FCB2: main (main.c:65)
+==26746==  Block was alloc'd at
+==26746==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==26746==    by 0x1193F5: mlx_int_parse_xpm (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x119AC1: mlx_xpm_file_to_image (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x112E6B: create_textures_img (create_textures_img.c:94)
+==26746==    by 0x112F95: create_all_textures_img (create_textures_img.c:107)
+==26746==    by 0x1122DE: init_game (init_mlx_create_win.c:18)
+==26746==    by 0x1126E2: init_mlx_create_win (init_mlx_create_win.c:67)
+==26746==    by 0x10FCB2: main (main.c:65)
+==26746== 
+==26746== Use of uninitialised value of size 8
+==26746==    at 0x119766: mlx_int_parse_xpm (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x119AC1: mlx_xpm_file_to_image (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x112E6B: create_textures_img (create_textures_img.c:94)
+==26746==    by 0x112FFF: create_all_textures_img (create_textures_img.c:109)
+==26746==    by 0x1122DE: init_game (init_mlx_create_win.c:18)
+==26746==    by 0x1126E2: init_mlx_create_win (init_mlx_create_win.c:67)
+==26746==    by 0x10FCB2: main (main.c:65)
+==26746==  Uninitialised value was created by a heap allocation
+==26746==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==26746==    by 0x1193F5: mlx_int_parse_xpm (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x119AC1: mlx_xpm_file_to_image (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x112E6B: create_textures_img (create_textures_img.c:94)
+==26746==    by 0x112FFF: create_all_textures_img (create_textures_img.c:109)
+==26746==    by 0x1122DE: init_game (init_mlx_create_win.c:18)
+==26746==    by 0x1126E2: init_mlx_create_win (init_mlx_create_win.c:67)
+==26746==    by 0x10FCB2: main (main.c:65)
+==26746== 
+==26746== 
+==26746== More than 10000000 total errors detected.  I'm not reporting any more.
+==26746== Final error counts will be inaccurate.  Go fix your program!
+==26746== Rerun with --error-limit=no to disable this cutoff.  Note
+==26746== that errors may occur in your program without prior warning from
+==26746== Valgrind, because errors are no longer being displayed.
+==26746== 
+^C==26746== 
+==26746== Process terminating with default action of signal 2 (SIGINT)
+==26746==    at 0x119730: mlx_int_parse_xpm (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x119AC1: mlx_xpm_file_to_image (in /nfs/homes/lcompieg/Documents/Cub3D/cub3D)
+==26746==    by 0x112E6B: create_textures_img (create_textures_img.c:94)
+==26746==    by 0x112FFF: create_all_textures_img (create_textures_img.c:109)
+==26746==    by 0x1122DE: init_game (init_mlx_create_win.c:18)
+==26746==    by 0x1126E2: init_mlx_create_win (init_mlx_create_win.c:67)
+==26746==    by 0x10FCB2: main (main.c:65)

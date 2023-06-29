@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_textures_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/27 19:08:20 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/29 14:45:39 by lcompieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,26 @@ static void	handle_wrong_texture(t_env *env, int i)
 	free_windows_struct(env);
 }
 
+static void	check_file_extension(char *path, t_env *env, int i)
+{
+	if (ft_strcmp(ft_strrchr(path + 1, '.'), ".xpm") != 0)
+	{
+		printf("Error\nWrong texture extension.\n");
+		handle_wrong_texture(env, i);
+	}
+}
+
 static t_img	create_textures_img(char *path, \
 	t_windows *win, t_env *env, int i)
 {
 	t_img	data;
 	int		fd;
 
+	check_file_extension(path, env, i);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
+		printf("Error\n");
 		perror("textures");
 		handle_wrong_texture(env, i);
 	}
@@ -82,7 +93,7 @@ static t_img	create_textures_img(char *path, \
 		close(fd);
 	data.img = mlx_xpm_file_to_image(win->mlx, path, &data.width, &data.height);
 	if (!data.img)
-		handle_mlx_errors(env, 0, data);
+		handle_wrong_texture(env, i);
 	data.addr = mlx_get_data_addr(\
 		data.img, &data.bits_per_pixel, \
 		&data.line_length, &data.endian);
