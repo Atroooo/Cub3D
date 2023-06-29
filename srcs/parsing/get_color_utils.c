@@ -15,14 +15,14 @@
 void	check_color_value(t_data *data, char c, char *line)
 {
 	if (c == 'C')
-		if ((data->ceiling_color[0] > 0 && data->ceiling_color[0] < 255) && \
-		(data->ceiling_color[1] > 0 && data->ceiling_color[1] < 255) && \
-		(data->ceiling_color[2] > 0 && data->ceiling_color[2] < 255))
+		if ((data->ceiling_color[0] > 0 && data->ceiling_color[0] <= 255) && \
+		(data->ceiling_color[1] > 0 && data->ceiling_color[1] <= 255) && \
+		(data->ceiling_color[2] > 0 && data->ceiling_color[2] <= 255))
 			return ;
 	if (c == 'F')
-		if ((data->floor_color[0] > 0 && data->floor_color[0] < 255) && \
-		(data->floor_color[1] > 0 && data->floor_color[1] < 255) && \
-		(data->floor_color[2] > 0 && data->floor_color[2] < 255))
+		if ((data->floor_color[0] > 0 && data->floor_color[0] <= 255) && \
+		(data->floor_color[1] > 0 && data->floor_color[1] <= 255) && \
+		(data->floor_color[2] > 0 && data->floor_color[2] <= 255))
 			return ;
 	if (line)
 		free(line);

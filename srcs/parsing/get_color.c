@@ -12,6 +12,22 @@
 
 #include "cub3D.h"
 
+static void	verif_nb_colors(char **split, char *line, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	if (i != 3)
+	{
+		free(line);
+		free_split(split, NULL);
+		printf("Error\nWrong number of colors.\n");
+		free_parsing(data);
+	}
+}
+
 static void	convert_to_hexa(t_data *data, char c)
 {
 	if (c == 'F')
@@ -34,6 +50,7 @@ static void	get_floor_color(char *line, t_data *data)
 	split = ft_split(line, ',');
 	if (!split)
 		print_error_message_exit(data, 0, line);
+	verif_nb_colors(split, line, data);
 	split2 = ft_split(split[0], ' ');
 	if (!split2 || !split2[1] || !check_line_correct(split[1]) || \
 	!check_line_correct(split[2]) || !check_line_correct(split2[1]))
@@ -62,6 +79,7 @@ static void	get_ceiling_color(char *line, t_data *data)
 	split = ft_split(line, ',');
 	if (!split)
 		print_error_message_exit(data, 0, line);
+	verif_nb_colors(split, line, data);
 	split2 = ft_split(split[0], ' ');
 	if (!split2 || !split2[1] || !check_line_correct(split[1]) || \
 		!check_line_correct(split[2]) || !check_line_correct(split2[1]))
@@ -86,12 +104,24 @@ int	get_color(char *line, t_data *data)
 {
 	if (ft_strcompare("F ", line, 2))
 	{
+		if (data->floor_color != NULL)
+		{
+			printf("Error\nFloor color already set.\n");
+			free(line);
+			free_parsing(data);
+		}
 		get_floor_color(line, data);
 		convert_to_hexa(data, 'F');
 		return (1);
 	}
 	else if (ft_strcompare("C ", line, 2))
 	{
+		if (data->ceiling_color != NULL)
+		{
+			printf("Error\nCeiling color already set.\n");
+			free(line);
+			free_parsing(data);
+		}
 		get_ceiling_color(line, data);
 		convert_to_hexa(data, 'C');
 		return (1);
