@@ -30,6 +30,7 @@ static void	get_north_texture(char *line, t_data *data)
 		printf("Error\nMissing texture ?\n");
 		free_parsing(data);
 	}
+	check_size_split_txt(split, line, data);
 	tmp = ft_strdup(split[1]);
 	data->no = ft_strtrim(tmp, "\n");
 	free(tmp);
@@ -54,6 +55,7 @@ static void	get_south_texture(char *line, t_data *data)
 		printf("Error\nMissing texture ?\n");
 		free_parsing(data);
 	}
+	check_size_split_txt(split, line, data);
 	tmp = ft_strdup(split[1]);
 	data->so = ft_strtrim(tmp, "\n");
 	free(tmp);
@@ -78,6 +80,7 @@ static void	get_west_texture(char *line, t_data *data)
 		printf("Error\nMissing texture ?\n");
 		free_parsing(data);
 	}
+	check_size_split_txt(split, line, data);
 	tmp = ft_strdup(split[1]);
 	data->we = ft_strtrim(tmp, "\n");
 	free(tmp);
@@ -102,6 +105,7 @@ static void	get_east_texture(char *line, t_data *data)
 		printf("Error\nMissing texture ?\n");
 		free_parsing(data);
 	}
+	check_size_split_txt(split, line, data);
 	tmp = ft_strdup(split[1]);
 	data->ea = ft_strtrim(tmp, "\n");
 	free(tmp);

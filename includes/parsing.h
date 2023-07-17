@@ -24,6 +24,7 @@ void	set_variables(t_data *data, int i, int j);
 int		get_color(char *line, t_data *map_info);
 void	check_color_value(t_data *data, char c, char *line);
 int		get_texture(char *line, t_data *map_info);
+void	check_size_split_txt(char **split, char *line, t_data *data);
 
 /* Parse map */
 void	parse_map(char *map_path, t_data *map_info);

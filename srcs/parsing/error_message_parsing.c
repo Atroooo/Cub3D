@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:37:51 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/27 01:07:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/07/17 17:26:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,19 @@ void	print_error_message_exit(t_data *map_info, int s, char *str)
 	if (str)
 		free(str);
 	free_parsing(map_info);
+}
+
+void	verif_param(t_data *data)
+{
+	if (data->no == NULL || data->so == NULL || data->we == NULL || \
+		data->ea == NULL)
+	{
+		printf("Error\nMissing texture ?\n");
+		free_parsing(data);
+	}
+	if (data->floor_color == NULL || data->ceiling_color == NULL)
+	{
+		printf("Error\nMissing color ?\n");
+		free_parsing(data);
+	}
 }

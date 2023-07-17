@@ -58,17 +58,20 @@ void	set_variables(t_data *data, int i, int j)
 	data->p_delta.y = sin(data->p_angle);
 }
 
-void	verif_param(t_data *data)
+void	check_size_split_txt(char **split, char *line, t_data *data)
 {
-	if (data->no == NULL || data->so == NULL || data->we == NULL || \
-		data->ea == NULL)
+	int	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	if (split[2] && split[2][0] == '\n')
+		return ;
+	if (i != 2)
 	{
-		printf("Error\nMissing texture ?\n");
-		free_parsing(data);
-	}
-	if (data->floor_color == NULL || data->ceiling_color == NULL)
-	{
-		printf("Error\nMissing color ?\n");
+		free(line);
+		printf("Error\nTexture ?\n");
+		free_char_array(split);
 		free_parsing(data);
 	}
 }
