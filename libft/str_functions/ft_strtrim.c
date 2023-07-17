@@ -6,14 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:50:45 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/26 17:13:31 by marvin           ###   ########.fr       */
+/*   Updated: 2023/07/17 17:30:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/libft.h"
 
 static int	check_set(char c, char const *set)
-{	
+{
 	int	index;
 
 	index = 0;
