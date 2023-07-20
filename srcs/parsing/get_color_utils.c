@@ -41,6 +41,11 @@ int	check_line_correct(char *str)
 	if (!tmp)
 		return (0);
 	i = 0;
+	if (!tmp[0])
+	{
+		free(tmp);
+		return (0);
+	}
 	while (tmp[i])
 	{
 		if (!ft_isdigit(tmp[i]))
