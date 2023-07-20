@@ -6,7 +6,7 @@
 /*   By: gclement <gclement@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:17:15 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/19 14:21:39 by gclement         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:00:46 by gclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,23 @@ static char	*choose_pixel_textures(t_ray ray, int y, float height, t_data data)
 {
 	char			*dst;
 	int				t_x;
+	t_img			textures;
 
-	t_x = (ray.collision.x - (int) ray.collision.x) * 256;
+	if (ray.side == NORTH)
+		textures = data.textures_img[0];
+	else if (ray.side == EAST)
+		textures = data.textures_img[1];
+	else if (ray.side == SOUTH)
+		textures = data.textures_img[2];
+	else
+		textures = data.textures_img[3];
+	t_x = (ray.collision.x - (int) ray.collision.x) * textures.width;
 	if (E_H - height / 2 < 0)
 		y = y - (E_H - height / 2);
-	y = y * (256 / height);
+	y = y * (textures.height / height);
 	if (t_x < 0 && y == 0)
 		y++;
-	if (ray.side == NORTH)
-		dst = get_pixel_in_texture(data.textures_img[0], t_x, y);
-	else if (ray.side == EAST)
-		dst = get_pixel_in_texture(data.textures_img[1], t_x, y);
-	else if (ray.side == SOUTH)
-		dst = get_pixel_in_texture(data.textures_img[2], t_x, y);
-	else
-		dst = get_pixel_in_texture(data.textures_img[3], t_x, y);
+	dst = get_pixel_in_texture(textures, t_x, y);
 	return (dst);
 }
 
