@@ -117,9 +117,9 @@ void	setup_map(t_data *data)
 		free_parsing(data);
 	}
 	get_size_map(data);
-	if (!check_bord_char(data))
+	if (data->map_data.map_height == 1)
 	{
-		printf("Error\nMap not closed.\n");
+		printf("Error\nMap too small.\n");
 		free_parsing(data);
 	}
 	check_map(data);

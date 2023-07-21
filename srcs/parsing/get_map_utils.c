@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcompieg <lcompieg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/06/28 14:13:50 by lcompieg         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:54:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	check_char(char c)
+static int	check_char_allowed(char c)
 {
-	if (c == '0' || c == '1' || c == ' ' || \
-		c == 'N' || c == 'S' || c == 'E' || c == 'W' || \
-		c == 'O' || c == 'D')
+	if (c == '0' || c == 'O' || c == 'D' || \
+		c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
+	if (c == ' ' || c == '1')
+		return (2);
 	else
 	{
 		printf("Error\nInvalid character in map.\n");
@@ -26,17 +27,24 @@ static int	check_char(char c)
 	return (0);
 }
 
-static int	check_next_char(char **map, int i, int j)
+static int	check_next_char(char **map, int i, int j, t_data *data)
 {
-	if (map[i][j + 1] == '\0' && (map[i][j] == '0' || map[i][j] == 'N' \
-	|| map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W' || \
-	map[i][j] == 'D' || map[i][j] == 'O'))
-		return (0);
-	if ((map[i][j - 1] && map[i][j - 1] == ' ') || \
-		(map[i][j + 1] && map[i][j + 1] == ' ') || \
-		(map[i - 1] && map[i - 1][j] == ' ') || \
-		(map[i + 1] && map[i + 1][j] == ' '))
-		return (0);
+	if (check_char_allowed(map[i][j]) == 1)
+	{
+		if (j == 0 || j == data->map_data.map_width - 1 || \
+			i == 0 || (size_t)i == ft_strlen(map[i]))
+			return (0);
+		if (!map[i][j - 1] || !map[i][j + 1] || !map[i - 1] || !map[i + 1])
+			return (0);
+		if ((map[i][j - 1] && (map[i][j - 1] == ' ' || \
+				map[i][j - 1] == '\0')) || \
+			(map[i][j + 1] && (map[i][j + 1] == ' ' || \
+				map[i][j + 1] == '\0')) || \
+			(map[i - 1] && (map[i - 1][j] == ' ' || map[i - 1][j] == '\0')) || \
+			(map[i + 1] && (map[i + 1][j] == ' ' || map[i + 1][j] == '\0')))
+			return (0);
+		return (1);
+	}
 	return (1);
 }
 
@@ -53,17 +61,12 @@ void	check_map(t_data *data)
 		j = -1;
 		while (data->map_data.map[i][++j])
 		{
-			if (!check_char(map[i][j]))
+			if (check_char_allowed(map[i][j]) == 0)
 				free_parsing(data);
-			if (map[i][j] && (map[i][j] == '0' || map[i][j] == 'N' \
-			|| map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W' || \
-			map[i][j] == 'D' || map[i][j] == 'O'))
+			if (!check_next_char(map, i, j, data))
 			{
-				if (map[i][j] && !check_next_char(map, i, j))
-				{
-					printf("Error\nMap is not closed.\n");
-					free_parsing(data);
-				}
+				printf("Error\nMap is not closed.\n");
+				free_parsing(data);
 			}
 		}
 	}
