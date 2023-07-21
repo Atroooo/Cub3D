@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 09:29:35 by gclement          #+#    #+#             */
-/*   Updated: 2023/06/29 17:38:50 by marvin           ###   ########.fr       */
+/*   Updated: 2023/07/21 15:55:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static void	handle_wrong_texture(t_env *env, int i)
 
 static void	check_file_extension(char *path, t_env *env, int i)
 {
+	if (ft_strlen(path) < 3)
+	{
+		printf("Error\nWrong texture extension.\n");
+		handle_wrong_texture(env, i);
+	}
 	if (ft_strcmp(ft_strrchr(path + 1, '.'), ".xpm") != 0)
 	{
 		printf("Error\nWrong texture extension.\n");
