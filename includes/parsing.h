@@ -34,7 +34,6 @@ void	setup_map(t_data *data);
 int		get_start(t_data *data);
 int		get_end(t_data *data);
 void	check_map(t_data *data);
-int		check_bord_char(t_data *data);
 
 /* Error message */
 void	print_error_message_exit(t_data *map_info, int s, char *str);

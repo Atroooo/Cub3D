@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/07/21 15:28:37 by marvin           ###   ########.fr       */
+/*   Updated: 2023/07/21 15:36:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ static int	check_next_char(char **map, int i, int j, t_data *data)
 			return (0);
 		if (!map[i][j - 1] || !map[i][j + 1] || !map[i - 1] || !map[i + 1])
 			return (0);
-		if ((map[i][j - 1] && (map[i][j - 1] == ' ' || map[i][j - 1] == '\0')) || \
-			(map[i][j + 1] && (map[i][j + 1] == ' ' || map[i][j + 1] == '\0')) || \
+		if ((map[i][j - 1] && (map[i][j - 1] == ' ' || \
+			map[i][j - 1] == '\0')) || \
+			(map[i][j + 1] && (map[i][j + 1] == ' ' || \
+			map[i][j + 1] == '\0')) || \
 			(map[i - 1] && (map[i - 1][j] == ' ' || map[i - 1][j] == '\0')) || \
 			(map[i + 1] && (map[i + 1][j] == ' ' || map[i + 1][j] == '\0')))
 			return (0);
