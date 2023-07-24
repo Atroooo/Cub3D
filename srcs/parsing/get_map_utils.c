@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:55:27 by lcompieg          #+#    #+#             */
-/*   Updated: 2023/07/21 17:10:52 by marvin           ###   ########.fr       */
+/*   Updated: 2023/07/24 13:20:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	check_next_char(char **map, int i, int j, t_data *data)
 	if (check_char_allowed(map[i][j]) == 1)
 	{
 		if (i == 0 || i == data->map_data.map_height - 1 || \
-			j == 0 || (size_t)j == ft_strlen(map[i]))			
+			j == 0 || (size_t)j == ft_strlen(map[i]))
 			return (0);
 		if (!map[i - 1][j] || !map[i + 1][j] || \
 			!map[i][j - 1] || !map[i][j + 1])

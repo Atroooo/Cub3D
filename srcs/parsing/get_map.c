@@ -80,9 +80,9 @@ static void	check_if_line_empty(t_data *data, int s, int e)
 	int	verif;
 
 	verif = 0;
-	while (s < e && data->map_data.base_map[s])
+	while (data->map_data.base_map[s] && s <= e)
 	{
-		while (s < e && data->map_data.base_map[s] \
+		while (data->map_data.base_map[s] && s <= e \
 			&& data->map_data.base_map[s] != '\n')
 		{
 			if (data->map_data.base_map[s] == '0' \
