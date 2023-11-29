@@ -31,10 +31,6 @@
     <li>Run the program with a map file: <code>./cub3D maps/example.cub</code></li>
 </ol>
 
-
-<h2 id="screenshots">Screenshots</h2>
-![Capture d'écran 2023-11-29 103824](https://github.com/Atroooo/Cub3D/assets/77669674/89498c53-9e9c-4fad-9dda-a1644291a1ab)
-
 <h2 id="built-with">Built With</h2>
 <ul>
     <li>C Programming Language</li>
