@@ -32,10 +32,11 @@
 </ol>
 
 <h2 id="screenshots">Screenshots</h2>
-![screen](https://github.com/Atroooo/Cub3D/assets/77669674/ca57f5f2-8029-45fb-b381-0e2d257d4156)
+![Enregistrement 2023-11-29 104503](https://github.com/Atroooo/Cub3D/assets/77669674/e9992bbf-bb89-429c-a446-98531219b604)
 
 <h2 id="built-with">Built With</h2>
 <ul>
     <li>C Programming Language</li>
     <li>MinilibX Library</li>
+
 </ul>
