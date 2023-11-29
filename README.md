@@ -32,7 +32,7 @@
 </ol>
 
 <h2 id="screenshots">Screenshots</h2>
-![](https://github.com/Atroooo/Cub3D/blob/master/screen.gif)
+![screen](https://github.com/Atroooo/Cub3D/assets/77669674/ca57f5f2-8029-45fb-b381-0e2d257d4156)
 
 <h2 id="built-with">Built With</h2>
 <ul>
