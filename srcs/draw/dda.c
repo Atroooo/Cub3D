@@ -63,6 +63,5 @@ t_ray	dda(float d_x, float d_y, t_env *env)
 				ray.side = SOUTH;
 		}
 	}
-	
 	return (set_len_and_col(&ray, env->data, d_x, d_y), ray);
 }
